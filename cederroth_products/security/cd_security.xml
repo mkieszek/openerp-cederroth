@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>        
+        <!-- Dodanie kategorii uprawnień -->                
+        <record model="ir.module.category" id="module_category_cd_products">
+            <field name="name">Cederroth Products</field>
+            <field name="sequence">41</field>
+        </record>
+        
+        <!-- Grupy uprawnień -->
+	        <!-- Klient format --> 
+	        	<record id="group_cd_client_format_visible" model="res.groups">
+		            <field name="name">Client format Visible</field>
+		            <field name="comment">Client format Visible</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+		        </record>
+	        	       
+		        <record id="group_cd_client_format_read" model="res.groups">
+		            <field name="name">Client format Read</field>
+		            <field name="comment">Client format Read</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+		        </record>
+		        
+		        <record id="group_cd_client_format_write" model="res.groups">
+		            <field name="name">Client format Write</field>
+		            <field name="comment">Client format Write</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_client_format_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_client_format_create" model="res.groups">
+		            <field name="name">Client format Create</field>
+		            <field name="comment">Client format Create</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_client_format_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_client_format_unlink" model="res.groups">
+		            <field name="name">Client format Unlink</field>
+		            <field name="comment">Client format Unlink</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_client_format_read'))]"/>
+		        </record>
+		        
+        	<!-- Listingi -->
+        		<record id="group_cd_export_listing_visible" model="res.groups">
+		            <field name="name">Export listing Visible</field>
+		            <field name="comment">Export listing Visible</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_client_format_read'))]"/>
+		        </record>       
+		        <record id="group_cd_add_listing" model="res.groups">
+		            <field name="name">Add Listing</field>
+		            <field name="comment">Add Listing</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+		        </record>
+		        
+		        <record id="group_cd_listing_visible" model="res.groups">
+		            <field name="name">Listing Visible</field>
+		            <field name="comment">Listing Visible</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+		        </record>
+		               
+		        <record id="group_cd_listing_read" model="res.groups">
+		            <field name="name">Listing Read</field>
+		            <field name="comment">Listing Read</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+		        </record>
+		        
+		        <record id="group_cd_listing_read_kam" model="res.groups">
+		            <field name="name">Listing Read KAM</field>
+		            <field name="comment">Listing Read KAM</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_listing_read')),(4, ref('group_cd_listing_visible'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_listing_read_department_director" model="res.groups">
+		            <field name="name">Listing Read Department Director</field>
+		            <field name="comment">Listing Read Department Director</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_listing_read')),(4, ref('group_cd_listing_visible'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_listing_write" model="res.groups">
+		            <field name="name">Listing Write</field>
+		            <field name="comment">Listing Write</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_listing_read')),(4, ref('group_cd_add_listing'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_listing_create" model="res.groups">
+		            <field name="name">Listing Create</field>
+		            <field name="comment">Listing Create</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_listing_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_listing_unlink" model="res.groups">
+		            <field name="name">Listing Unlink</field>
+		            <field name="comment">Listing Unlink</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_listing_read'))]"/>
+		        </record>
+		        
+		    <!-- Typ opakowania -->        
+		        <record id="group_cd_pack_type_read" model="res.groups">
+		            <field name="name">Product pack type Read</field>
+		            <field name="comment">Product pack type Read</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+		        </record>
+		        
+		        <record id="group_cd_pack_type_write" model="res.groups">
+		            <field name="name">Product pack type Write</field>
+		            <field name="comment">Product pack type Write</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_pack_type_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_pack_type_create" model="res.groups">
+		            <field name="name">Product pack type Create</field>
+		            <field name="comment">Product pack type Create</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_pack_type_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_pack_type_unlink" model="res.groups">
+		            <field name="name">Product pack type Unlink</field>
+		            <field name="comment">Product pack type Unlink</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_pack_type_read'))]"/>
+		        </record>
+	       
+        	<!-- Produkty -->        
+		        <record id="group_cd_product_read" model="res.groups">
+		            <field name="name">Product Read</field>
+		            <field name="comment">Product Read</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_listing_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_product_write" model="res.groups">
+		            <field name="name">Product Write</field>
+		            <field name="comment">Product Write</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_product_read')),(4, ref('group_cd_pack_type_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_product_create" model="res.groups">
+		            <field name="name">Product Create</field>
+		            <field name="comment">Product Create</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_product_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_product_unlink" model="res.groups">
+		            <field name="name">Product Unlink</field>
+		            <field name="comment">Product Unlink</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_product_read'))]"/>
+		        </record>
+		        
+	        <!-- Kategorie produktów -->        
+		        <record id="group_cd_product_category_read" model="res.groups">
+		            <field name="name">Product category Read</field>
+		            <field name="comment">Product category Read</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+		        </record>
+		        
+		        <record id="group_cd_product_category_write" model="res.groups">
+		            <field name="name">Product category Write</field>
+		            <field name="comment">Product category Write</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_product_category_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_product_category_create" model="res.groups">
+		            <field name="name">Product category Create</field>
+		            <field name="comment">Product category Create</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_product_category_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_product_category_unlink" model="res.groups">
+		            <field name="name">Product category Unlink</field>
+		            <field name="comment">Product category Unlink</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_product_category_read'))]"/>
+		        </record>
+		        
+		    <!-- Opakowania produktów -->        
+		        <record id="group_cd_product_packaging_read" model="res.groups">
+		            <field name="name">Product packaging Read</field>
+		            <field name="comment">Product packaging Read</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_product_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_product_packaging_write" model="res.groups">
+		            <field name="name">Product packaging Write</field>
+		            <field name="comment">Product packaging Write</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_product_packaging_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_product_packaging_create" model="res.groups">
+		            <field name="name">Product packaging Create</field>
+		            <field name="comment">Product packaging Create</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_product_packaging_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_product_packaging_unlink" model="res.groups">
+		            <field name="name">Product packaging Unlink</field>
+		            <field name="comment">Product packaging Unlink</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_product_packaging_read'))]"/>
+		        </record>
+		        
+	       <!-- Klient -->
+       			<record id="group_cd_client_kam" model="res.groups">
+		            <field name="name">Client KAM</field>
+		            <field name="comment">Client KAM</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+		        </record>
+		        
+		        <record id="group_cd_client_purchases" model="res.groups">
+		            <field name="name">Client - Sales/Purchases Visible</field>
+		            <field name="comment">Client - Sales/Purchases Visible</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+		        </record>
+		        
+		   <!-- Eksport danych logistycznych -->
+       			<record id="group_cd_product_export_data_visible" model="res.groups">
+		            <field name="name">Export data Visible</field>
+		            <field name="comment">Export data Visible</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+		        </record>
+	
+		<!-- Dodatkowe role -->
+	        <record id="cd_rule_cd_client_kam" model="ir.rule">
+	            <field name="name">Rule client - KAM</field>
+	            <field ref="model_res_partner" name="model_id"/>
+	            <field name="domain_force">['|','|','|','|',('create_uid','=',user.id),('user_id','=',user.id),('parent_id.user_id','=',user.id),('user_ids', 'in', user.id),('customer','=',False)]</field>
+	            <field name="groups" eval="[(4, ref('group_cd_client_kam'))]"/>
+	        </record>
+	        
+	        <record id="cd_rule_listing_cd_read_kam" model="ir.rule">
+	           <field name="name">Rule Listing - KAM</field>
+	           <field ref="model_cd_listing" name="model_id"/>
+	           <field name="domain_force">[('client_id.user_id','=',user.id)]</field>
+	           <field name="groups" eval="[(4, ref('group_cd_listing_read_kam'))]"/>
+	       </record>
+	       
+	       <record id="cd_rule_listing_cd_read_depart_d" model="ir.rule">
+	            <field name="name">Rule listing - Department Director</field>
+	            <field ref="model_cd_listing" name="model_id"/>
+	            <field name="domain_force">[('client_id.section_id.user_id.id','=',user.id)]</field>
+	            <field name="groups" eval="[(4, ref('group_cd_listing_read_department_director'))]"/>
+	        </record>
+        
+        <!-- Podstawowe uprawnienia użytkowników -->
+	        <record id="cederroth_products.group_cd_marketing_director" model="res.groups">
+		            <field name="name">Marketing Director</field>
+		            <field name="comment">Marketing Director</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+		            <field name="implied_ids" eval="[(4, ref('group_cd_product_export_data_visible')),
+			            							(4, ref('group_cd_product_read')),
+			            							(4, ref('group_cd_listing_read')),
+			            							(4, ref('group_cd_listing_visible')),
+			            							(4, ref('group_cd_export_listing_visible'))]"/>
+	        </record>
+	        
+	        <record id="cederroth_products.group_cd_kam" model="res.groups">
+	            <field name="name">KAM</field>
+	            <field name="comment">Key Account Menager</field>
+	            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+				<field name="implied_ids" eval="[(4, ref('group_cd_product_export_data_visible')),
+												(4, ref('group_cd_listing_create')),
+												(4, ref('group_cd_product_read')),
+												(4, ref('group_cd_add_listing')),
+												(4, ref('group_cd_client_format_visible')),
+												(4, ref('group_cd_client_format_create')),
+												(4, ref('group_cd_client_format_unlink')),
+												(4, ref('group_cd_export_listing_visible')),
+												(4, ref('group_cd_listing_read_kam')),
+												(4, ref('group_cd_pack_type_read')),
+												(4, ref('group_cd_product_category_read')),
+												(4, ref('group_cd_product_packaging_read')),
+												(4, ref('group_cd_client_kam')),
+												(4, ref('group_cd_client_purchases'))]"/>
+	        </record>
+	        
+	        <record id="cederroth_products.group_cd_datamanager" model="res.groups">
+	            <field name="name">Cederroth Data manager</field>
+	            <field name="comment">Cederroth data manager</field>
+	            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+				<field name="implied_ids" eval="[(4, ref('group_cd_product_export_data_visible')),
+												(4, ref('group_cd_product_create'))]"/>
+	        </record>
+	        
+	        <record id="cederroth_products.group_cd_logistics" model="res.groups">
+	            <field name="name">Logistics</field>
+	            <field name="comment">Logistics</field>
+	            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+				<field name="implied_ids" eval="[(4, ref('group_cd_product_export_data_visible')),
+												(4, ref('group_cd_product_write')),
+												(4, ref('group_cd_pack_type_create')),
+												(4, ref('group_cd_pack_type_unlink')),
+												(4, ref('group_cd_product_category_unlink')),
+												(4, ref('group_cd_product_category_create')),
+												(4, ref('group_cd_product_packaging_create')),
+												(4, ref('group_cd_product_packaging_unlink'))]"/>
+	        </record>
+	        
+	        <record id="cederroth_products.group_cd_logistics_manager" model="res.groups">
+	            <field name="name">Logistics Manager</field>
+	            <field name="comment">Logistics Manager</field>
+	            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+				<field name="implied_ids" eval="[(4, ref('group_cd_product_export_data_visible')),
+												(4, ref('group_cd_product_write')),
+												(4, ref('group_cd_listing_visible')),
+												(4, ref('group_cd_pack_type_create')),
+												(4, ref('group_cd_pack_type_unlink')),
+												(4, ref('group_cd_product_category_read')),
+												(4, ref('group_cd_product_packaging_create')),
+												(4, ref('group_cd_product_packaging_unlink')),
+												(4, ref('group_cd_client_purchases'))]"/>
+	        </record>
+	        
+	        <record id="cederroth_products.group_cd_brand_manager" model="res.groups">
+	            <field name="name">Brand Manager</field>
+	            <field name="comment">Brand Manager</field>
+	            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+				<field name="implied_ids" eval="[(4, ref('group_cd_listing_read')),
+												(4, ref('group_cd_listing_visible')),
+												(4, ref('group_cd_product_read')),
+												(4, ref('group_cd_product_export_data_visible')),
+												(4, ref('group_cd_export_listing_visible')),
+												(4, ref('group_cd_client_format_visible')),
+												(4, ref('group_cd_pack_type_read')),
+												(4, ref('group_cd_product_category_read')),
+												(4, ref('group_cd_product_packaging_read'))]"/>
+	        </record>
+	        
+	        <record id="cederroth_products.group_cd_product_manager" model="res.groups">
+	            <field name="name">Product Manager</field>
+	            <field name="comment">Product Manager</field>
+	            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+				<field name="implied_ids" eval="[(4, ref('group_cd_listing_read')),
+												(4, ref('group_cd_product_read')),
+												(4, ref('group_cd_product_export_data_visible')),
+												(4, ref('group_cd_export_listing_visible'))]"/>
+	        </record>
+	        
+	        <record id="cederroth_products.group_cd_trade_m_m" model="res.groups">
+	            <field name="name">Trade Marketing Manager</field>
+	            <field name="comment">Trade Marketing Manager</field>
+	            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+				<field name="implied_ids" eval="[(4, ref('group_cd_listing_visible')),
+												(4, ref('group_cd_product_create')),
+												(4, ref('group_cd_product_export_data_visible')),
+												(4, ref('group_cd_export_listing_visible')),
+												(4, ref('group_cd_client_format_visible')),
+												(4, ref('group_cd_product_category_create')),
+												(4, ref('group_cd_product_category_unlink')),
+												(4, ref('group_cd_client_purchases'))]"/>
+	        </record>
+		        
+		    <record id="cederroth_products.group_cd_trade_m_s" model="res.groups">
+	            <field name="name">Trade Marketing Specialist</field>
+	            <field name="comment">Trade Marketing Specialist</field>
+	            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+				<field name="implied_ids" eval="[(4, ref('group_cd_listing_read')),
+												(4, ref('group_cd_product_create')),
+												(4, ref('group_cd_product_export_data_visible')),
+												(4, ref('group_cd_export_listing_visible'))]"/>
+	        </record>
+	        
+	        <record id="cederroth_products.group_cd_department_director" model="res.groups">
+	            <field name="name">Department Director</field>
+	            <field name="comment">Department Director</field>
+	            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+				<field name="implied_ids" eval="[(4, ref('group_cd_listing_read')),
+												(4, ref('group_cd_listing_visible')),
+												(4, ref('group_cd_product_read')),
+												(4, ref('group_cd_add_listing')),
+												(4, ref('group_cd_product_export_data_visible')),
+												(4, ref('group_cd_export_listing_visible')),
+												(4, ref('group_cd_client_format_visible')),
+												(4, ref('group_cd_client_format_create')),
+												(4, ref('group_cd_client_format_unlink')),
+												(4, ref('group_cd_listing_read_department_director')),
+												(4, ref('group_cd_pack_type_read')),
+												(4, ref('group_cd_product_category_read')),
+												(4, ref('group_cd_product_packaging_read')),
+												(4, ref('group_cd_client_purchases'))]"/>
+	        </record>
+	        
+	        <record id="cederroth_products.group_cd_sales_director" model="res.groups">
+	            <field name="name">Sales Director</field>
+	            <field name="comment">Sales Director</field>
+	            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+				<field name="implied_ids" eval="[(4, ref('group_cd_listing_read')),
+												(4, ref('group_cd_listing_visible')),
+												(4, ref('group_cd_product_read')),
+												(4, ref('group_cd_add_listing')),
+												(4, ref('group_cd_product_export_data_visible')),
+												(4, ref('group_cd_export_listing_visible')),
+												(4, ref('group_cd_client_format_visible')),
+												(4, ref('group_cd_client_format_create')),
+												(4, ref('group_cd_client_format_unlink')),
+												(4, ref('group_cd_pack_type_read')),
+												(4, ref('group_cd_product_category_read')),
+												(4, ref('group_cd_product_packaging_read')),
+												(4, ref('group_cd_client_purchases'))]"/>
+	        </record>
+	        
+	        <record id="cederroth_products.group_cd_district_manager" model="res.groups">
+	            <field name="name">District Manager</field>
+	            <field name="comment">District Manager</field>
+	            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+				<field name="implied_ids" eval="[(4, ref('group_cd_product_read')),
+												(4, ref('group_cd_product_export_data_visible')),
+												(4, ref('group_cd_product_category_read')),
+												(4, ref('group_cd_pack_type_read')),
+												(4, ref('group_cd_product_packaging_read'))]"/>
+	        </record>
+	        
+        <!-- Ograniczenia widoków -->
+        	<record id="view_cd_client_sales_purchases1" model="ir.ui.view">
+				<field name="name">cederroth.sales.form</field>
+				<field name="model">res.partner</field>
+		        <field name="inherit_id" ref="base.view_partner_form"/>
+				<field name="type">form</field>
+				<field name="arch" type="xml">
+		        	<xpath expr="/form/sheet/notebook/page[@string='Sales &amp; Purchases']" position="attributes" >
+						<attribute name="groups">cederroth_products.group_cd_client_purchases</attribute>
+					</xpath>
+		        </field>
+		    </record>
+        	<menuitem id="menu_cd_export_products" action="action_cd_export_products" parent="base.menu_product" groups="group_cd_product_export_data_visible" sequence="2021"/>
+        	<menuitem id="menu_cd_listing" action="action_listings" parent="base.menu_sales" groups="group_cd_listing_visible" sequence="2020"/>
+        	<menuitem id="menu_cd_export_products_to_data_management" action="action_cd_export_products" parent="menu_cd_products" sequence="2010" groups="group_cd_product_export_data_visible"/>
+    </data>
+</openerp>

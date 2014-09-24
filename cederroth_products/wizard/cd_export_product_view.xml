@@ -1,0 +1,49 @@
+<openerp>
+    <data>
+        <record id="cd_export_product_view" model="ir.ui.view">
+            <field name="name">Export products</field>
+            <field name="model">cd.export.products</field>
+            <field name="arch" type="xml">
+                <form string="Export produktów" version="7.0">
+                    <field invisible="1" name="state"/>
+                    <field name="name" invisible="1"/>
+                    <group states="choose" string="Ustawienia exportu">
+                          <field invisible="1" name="state"/>
+                          <field name="name" invisible="1"/>
+                          <field name="client" />
+                          <field name="product_ids" />
+                    </group>
+                    <div states="get">
+                        <h2>Export</h2>
+                        <p>Wygenerowano plik: <field name="file_export" readonly="1" filename="name"/></p>
+                    </div>
+                    <footer states="choose">
+                        <button name="export_products" string="Generuj" type="object" class="oe_highlight"/> or 
+                        <button special="cancel" string="Zamknij" type="object" class="oe_link"/>
+                    </footer>
+                    <footer states="get">
+                        <button special="cancel" string="Zamknij" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+		<record id="action_cd_export_products" model="ir.actions.act_window">
+            <field name="name">Export danych logistycznych</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.export.products</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="cd_export_product_view"/>
+            <field name="target">new</field>
+        </record>
+
+		<menuitem id="menu_cd_export_products"
+            action="action_cd_export_products" parent="base.menu_product" 
+            sequence="2021"/>
+            
+        <menuitem id="menu_cd_export_products_to_data_management"
+            action="action_cd_export_products" parent="menu_cd_products" 
+            sequence="2010"/>
+	</data>
+</openerp>

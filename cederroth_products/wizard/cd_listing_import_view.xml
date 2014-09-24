@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+		<record model='ir.ui.view' id='cd_listing_import_view'>
+			<field name="name">cd.listing.import.view</field>
+            <field name="model">cd.listing.import</field>
+            <field name="arch" type="xml">
+				<form string="Import listing" version="7.0">
+					<sheet>
+						<group>
+							<field name="file_import"/>
+							<field name='client_id' />
+							<field name='movex_col' />
+							<field name='ean_col' />
+							<field name='price_col' />
+							<field name="format_col" />
+						</group>
+					</sheet>
+					<footer>
+                        <button name="listing_import" string="Import" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_cd_listing_import" model="ir.actions.act_window">
+            <field name="name">Import listing</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.listing.import</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="cd_listing_import_view"/>
+            <field name="target">new</field>
+        </record>
+		<menuitem
+             name="Import listing"
+             action="action_cd_listing_import"
+             id="menu_wizard_cd_listing_import"
+             parent="base.menu_config"/>
+	</data>
+</openerp>

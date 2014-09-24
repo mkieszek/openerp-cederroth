@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="cd_product_rel_add_wizard_view" model="ir.ui.view">
+            <field name="name">Export products</field>
+            <field name="model">cd.product.rel.add.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export products" version="7.0">
+                    <field name="product_ids" domain="[('id','in',context['product_list'])]"/>
+                    <footer>
+                        <button name="add_products" string="Dodaj produkty" type="object" class="oe_highlight"/> or 
+                        <button special="cancel" string="Cancel" type="object" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_cd_product_rel_add_wizard_view" model="ir.actions.act_window">
+            <field name="name">Add products to other cogs</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.product.rel.add.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="cd_product_rel_add_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+	</data>
+</openerp>

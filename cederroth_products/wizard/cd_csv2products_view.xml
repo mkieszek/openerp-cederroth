@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+		<record model='ir.ui.view' id='cd_csv2products_view'>
+			<field name="name">csv2products.view</field>
+            <field name="model">cd.csv2products</field>
+            <field name="arch" type="xml">
+				<form string="Import products" version="7.0">
+					<sheet>
+						<field name="csv"/>
+					</sheet>
+					<footer>
+                        <button name="import_file" string="Import" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_cd_csv2products" model="ir.actions.act_window">
+            <field name="name">Import products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.csv2products</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="cd_csv2products_view"/>
+            <field name="target">new</field>
+        </record>
+		<menuitem
+             name="Import products wizard"
+             action="action_cd_csv2products"
+             id="menu_wizard_cd_csv2products"
+             parent="base.menu_config"/>
+		
+	</data>
+</openerp>

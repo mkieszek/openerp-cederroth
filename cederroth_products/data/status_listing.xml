@@ -1,0 +1,20 @@
+<openerp>
+    <data noupdate="1">
+		
+		<record model="cd.listing.status" id="status_aktywny">
+			<field name="name">Aktywny</field>
+		</record>
+
+		<record model="cd.listing.status" id="status_dowprowadzenia">
+			<field name="name">Do wprowadzenia</field>
+		</record>
+
+		<record model="cd.listing.status" id="status_dozdjecia">
+			<field name="name">Do zdjęcia</field>
+		</record>
+
+		<record model="cd.listing.status" id="status_nieaktywny">
+			<field name="name">Nie aktywny</field>
+		</record>
+    </data>
+</openerp>

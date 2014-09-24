@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_cd_product_history_graph" model="ir.ui.view">  
+              <field name="name">cd.product.history.graph</field>  
+              <field name="model">cd.product.history.wizard</field>  
+              <field name="arch" type="xml">  
+                  <graph orientation="vertical" string="Graph" type="bar">  
+                      <field name="sale_date" /> 
+                      <field name="count" />
+                  </graph>  
+              </field>  
+          </record>
+        
+        <record model="ir.ui.view" id="cd_product_history_search">
+       		<field name="name">cd.plroduct.history.search</field>
+			<field name="model">cd.product.history.wizard</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie plany Klienta">
+               	<field name="product_id" />
+               	<field name="partner_id" />
+			</search>
+			</field>
+		</record>
+        
+        <record id="action_cd_product_history_wizard_view" model="ir.actions.act_window">
+            <field name="name">Product History</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.product.history.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_cd_product_history_graph"/>
+            <field name="target">new</field>
+             <field name="search_view_id" ref="cd_product_history_search"/>
+        </record>
+	</data>
+</openerp>

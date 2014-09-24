@@ -1,0 +1,39 @@
+<openerp>
+<data>
+	<record id="view_cd_sale_res_partner" model="ir.ui.view">
+		<field name="name">cederroth.partners.form</field>
+		<field name="model">res.partner</field>
+        <field name="inherit_id" ref="cederroth_products.view_res_partner"/>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+            <xpath expr="/form/sheet/notebook/page[@string='Sales &amp; Purchases']/group/group/field[@name='user_id']" position="after">
+	            <field name="ph_user_id" attrs="{'invisible':[('parent_id','=',False)]}"/>
+	        </xpath>
+	        
+	        <xpath expr="/form/sheet/notebook/page[@string='Sales &amp; Purchases']/group/group" position="before">
+	            <group string="Rabaty">
+		            <field name="discount_front" />
+		            <field name="discount_back_coop" />
+		            <field name="discount_back_trade_promo" />
+		            <field name="discount_back" />
+		            <field name="discount_promo" />
+		        </group>	
+		        <group string="Rabaty po marce">
+		        	<div>
+		            	<field name="discount_partner_ids" >
+		            		<tree editable="bottom">
+		            			<field name="product_category" />
+		            			<field name="discount_front" />
+					            <field name="discount_back_coop" />
+					            <field name="discount_back_trade_promo" />
+		            			<field name="discount_back" />
+		            			<field name="discount_promo" />
+		            		</tree>
+		            	</field>
+		            </div>
+		        </group>
+	        </xpath>
+        </field>
+    </record>
+</data>
+</openerp>

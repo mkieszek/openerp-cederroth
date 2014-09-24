@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>        
+        <!-- Dodanie kategorii uprawnień -->
+        <record model="ir.module.category" id="module_category_cd_sales">
+            <field name="name">Cederroth Sales</field>
+            <field name="sequence">41</field>
+        </record>
+        
+        <!-- Grupy uprawnień -->	
+        	<!-- Akcje promocyjne -->        
+		        <record id="group_cd_promotions_read" model="res.groups">
+		            <field name="name">Promotions Read</field>
+		            <field name="comment">Promotions Read</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+		        </record>
+		        
+		        <record id="group_cd_promotions_read_kam" model="res.groups">
+		            <field name="name">Promotions Read KAM</field>
+		            <field name="comment">Promotions Read KAM</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_promotions_write" model="res.groups">
+		            <field name="name">Promotions Write</field>
+		            <field name="comment">Promotions Write</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_promotions_create" model="res.groups">
+		            <field name="name">Promotions Create</field>
+		            <field name="comment">Promotions Create</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_promotions_unlink" model="res.groups">
+		            <field name="name">Promotions Unlink</field>
+		            <field name="comment">Promotions Unlink</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read'))]"/>
+		        </record>
+		        	        
+	        <!-- Koszty promocji - dane -->        
+		        <record id="group_cd_cost_data_read" model="res.groups">
+		            <field name="name">Cost data Read</field>
+		            <field name="comment">Cost data Read</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_cost_data_write" model="res.groups">
+		            <field name="name">Cost data Write</field>
+		            <field name="comment">Cost data Write</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_cost_data_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_cost_data_create" model="res.groups">
+		            <field name="name">Cost data Create</field>
+		            <field name="comment">Cost data Create</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_cost_data_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_cost_data_unlink" model="res.groups">
+		            <field name="name">Cost data Unlink</field>
+		            <field name="comment">Cost data Unlink</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_cost_data_read'))]"/>
+		        </record>
+		        
+	        <!-- Typy promocji -->        
+		        <record id="group_cd_type_promotions_read" model="res.groups">
+		            <field name="name">Type promotions Read</field>
+		            <field name="comment">Type promotions Read</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_type_promotions_write" model="res.groups">
+		            <field name="name">Type promotions Write</field>
+		            <field name="comment">Type promotions Write</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_type_promotions_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_type_promotions_create" model="res.groups">
+		            <field name="name">Type promotions Create</field>
+		            <field name="comment">Type promotions Create</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_type_promotions_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_type_promotions_unlink" model="res.groups">
+		            <field name="name">Type promotions Unlink</field>
+		            <field name="comment">Type promotions Unlink</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_type_promotions_read'))]"/>
+		        </record>
+		        		        
+	    	<!-- Dodatkowe role -->		       
+		       <record id="cd_rule_promotions_cd_read_kam2" model="ir.rule">
+		           <field name="name">Rule Promotions - KAM</field>
+		           <field ref="model_cd_promotions" name="model_id"/>
+		           <field name="domain_force">[('client_id.user_id','=',user.id)]</field>
+		           <field name="groups" eval="[(4, ref('group_cd_promotions_read_kam'))]"/>
+		       </record>
+		       
+		       <record id="cd_rule_partner_cd_ph" model="ir.rule">
+		           <field name="name">Rule Klients - PH</field>
+		           <field ref="model_res_partner" name="model_id"/>
+		           <field name="domain_force">['|',('ph_user_id','=',user.id),('user_ids', 'in', user.id)]</field>
+		           <field name="groups" eval="[(4, ref('cederroth_products.group_cd_ph'))]"/>
+		       </record>
+	        
+	        <!-- Podstawowe uprawnienia użytkowników -->
+		        <record id="cederroth_products.group_cd_marketing_director" model="res.groups">
+		            <field name="name">Marketing Director</field>
+		            <field name="comment">Marketing Director</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+		            <field name="implied_ids" eval="[(4, ref('group_cd_promotions_read')),
+			            							(4, ref('group_cd_cost_data_read')),
+			            							(4, ref('group_cd_type_promotions_read'))]"/>
+		        </record>
+		        
+		       	<record id="cederroth_products.group_cd_kam" model="res.groups">
+		            <field name="name">KAM</field>
+		            <field name="comment">Key Account Menager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_create')),
+													(4, ref('group_cd_type_promotions_read')),
+													(4, ref('group_cd_cost_data_read')),
+													(4, ref('group_cd_promotions_read_kam'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_logistics_manager" model="res.groups">
+		            <field name="name">Logistics Manager</field>
+		            <field name="comment">Logistics Manager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read')),
+													(4, ref('group_cd_cost_data_read')),
+													(4, ref('group_cd_type_promotions_read'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_logistics" model="res.groups">
+		            <field name="name">Logistics</field>
+		            <field name="comment">Logistics</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read')),
+													(4, ref('group_cd_cost_data_read')),
+													(4, ref('group_cd_type_promotions_read'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_brand_manager" model="res.groups">
+		            <field name="name">Brand Manager</field>
+		            <field name="comment">Brand Manager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read')),
+													(4, ref('group_cd_cost_data_read')),
+													(4, ref('group_cd_type_promotions_read'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_product_manager" model="res.groups">
+		            <field name="name">Product Manager</field>
+		            <field name="comment">Product Manager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_finances_director" model="res.groups">
+		            <field name="name">Finances Director</field>
+		            <field name="comment">Finances Director</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_write'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_country_manager" model="res.groups">
+		            <field name="name">Country Manager</field>
+		            <field name="comment">Country Manager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_write'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_district_manager" model="res.groups">
+		            <field name="name">District Manager</field>
+		            <field name="comment">District Manager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read')),
+													(4, ref('group_cd_type_promotions_read')),
+													(4, ref('group_cd_cost_data_read'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_trade_m_m" model="res.groups">
+		            <field name="name">Trade Marketing Manager</field>
+		            <field name="comment">Trade Marketing Manager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_create')),
+													(4, ref('group_cd_type_promotions_create')),
+													(4, ref('group_cd_type_promotions_unlink')),
+													(4, ref('group_cd_cost_data_create')),
+													(4, ref('group_cd_cost_data_unlink'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_trade_m_s" model="res.groups">
+		            <field name="name">Trade Marketing Specialist</field>
+		            <field name="comment">Trade Marketing Specialist</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read')),
+													(4, ref('group_cd_type_promotions_read')),
+													(4, ref('group_cd_cost_data_read'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_department_director" model="res.groups">
+		            <field name="name">Department Director</field>
+		            <field name="comment">Department Director</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_create')),
+													(4, ref('group_cd_type_promotions_read')),
+													(4, ref('group_cd_cost_data_read'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_sales_director" model="res.groups">
+		            <field name="name">Sales Director</field>
+		            <field name="comment">Sales Director</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_create')),
+													(4, ref('group_cd_type_promotions_read')),
+													(4, ref('group_cd_cost_data_read'))]"/>
+		        </record>
+    </data>
+</openerp>

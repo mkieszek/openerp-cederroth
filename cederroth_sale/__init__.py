@@ -1,0 +1,16 @@
+import cd_promotions
+import cd_promotions_stage
+import cd_product_rel
+import cd_cost_promotions
+import res_partner
+import product
+import crm
+import cd_gratis
+import cd_cost_data
+import cd_type_promotions
+import cd_discount_partner
+import wizard
+import cd_task_merchandising
+import cd_task_sale
+import cd_display
+import cd_communication

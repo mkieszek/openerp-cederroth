@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_product_form_cederroth" model="ir.ui.view">
+		<field name="name">cederroth.product.form</field>
+		<field name="model">product.product</field>
+		<field name="inherit_id" ref="stock.view_normal_procurement_locations_form"/>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+	        <xpath expr="/form/sheet" position="before">
+	            <header>
+	                <button name="%(cederroth_products.action_change_date)d" string="Change Date" type="action" groups="base.group_erp_manager"/>
+	            </header>
+	        </xpath>
+	  		
+			<xpath expr="/form/sheet/notebook/page[@string='Sales']/group/group" position="after" >
+				<group >
+					<field name="order_ul" colspan="2" col="2"/>
+					<field name="pack_type" />
+					<field name="shelf_life" />
+				</group>
+			</xpath>
+			<xpath expr="/form/sheet/notebook/page[@string='Sales']" position="replace" />
+			<xpath expr="/form/sheet/notebook/page[@string='Procurements']" position="replace" >
+				<page string='Procurements' invisible='1'>
+					<group name="procurement">
+                        <group name="general">
+                            <field name="cost_method" groups="product.group_costing_method"/>
+                            <field name="standard_price" attrs="{'readonly':[('cost_method','=','average')]}"/>
+                        </group>
+                        <group name="procurement_uom" groups="product.group_uom" string="Purchase">
+                            <field name="uom_po_id"/>
+                        </group>
+                    </group>
+				</page>
+			</xpath>
+			<xpath expr="/form/sheet/notebook/page[@string='Inventory']" position="replace" />
+			<xpath expr="/form/sheet/notebook/page[@string='Information']" position="attributes" >
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="/form/sheet/notebook/page/group/group/field[@name='default_code']" position="replace" />
+                       
+			<!--<xpath expr="/form/sheet/notebook/page/field/form/group/field[@name='weight']" position="after">
+				<field name="weight_tolerance" />
+			</xpath>
+			
+            <xpath expr="/form/sheet/notebook/page/field/form/group/field[@name='ean']" position="replace">
+            	<field name="ean_code" />
+            </xpath>
+            
+			<xpath expr="/form/sheet/notebook/page/group/group[@name='general']"></xpath>
+
+			<xpath expr="/form/sheet/notebook/page/field/form/group/separator[@string='Pallet Dimension']" position="replace">
+            	<separator colspan="4" string="Package Dimension"/>
+            </xpath>-->
+
+			<xpath expr="/form/sheet/notebook/page[@string='Images']" position="replace">
+            </xpath>
+
+			<notebook position="inside">
+				<page string="Marketing" position='before'>
+					<group col="2">
+						<group>
+							<field name="type" invisible='1' />
+							<field name="name_en"/>
+							<field name="etykieta_regalowa_15" invisible='1' />
+							<field name="etykieta_regalowa_4" invisible='1' />
+							<field name="list_price" invisible="1" />
+							<field name="priorytet" />
+						</group>
+						<group>
+							<field name="default_code_name" />
+							<!-- <field name="default_code" string="MOVEX" /> -->
+							<field name="ean13" strin="EAN13" />
+							<field name="manufacturer_id"/>
+							<field name="warranty" invisible='1' />
+							<field name="availability_date"/>
+							<!-- <field name="active" /> -->
+							<field name="product_manager" />
+							<field name="state" />
+						</group>
+					</group>
+				</page>
+				<page string="Logistyka">
+					<group col="2">
+						<group> 
+							<field name="height"/>
+							<field name="width" />
+							<field name="length" />
+							<field name="temp_min" />
+							<field name="temp_max" />
+							<field name="alcohol" />
+						</group>
+						<group>
+							<field name="volume" />
+							<field name="weight"/>
+							<field name="weight_net"/>
+						</group>
+						<group>
+							<field name="sale_delay"/>
+							<field name="order_ul"/>
+							<field name="pack_type"/>
+							<field name="shelf_life"/>
+						</group>
+					</group>
+					<field name="packaging" groups="product.group_stock_packaging">
+                        <form string="Packaging" version="7.0">
+                            <group col="4">
+                                <field name="ean"/>
+                                <field name="sequence" invisible="1"/>
+                                <newline/>
+                                <field name="qty"/>
+                                <field name="ul"/>
+                                <field name="weight_ul"/>
+                                <separator colspan="4" string="Palletization"/>
+                                <field name="ul_qty"/>
+                                <field name="rows"/>
+                                <field name="weight_tolerance" />
+                                <field name="weight"/>
+                                <separator colspan="4" string="Package Dimension"/>
+                                <field name="height"/>
+                                <field name="width"/>
+                                <field name="length"/>
+                            </group>
+                            <separator colspan="4" string="Description"/>
+                            <field name="name"/>
+                        </form>
+                    </field>
+				</page>
+				<page string="KAM">
+					<group col="2">
+						<group>
+	                        <separator string="Kaufland" colspan="2" />
+	                        <field name="nr_dostawcy_kaufland" />
+	                        <field name="grupa_ekg" />
+	                        <field name="typ_etykiety" />
+	                        <field name="zrodlo_dostawy" />
+	                        <field name="magazyn" />
+	                        <field name="grupa_warunkow_kaufland" />          
+						</group>
+						<group>
+							<separator string="Makro / Real" colspan="2" />
+							<field name="typ_artykulu" />
+							<field name="grupa_warunkow" />
+                            <field name="nr_dostawcy_makro_real" />
+                            <field name="rodzaj_makro" />
+						</group>
+                	</group>
+			        <group col="2">
+			        	<group>
+							<separator string="Super-pharm" colspan="2" />
+							<field name="min_log_superpharm" />
+						</group>	
+                        <group>
+							<separator string="Auchan" colspan="2" />
+							<field name="nr_dostawcy_auchan" />
+		                    <field name="name_30_auchan" />
+						</group>
+		       		</group>
+					<group col="2">
+						<group>
+							<separator string="Selgros" colspan="2" />
+							<field name="nr_dostawcy_selgros" />
+						</group>
+                        <group>
+							<separator string="Hebe" colspan="2" />
+							<field name="index_producenta_hebe" />
+						</group>
+                    </group>
+                    <group col="2">
+                    	<group>
+							<separator string="Clinique" colspan="2" />
+							<field name="kod_kr_clinique" />
+							<field name="sku_clinique" />
+							<field name="index_ob" />
+						</group>
+                        <group>
+                            <separator string="Carrefour" colspan="2" />
+                            <field name="name_35_carrefour" />
+						</group>
+                    </group>
+                    <group col="2">
+                    	<group>
+							<separator string="Ogólne" colspan="2" />
+							<field name="name_40" />
+							<field name="name_20_1" />
+							<field name="name_20_2" />
+							<field name="paragon_18" />
+						</group>
+                        <group>
+						</group>
+                    </group>
+				</page>
+				<page string="Finanse">
+					<group col="2">
+						<group col="2">
+							<field name="hts_code" />
+							<field name="pkwiu1997" />
+							<field name="pkwiu2008" />
+							<field name="origin_country" />
+						</group>
+						<group col="2">
+							<field name="kod_cn" />
+							<field name="kod_eu_factor" />
+							<field name="kod_eu_unit" />
+							<field name="vat_2010" />
+						</group>
+					</group>
+				</page>
+			
+				<page string="Images">
+					<field name="multi_images" widget="image_multi"/>
+				</page>
+			
+   				<page string="Listing" groups="base.group_cd_kam,base.group_erp_manager">
+                	<field name="listing">
+                    	<tree editable="bottom">
+         					<field name="client_id" />
+                            <field name="price_sale" />
+                            <field name="status_l" />
+                            <field name="change_date" />
+                       	</tree>
+                    </field>
+                </page>
+		  	</notebook>
+	            <!-- <field name="product_manager" position="after">
+	                <field name="active"/>
+	            </field>
+				<field name="default_code" position="attributes">
+					<attribute name="String">MOVEX</attribute>
+                </field> -->
+				<!--<field name="ean13" position="replace" /> -->
+				<field name="list_price" position="after">
+					<field name="product_count" />
+				</field>
+    	</field>
+	</record>
+ 
+    <record id="cd_product_normal_form_view" model="ir.ui.view">
+        <field name="name">product.normal.form.inherit</field>
+        <field name="model">product.product</field>
+        <field name="priority">5</field>
+        <field name="inherit_id" ref="account.product_normal_form_view"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//notebook/page[@string='Accounting']" position="attributes" >
+				 <attribute name="invisible">True</attribute>
+        	</xpath>
+        	<xpath expr="//form/sheet/div/h2" position="after" >
+        		<label for="product_mark" />
+        		<field name="product_mark" />
+        		<group col='2'>
+        			<group>
+		        		<field name="default_code" string="MOVEX"/>
+	        		</group>
+	        		<group>
+		        		<field name="active" />
+	        		</group>
+	        	</group>
+        	</xpath>
+        </field>
+    </record>
+
+	<record id="cd_product_view_search" model="ir.ui.view">
+		<field name="name">cd.product.view.search</field>
+		<field name="model">product.product</field>
+		<field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="arch" type="xml">
+        	<field name="name" position="after">
+        		<field name="ean13" />
+        		<field name="product_manager" />
+        		<field name="default_code" string="MOVEX" />
+        		<field name="product_mark" />
+        	</field>
+        	<filter string="Company" position="after">
+        		<filter string='Marka' name="group_mark" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'product_mark'}"/>
+        		<filter string='Priorytet' name="group_priorytet" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'priorytet'}"/>
+        	</filter>
+        </field>
+	</record>
+
+	<record id="view_product_cd_packaging_tree" model="ir.ui.view">
+		<field name="name">cederroth.product.packaging.tree.view</field>
+		<field name="model">product.product</field>
+		<field name="inherit_id" ref="product.product_product_tree_view"/>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<data>
+				<field name='default_code' position="replace">
+                     <field name="categ_id" />
+                </field>
+				<field name='variants' position="replace">
+       			<field name="default_code" position="attributes">
+					<attribute name="String">MOVEX</attribute></field>
+                </field>
+				<field name='qty_available' position="replace">
+                </field>
+				<field name='virtual_available' position="attributes">
+                     <attribute name="invisible">1</attribute>
+                </field>
+				<field name='lst_price' position="replace">
+                </field>
+
+				<field name="uom_id" position="replace" >
+                    <field name="product_count" />
+					<field name="priorytet" />
+                </field>
+      		</data>
+		</field>
+	</record>
+
+	<record id="view_product_packaging_tree" model="ir.ui.view">
+		<field name="name">cederroth.product.packaging.tree</field>
+		<field name="model">product.packaging</field>
+		<field name="inherit_id" ref="product.product_packaging_tree_view"/>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<xpath expr="/tree/field[@name='ul']" position="after">
+				<field name="weight_tolerance"/>
+				<field name="weight" />
+			</xpath>
+		</field>
+	</record>	
+	</data>
+</openerp>

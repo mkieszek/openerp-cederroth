@@ -1,0 +1,30 @@
+<openerp>
+    <data>
+  
+      <record id="cd_change_date_view" model="ir.ui.view">
+            <field name="name">change.date.view</field>
+            <field name="model">cd.changedate</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                    <form string="Change Date" version="7.0">
+    				<field name="availability_date" readonly="0"/>
+                        <footer>
+                            <button name="change_date" string="Save" type="object" class="oe_highlight"/>
+                            or
+                            <button string="Cancel" class="oe_link" special="cancel"/>
+                        </footer>
+                    </form>
+            </field>
+        </record>
+		
+        <record id="action_change_date" model="ir.actions.act_window">
+            <field name="name">Change Date</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.changedate</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="cd_change_date_view"/>
+            <field name="target">new</field>
+        </record>
+
+	</data>
+</openerp>

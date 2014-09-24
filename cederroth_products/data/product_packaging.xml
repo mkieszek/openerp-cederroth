@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+		
+		<record model="product.ul" id="package_pallet">
+			<field name="name">Paleta</field>
+			<field name="type">pallet</field>
+		</record>
+		
+		<record model="product.ul" id="package_box">
+			<field name="name">Karton</field>
+			<field name="type">box</field>
+		</record>
+		
+		<record model="product.ul" id="package_unit">
+			<field name="name">Sztuka</field>
+			<field name="type">unit</field>
+		</record>
+		
+		<record model="product.ul" id="package_pack">
+			<field name="name">Blister</field>
+			<field name="type">pack</field>
+		</record>
+
+		
+	</data>
+</openerp>

@@ -1,0 +1,73 @@
+<openerp>
+<data>
+	<record id="view_res_partner" model="ir.ui.view">
+		<field name="name">cederroth.partners.form</field>
+		<field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+            <notebook>
+				<page string="Listing" groups="cederroth_products.group_cd_listing_visible">
+                    <field name="listing">
+                      <tree editable="bottom">
+        				 <field name="product_id" />
+        				 <field name="movex" />
+        				 <field name="categ_id" />
+                         <field name="price_sale" />
+                         <field name="status_l" />
+                         <field name="change_date" />
+                         <field name="fclient_id" domain="[('status','=','True')]"/>
+                         <field name="priorytet" />
+                      </tree>
+                    </field>
+                 </page>
+          		<page string="Client format" groups="cederroth_products.group_cd_client_format_visible">
+                    <field name="cformat">
+                      <tree editable="bottom">
+        				<field name="name" />
+                        <field name="shops" />
+                        <field name="status" />
+                      </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="view_res_partner_action">
+		<field name="name">Customers</field>
+		<field name="res_model">res.partner</field>
+		<field name="context">{"search_default_customer": 1, "search_default_type_company": 1}</field>
+		<field name="domain">[]</field>
+		<field name="view_type">form</field>
+		<field name="view_id" eval="False"/>
+		<field name="view_mode">kanban,tree,form</field>
+	</record>
+	<menuitem id="base.menu_partner_form"
+        action="view_res_partner_action" parent="base.menu_sales"
+        sequence="1"/>
+        
+        <record model="ir.ui.view" id="cd_view_res_partner_filter">
+			<field name="name">cd_view_res_partner_filter</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_res_partner_filter" />
+			<field name="arch" type="xml">
+				<field name="user_id" position="after">
+					<field name="city" />
+					<field name="state_id" />
+					<field name="section_id" />
+				</field>
+			</field>
+		</record>
+        
+        <record model="ir.actions.act_window" id="view_res_partner_action">
+			<field name="name">Customers</field>
+			<field name="res_model">res.partner</field>
+			<field name="context">{"search_default_customer": 1, "search_default_type_company": 1}</field>
+			<field name="search_view_id" ref="cd_view_res_partner_filter"/>
+			<field name="domain">[]</field>
+			<field name="view_type">form</field>
+			<field name="view_id" eval="False"/>
+			<field name="view_mode">kanban,tree,form</field>
+		</record>
+</data>
+</openerp>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+		<record model='ir.ui.view' id='cd_sale_data_view'>
+			<field name="name">cd.sale.data.view</field>
+            <field name="model">cd.sale.data</field>
+            <field name="arch" type="xml">
+				<form string="Import products" version="7.0">
+					<sheet>
+					</sheet>
+					<footer>
+                        <button name="import_xls" string="Import" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_cd_sale_data" model="ir.actions.act_window">
+            <field name="name">Import xls</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.sale.data</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="cd_sale_data_view"/>
+            <field name="target">new</field>
+        </record>
+		<menuitem
+             name="Import xls"
+             action="action_cd_sale_data"
+             id="wizard_cd_sale_data_view"
+             parent="base.menu_config"/>
+		
+	</data>
+</openerp>

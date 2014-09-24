@@ -1,0 +1,35 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cd_promotions_read,Promotions Read,model_cd_promotions,group_cd_promotions_read,1,0,0,0
+access_cd_promotions_write,Promotions Write,model_cd_promotions,group_cd_promotions_write,0,1,0,0
+access_cd_promotions_create,Promotions Create,model_cd_promotions,group_cd_promotions_create,0,0,1,0
+access_cd_promotions_unlink,Promotions Unlink,model_cd_promotions,group_cd_promotions_unlink,0,0,0,1
+access_cd_cost_promotions,Cost promotions,model_cd_cost_promotions,group_cd_promotions_read,1,1,1,1
+access_cd_product_rel,Products promotions,model_cd_product_rel,group_cd_promotions_read,1,1,1,1
+access_cd_gratis_read,Promotions Read,model_cd_gratis,group_cd_promotions_read,1,0,0,0
+access_cd_gratis_all,Promotions All,model_cd_gratis,group_cd_promotions_write,0,1,1,1
+access_cd_promotions_stage_read,Promotions stage Read,model_cd_promotions_stage,group_cd_promotions_read,1,0,0,0
+access_cd_promotions_stage_all,Promotions stage All,model_cd_promotions_stage,group_cd_promotions_write,0,1,1,1
+access_cd_type_promotions_read,Type promotions Read,model_cd_type_promotions,group_cd_type_promotions_read,1,0,0,0
+access_cd_type_promotions_write,Type promotions Write,model_cd_type_promotions,group_cd_type_promotions_write,0,1,0,0
+access_cd_type_promotions_create,Type promotions Create,model_cd_type_promotions,group_cd_type_promotions_create,0,0,1,0
+access_cd_type_promotions_unlink,Type promotions Unlink,model_cd_type_promotions,group_cd_type_promotions_unlink,0,0,0,1
+access_cd_cost_data_read,Cost data Read,model_cd_cost_data,group_cd_cost_data_read,1,0,0,0
+access_cd_cost_data_write,Cost data Write,model_cd_cost_data,group_cd_cost_data_write,0,1,0,0
+access_cd_cost_data_create,Cost data Create,model_cd_cost_data,group_cd_cost_data_create,0,0,1,0
+access_cd_cost_data_unlink,Cost data Unlink,model_cd_cost_data,group_cd_cost_data_unlink,0,0,0,1
+access_cd_display_read,Display Read,model_cd_display,group_cd_promotions_read,1,0,0,0
+access_cd_display_write,Display Write,model_cd_display,group_cd_promotions_write,0,1,0,0
+access_cd_display_create,Display Create,model_cd_display,group_cd_promotions_create,0,0,1,0
+access_cd_display_unlink,Display Unlink,model_cd_display,group_cd_promotions_unlink,0,0,0,1
+access_cd_task_sale_read,Task Sale Read,model_cd_task_sale,group_cd_promotions_read,1,0,0,0
+access_cd_task_sale_write,Task Sale Write,model_cd_task_sale,group_cd_promotions_write,0,1,0,0
+access_cd_task_sale_create,Task Sale Create,model_cd_task_sale,group_cd_promotions_create,0,0,1,0
+access_cd_task_sale_unlink,Task Sale Unlink,model_cd_task_sale,group_cd_promotions_unlink,0,0,0,1
+access_cd_task_merchandising_read,Task merchandising Read,model_cd_task_merchandising,group_cd_promotions_read,1,0,0,0
+access_cd_task_merchandising_write,Task merchandising Write,model_cd_task_merchandising,group_cd_promotions_write,0,1,0,0
+access_cd_task_merchandising_create,Task merchandising Create,model_cd_task_merchandising,group_cd_promotions_create,0,0,1,0
+access_cd_task_merchandising_unlink,Task merchandising Unlink,model_cd_task_merchandising,group_cd_promotions_unlink,0,0,0,1
+access_cd_communication_read,Communication form Read,model_cd_communication,group_cd_promotions_read,1,0,0,0
+access_cd_communication_write,Communication form Write,model_cd_communication,group_cd_promotions_write,0,1,0,0
+access_cd_communication_create,Communication form Create,model_cd_communication,group_cd_promotions_create,0,0,1,0
+access_cd_communication_unlink,Communication form Unlink,model_cd_communication,group_cd_promotions_unlink,0,0,0,1

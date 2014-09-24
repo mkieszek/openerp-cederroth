@@ -1,0 +1,42 @@
+<openerp>
+    <data>
+		<record model="ir.ui.view" id="cd_cost_type_tree">
+           	<field name="name">cd.cost.data.tree</field>
+			<field name="model">cd.cost.data</field>
+                <field name="arch" type="xml">
+					<tree string="Typ kosztu" editable='bottom'>
+						<field name="name" />
+						<field name="pos" />
+                      	<field name="cost_type" />
+                      	<field name="cost_cu" />
+					</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_cost_type_search">
+       		<field name="name">cd.cost.data.search</field>
+			<field name="model">cd.cost.data</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie typy kosztu">
+                <field name="name" />
+              	<field name="cost_type" />
+			</search>
+			</field>
+		</record>
+        
+		<record id="action_cd_cost_type" model="ir.actions.act_window">
+             <field name="name">Typ kosztu</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.cost.data</field>
+             <field name="view_type">form</field>
+             <field name="view_id" ref="cd_cost_type_tree"/>
+             <field name="view_mode">tree</field>
+             <field name="context">{}</field>
+             <field name="domain">[]</field>
+             <field name="search_view_id" ref="cd_cost_type_search"/>
+         </record>
+
+        <menuitem name="Typy kosztów" id="menu_cd_cost_data" action="action_cd_cost_type" parent="base.menu_sales" sequence="2018" />
+    
+    </data>
+</openerp>

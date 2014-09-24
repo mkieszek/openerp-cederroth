@@ -1,0 +1,174 @@
+<openerp>
+    <data>
+       	<record model="ir.ui.view" id="cd_plan_section_form">
+			<field name="name">cd.plan.section.form</field>
+			<field name="model">cd.plan.section</field>
+			<field name="arch" type="xml">
+                 <form string="Plan Departament" version="7.0" create="false">
+                     <header>
+                     <!-- <button name="create_department" type="object" string="Tworzenie planów" /> -->
+                     </header>
+                     <sheet>
+               			<field name="blocked" invisible="1"/>
+               			<field name="blocked_uid" invisible="1"/>
+                     	<h1>Plan Departament</h1>
+                     	<h3>Status:</h3>
+                   		<field name="state_id" attrs="{'readonly':[('blocked','in',True)]}" />
+                   		<group col="2">
+                     		<group string="Informacje o planie">
+		                     	<field name="year" attrs="{'readonly':['|',('blocked','in',True),('blocked_uid','in',True)]}" />
+		                     	<field name="month" attrs="{'readonly':['|',('blocked','in',True),('blocked_uid','in',True)]}" />
+		                     	<field name="section_id" on_change="onchange_client_list(section_id)" attrs="{'readonly':['|',('blocked','in',True),('blocked_uid','in',True)]}" />
+		                     	<field name="budget_nsh" attrs="{'readonly':['|',('blocked','in',True),('blocked_uid','in',True)]}" />
+		                     	<field name="budget_contrib" attrs="{'readonly':['|',('blocked','in',True),('blocked_uid','in',True)]}" />
+		                     	
+		                     	<separator colspan="2" string="Bilans"/>
+		                     	
+		                     	<!-- <field name="bud_cm" readonly="1" /> -->
+		                     	<field name="gross_sale" />
+		                     	<field name="disc_front_total" />
+		                     	<field name="nsh_total" />
+		                     	<field name="nsh_p_nsh_t" />
+		                     	<field name="trade_promo_listing" />
+		                     	<field name="discount_pormo" />
+		                     	<field name="nsv_total" />
+		                     	<field name="product_cogs" />
+		                     	<field name="other_cogs" />
+		                     	<field name="gp_total" />
+		                     	<field name="gpp_total" />
+		                     	<field name="coop" />
+	                     		<field name="other_marketing" />    
+		                     	<field name="cm_total" />
+		                     	<field name="cmp_total" />
+		                     	
+		                     	<field name="stop_plan" />
+	                     	</group>
+	                     	<group string="Budżet per Marka" col="1">
+	                     		<group>
+		                     		<div>
+		                     			<field name="plan_section_brand_ids">
+		                     				<tree editable="bottom">
+			                     				<field name="product_category_id" />
+		                     					<field name="forecast" sum="Suma wartości" />
+		                     					<field name="estim_sr" sum="Suma wartości" />
+		                     					<field name="plan_value" sum="Suma wartości" />
+		                     					<field name="plan_luz" sum="Suma wartości" />
+		                     					<field name="plan_promo" sum="Suma wartości" />
+		                     					<field name="exec_value" sum="Suma wartości" />
+                     							<field name="estimation_news" sum="Suma wartości" />
+			                     			</tree>
+		                     			</field>
+		                     		</div>
+	                     		</group>
+		                     	<group string="Wspierane produkty w miesiącu">
+			                     	<div>
+			                     		<field name="plan_mark_ids">
+			                     			<tree>
+			                     				<field name="categ_id" />
+			                     				<field name="priority" />
+			                     			</tree>
+			                     		</field>
+		                     		</div>
+		                     	</group>
+	                     	</group>
+                     	</group>
+                     	<notebook>
+                     		<page string="Klienci">
+                     			<field name="client_list_ids" invisible="1" />
+                     			<label for="client_id" class="oe_edit_only" attrs="{'invisible':['|',('section_id','=',False),('blocked','in', True)]}"/>
+               					<field name="client_id" domain="[('id','in', client_list_ids[0][2])]" attrs="{'invisible':['|',('section_id','=',False),('blocked','in', True)]}" />
+               					<button string="Dodaj klienta" name="add_client" type="object" class="oe_highlight" attrs="{'invisible':['|',('client_id','=',False),('blocked','in', True)]}" />
+                     			<field name="plan_client_ids" attrs="{'readonly':[('blocked','in',True)]}" >
+                     				<tree editable="bottom">
+                     					<button name="open_plan_client" string="Otwórz" type="object" icon="gtk-go-forward" />
+                     					<field name="client_id" readonly="1" />
+				                     	<field name="plan_value" sum="Planowana wartość" />
+		                     			<field name="bud_cm" sum="Suma wartości" />
+				                     	<field name="cm_total" sum="Suma wartości" />
+				                     	<field name="plan_plan" sum="Plan" readonly='1' />
+				                     	<field name="get_value" sum="Wykonana wartość" />                     					
+                     				</tree>
+                     			</field>
+                     		</page>
+                     	</notebook>
+                     </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                   	 </div>
+                 </form>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_plan_section_tree">
+           	<field name="name">cd.plan.section.form</field>
+			<field name="model">cd.plan.section</field>
+                <field name="arch" type="xml">
+					<tree string="Plan Departament" create="false">
+		               	<field name="year" />
+		               	<field name="month" />
+                     	<field name="section_id" />
+                     	<field name="budget_nsh" />
+                     	<field name="budget_contrib" />
+                     	<field name="get_value" />
+                     	<field name="state_id" />
+					</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_plan_section_search">
+       		<field name="name">cd.plan.section.form</field>
+			<field name="model">cd.plan.section</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie plany Departamentu">
+               	<field name="year" />
+               	<field name="month" />
+               	<field name="section_id" />
+               	<field name="plan_value" />
+               	<group expand="0" string="Grupuj po...">
+           			<filter string="Rok" name="start_year" context="{'group_by' : ['year']}" />
+           			<filter string="Miesiąc" name="start_month" context="{'group_by' : ['month']}" />
+           			<filter string="Status" name="group_state" context="{'group_by' : ['state_id']}" />
+           		</group>
+			</search>
+			</field>
+		</record>
+		
+		<record id="cd_plan_section_gantt" model="ir.ui.view">
+		    <field name="name">cd.plan.section.gantt</field>
+		    <field name="model">cd.plan.section</field>
+		    <field name="arch" type="xml">
+		    	<gantt date_stop="stop_date" date_start="start_date" string="Plan marketingowy" default_group_by="product_id" >
+		    	</gantt>
+		    </field>
+	   </record>
+		
+		<record id="action_cd_plan_section" model="ir.actions.act_window">
+             <field name="name">Plan Departament</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.plan.section</field>
+             <field name="view_type">form</field>
+             <field name="view_id" ref="cd_plan_section_tree"/>
+             <field name="view_mode">gantt,tree,form</field>
+             <field name="context">{"search_default_start_year": 1, "search_default_start_month": 1}</field>
+             <field name="domain">[]</field>
+             <field name="search_view_id" ref="cd_plan_section_search"/>
+         </record>
+
+        <menuitem name="Plan Departament" id="menu_cd_plan_section" action="action_cd_plan_section" parent="cederroth_sale.menu_cederroth_sale_planning" sequence="20" 
+        			/>
+
+	<!-- Scheduler for Create Plan for 12 months-->
+        <record forcecreate="True" id="ir_cron_create_pan_year" model="ir.cron">
+              <field name="name">Plan - Create plans (for 12 months)</field>
+              <field eval="True" name="active" />
+              <field name="user_id" ref="base.user_root" />
+              <field name="interval_number">1</field>
+              <field name="interval_type">months</field>
+              <field name="numbercall">-1</field>
+              <field eval="'cd.plan.section'" name="model" />
+              <field eval="'create_department'" name="function" />
+              <field eval="'()'" name="args" />
+        </record>
+    </data>
+</openerp>

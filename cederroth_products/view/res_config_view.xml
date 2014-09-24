@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_cd_config_settings" model="ir.ui.view">
+            <field name="name">CD settings</field>
+            <field name="model">cd.config.settings</field>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <form string="Cederroth Settings" version="7.0" class="oe_form_configuration">
+                    <header>
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                    </header>
+                    <group col='2'>
+                    	<group string="Konfiguracja główna">
+                        	<field name="cd_www" />
+                        	<field name="cd_crm" />
+                        </group>
+                        <group string="Konfiguracja akcji promocyjnych">
+                        	<field name="min_margin_prom" string="Min. marża akcji promocyjnej"/>
+                        	<field name="plan_prom" string="Czas na planowanie - akcje (dni)"/>
+                        </group>
+                        <group string="Konfiguracja planowania sprzedaży">
+                      		<field name="start_sale" string="Start Plan Sprzedaż (ilość tyg. przed rozpoczęciem)"/>
+                      		<field name="stop_sale" string="Stop Plan Sprzedaż (ilość tyg. przed rozpoczęciem)"/>
+                      		<field name="start_mark" string="Start Plan Marketing (ilość tyg. przed rozpoczęciem)"/>
+                      		<field name="stop_mark" string="Start Plan Marketing (ilość tyg. przed rozpoczęciem)"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cd_config_settings" model="ir.actions.act_window">
+            <field name="name">Cederroth Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem id="base.menu_cd_config" name="Cederroth Settings" parent="base.menu_config"
+            sequence="11" action="action_cd_config_settings"/>
+    </data>
+</openerp>

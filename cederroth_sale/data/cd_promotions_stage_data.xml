@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate='0'>
+        <record model="cd.promotions.stage" id="stage_promotions_draft">
+			<field name="name">W przygotowaniu</field>
+			<field eval="10" name="sequence"/>
+			<field name="state">draft</field>
+			<field name="probability">0.0</field>
+		</record>
+            <record model="cd.promotions.stage" id="stage_promotions_toaccept">
+			<field name="name">Do akceptacji</field>
+			<field eval="20" name="sequence"/>
+			<field name="state">draft</field>
+			<field name="probability">1.0</field>
+		</record>
+		<record model="cd.promotions.stage" id="stage_promotions_accept">
+			<field name="name">Zaakceptowana</field>
+			<field eval="30" name="sequence"/>
+			<field name="state">pending</field>
+			<field name="probability">0.2</field>
+		</record>
+		<record model="cd.promotions.stage" id="stage_promotions_canc">
+			<field name="name">Odrzucona</field>
+			<field eval="40" name="sequence"/>
+			<field name="state">canceled</field>
+			<field name="probability">0.4</field>
+		</record>
+		<record model="cd.promotions.stage" id="stage_promotions_pend">
+			<field name="name">Potwierdzona</field>
+			<field eval="50" name="sequence"/>
+			<field name="state">pending</field>
+			<field name="probability">0.6</field>
+		</record>
+		<record model="cd.promotions.stage" id="stage_promotions_inprogress">
+			<field name="name">W trakcie</field>
+			<field eval="60" name="sequence"/>
+			<field name="state">open</field>
+			<field name="probability">0.7</field>
+		</record>
+		<record model="cd.promotions.stage" id="stage_promotions_done">
+			<field name="name">Zakończona</field>
+			<field eval="70" name="sequence"/>
+			<field name="state">done</field>
+			<field name="probability">1.0</field>
+		</record>
+		<record model="cd.promotions.stage" id="stage_promotions_paid">
+			<field name="name">Rozliczona</field>
+			<field eval="80" name="sequence"/>
+			<field name="state">done</field>
+			<field name="probability">1.0</field>
+		</record>
+		<record model="cd.promotions.stage" id="stage_promotions_cancelled">
+			<field name="name">Anulowana</field>
+			<field eval="90" name="sequence"/>
+			<field name="state">canceled</field>
+			<field name="probability">1.0</field>
+		</record>
+    </data>
+</openerp>

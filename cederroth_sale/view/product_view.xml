@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_product_form_cederroth_sale" model="ir.ui.view">
+			<field name="name">cederroth.product.form</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="cederroth_products.view_product_form_cederroth"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook/page[@string='Marketing']/group/group/field[@name='list_price']" position="after">
+					<field name="price_cogs" />
+					<field name="sugest_price_ret" />
+					<field name="sugest_price_prom" />
+		           </xpath>
+		   	</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_product_kanban_view">
+	         <field name="name">CD Product Kanban</field>
+	         <field name="model">product.product</field>
+			 <field name="inherit_id" ref="product.product_kanban_view"/>
+	         <field name="arch" type="xml">
+		          <xpath expr="//kanban/templates/t/div/div/ul" position="replace">
+		          		<ul invisible="1"></ul>
+		          </xpath>
+	         </field>
+	     </record>
+	</data>
+</openerp>

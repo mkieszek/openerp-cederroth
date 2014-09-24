@@ -1,0 +1,63 @@
+<openerp>
+    <data>
+		<record model="ir.ui.view" id="cd_report_other_cogs_tree">
+           	<field name="name">cd.report.other.cogs.tree</field>
+			<field name="model">cd.report.other.cogs</field>
+                <field name="arch" type="xml">
+					<tree string="Raport Other Cogs" create="false">
+						<field name="year" />
+						<field name="month" />
+						<field name="section_id" />
+						<field name="client_id" />
+						<field name="product_mark" />
+						<field name="categ_id" />
+						<field name="cost" />
+						<field name="count" />
+						<field name="value" />
+						
+					</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_report_other_cogs_search">
+       		<field name="name">cd.report.other.cogs.search</field>
+			<field name="model">cd.report.other.cogs</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie raporty">
+				<field name="year" />
+				<field name="month" />
+				<field name="section_id" />
+				<field name="client_id" />
+				<field name="product_mark" />
+				<field name="categ_id" />
+                <group string="Grupuj po...">
+           			<filter string="Rok" name='group_year' context="{'group_by' : 'year'}" />
+           			<filter string="Miesiąc" name='group_month' context="{'group_by' : 'month'}" />
+           			<filter string="Departament" name='group_section' context="{'group_by' : 'section_id'}" />
+           			<filter string="Klient" name='group_client' context="{'group_by' : 'client_id'}" />
+           			<filter string="Marka" name='group_brand' context="{'group_by' : 'product_mark'}" />
+           			<filter string="Kategoria" name='group_categ' context="{'group_by' : 'categ_id'}" />
+           		</group>
+			</search>
+			</field>
+		</record>
+        
+		<record id="action_cd_report_other_cogs" model="ir.actions.act_window">
+             <field name="name">Raport Other Cogs</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.report.other.cogs</field>
+             <field name="view_id" ref="cd_report_other_cogs_tree"/>
+             <field name="view_mode">tree</field>
+             <field name="context">{"search_default_group_year": 1, "search_default_group_month": 1}</field>
+             <field name="domain">[]</field>
+             <field name="search_view_id" ref="cd_report_other_cogs_search"/>
+         </record>
+		
+       <menuitem id="menu_cederroth_sale_reports"
+            parent="base.menu_base_partner"
+            name="Reports"
+            sequence="2"/>
+       <menuitem name="Raport Other Cogs" id="menu_cd_report_other_cogs" action="action_cd_report_other_cogs" parent="menu_cederroth_sale_reports" sequence="2040"/>
+    
+    </data>
+</openerp>

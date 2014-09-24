@@ -1,0 +1,62 @@
+<openerp>
+    <data>
+		<record model="ir.ui.view" id="cd_report_plan_client_brand_tree">
+           	<field name="name">cd.report.plan.client.brand.tree</field>
+			<field name="model">cd.report.plan.client.brand</field>
+                <field name="arch" type="xml">
+					<tree string="Report Brand per Plan Client" create="false">
+                     	<button name="open_plan_client" string="Otwórz" type="object" icon="gtk-go-forward" />
+						<field name="product_category_id" />
+						<field name="plan_client_id" />
+						<field name="create_date" />
+						<field name="year" />
+						<field name="month" />
+						<field name="section_id" />
+						<field name="client_id" />
+						
+						<field name="forecast" />
+						<field name="plan_value" />
+						<field name="exec_value" />
+						<field name="plan_luz" />
+						<field name="plan_promo" />
+						<field name="estimation_news" />
+					</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_report_plan_client_brand_search">
+       		<field name="name">cd.report.plan.client.brand.search</field>
+			<field name="model">cd.report.plan.client.brand</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie raporty">
+				<field name="product_category_id" />
+				<field name="year" />
+				<field name="month" />
+				<field name="section_id" />
+				<field name="client_id" />
+				<separator />
+                <group string="Grupuj po...">
+           			<filter string="Rok" name='group_year' context="{'group_by' : 'year'}" />
+           			<filter string="Miesiąc" name='group_month' context="{'group_by' : 'month'}" />
+           			<filter string="Marka" name='group_brand' context="{'group_by' : 'product_category_id'}" />
+           			<filter string="Plan Klient" name='group_plan_client' context="{'group_by' : 'plan_client_id'}" />
+           		</group>
+			</search>
+			</field>
+		</record>
+        
+		<record id="action_cd_report_plan_client_brand" model="ir.actions.act_window">
+             <field name="name">Raport Plan Klient z podziałem na Marki</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.report.plan.client.brand</field>
+             <field name="view_id" ref="cd_report_plan_client_brand_tree"/>
+             <field name="view_mode">tree</field>
+             <field name="context">{"search_default_group_year": 1, "search_default_group_month": 1}</field>
+             <field name="domain">[]</field>
+             <field name="search_view_id" ref="cd_report_plan_client_brand_search"/>
+         </record>
+		
+       <menuitem name="Raport Plan Klient z podziałem na Marki" id="menu_cd_report_plan_client_brand" action="action_cd_report_plan_client_brand" parent="menu_cederroth_sale_reports" sequence="2020"/>
+    
+    </data>
+</openerp>

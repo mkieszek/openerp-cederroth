@@ -1,0 +1,71 @@
+<openerp>
+    <data>
+		<record model="ir.ui.view" id="cd_report_plan_client_tree">
+           	<field name="name">cd.report.plan.client.tree</field>
+			<field name="model">cd.report.plan.client</field>
+                <field name="arch" type="xml">
+					<tree string="Report Plan Client" create="false">
+                     	<button name="open_plan_client" string="Otwórz" type="object" icon="gtk-go-forward" />
+						<field name="plan_client_id" />
+						<field name="create_date" />
+						<field name="year" />
+						<field name="month" />
+						<field name="section_id" />
+						<field name="client_id" />
+						
+                    	<field name="gross_sale" />
+                    	<field name="disc_front_total" />
+                    	<field name="nsh_total" />
+                    	<field name="nsh_p_nsh_t" />
+                    	<field name="trade_promo_listing" />
+                    	<field name="discount_pormo" />
+                    	<field name="nsv_total" />
+                    	<field name="product_cogs" />
+                    	<field name="other_cogs" />
+                    	<field name="gp_total" />
+                    	<field name="gpp_total" />
+                    	<field name="coop" />
+                    	<field name="other_marketing" />
+                    	<field name="cm_total" />
+                    	<field name="cmp_total" />
+					</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_report_plan_client_search">
+       		<field name="name">cd.report.plan.client.search</field>
+			<field name="model">cd.report.plan.client</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie raporty">
+				<field name="year" />
+				<field name="month" />
+				<field name="client_id" />
+				<field name="section_id" />
+				<separator/>
+				
+				<separator/>
+                <group string="Grupuj po...">
+           			<filter string="Rok" name='group_year' context="{'group_by' : 'year'}" />
+           			<filter string="Miesiąc" name='group_month' context="{'group_by' : 'month'}" />
+           			<filter string="Klient" name="group_client" context="{'group_by' : 'client_id'}" />
+           			<filter string="Departament" name="group_section" context="{'group_by' : 'section_id'}" />
+           		</group>
+			</search>
+			</field>
+		</record>
+        
+		<record id="action_cd_report_plan_client" model="ir.actions.act_window">
+             <field name="name">Report Plan Client</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.report.plan.client</field>
+             <field name="view_id" ref="cd_report_plan_client_tree"/>
+             <field name="view_mode">tree</field>
+             <field name="context">{"search_default_group_year": 1, "search_default_group_month": 1}</field>
+             <field name="domain">[]</field>
+             <field name="search_view_id" ref="cd_report_plan_client_search"/>
+         </record>
+		
+       <menuitem name="Raport Plan Klient" id="menu_cd_report_plan_client" action="action_cd_report_plan_client" parent="menu_cederroth_sale_reports" sequence="2019"/>
+    
+    </data>
+</openerp>

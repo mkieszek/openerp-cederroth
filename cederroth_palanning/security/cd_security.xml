@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Dodanie kategorii uprawnień -->
+        <record model="ir.module.category" id="module_category_cd_plan">
+            <field name="name">Cederroth Planning</field>
+            <field name="sequence">40</field>
+        </record>
+        
+        <record model="ir.module.category" id="module_category_cd_reports">
+            <field name="name">Cederroth Reports</field>
+            <field name="sequence">48</field>
+        </record>
+        
+        <!-- Grupy uprawnień -->
+	       <!-- Raporty -->
+	       		<record id="group_cd_report_ap_read" model="res.groups">
+		            <field name="name">Report promotions Read</field>
+		            <field name="comment">Report promotions Read</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+		        </record>
+		        
+		        <record id="group_cd_report_ap_visible" model="res.groups">
+		            <field name="name">Report promotions Visible</field>
+		            <field name="comment">Report promotions Visible</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_report_ap_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_report_coop_read" model="res.groups">
+		            <field name="name">Report COOP Read</field>
+		            <field name="comment">Report COOP Read</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+		        </record>
+		        
+		        <record id="group_cd_report_coop_visible" model="res.groups">
+		            <field name="name">Report COOP Visible</field>
+		            <field name="comment">Report COOP Visible</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_report_coop_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_report_forecast_product_read" model="res.groups">
+		            <field name="name">Report Forecast product Read</field>
+		            <field name="comment">Report Forecast product Read</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+		        </record>
+		        
+		        <record id="group_cd_report_forecast_product_visible" model="res.groups">
+		            <field name="name">Report Forecast product Visible</field>
+		            <field name="comment">Report Forecast product Visible</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_report_forecast_product_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_report_other_cogs_read" model="res.groups">
+		            <field name="name">Report other cogs Read</field>
+		            <field name="comment">Report other cogs Read</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+		        </record>
+		        
+		        <record id="group_cd_report_other_cogs_visible" model="res.groups">
+		            <field name="name">Report other cogs Visible</field>
+		            <field name="comment">Report other cogs Visible</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_report_other_cogs_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_report_other_mark_month_read" model="res.groups">
+		            <field name="name">Report other marketing Read</field>
+		            <field name="comment">Report other marketing Read</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+		        </record>
+		        
+		        <record id="group_cd_report_other_mark_month_visible" model="res.groups">
+		            <field name="name">Report other marketing Visible</field>
+		            <field name="comment">Report other marketing Visible</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_report_other_mark_month_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_report_plan_client_brand_read" model="res.groups">
+		            <field name="name">Report plan client brand Read</field>
+		            <field name="comment">Report plan client brand Read</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+		        </record>
+		        
+		        <record id="group_cd_report_plan_client_brand_visible" model="res.groups">
+		            <field name="name">Report plan client brand Visible</field>
+		            <field name="comment">Report plan client brand Visible</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_report_plan_client_brand_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_report_plan_client_read" model="res.groups">
+		            <field name="name">Report plan client Read</field>
+		            <field name="comment">Report plan client Read</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+		        </record>
+		        
+		        <record id="group_cd_report_plan_client_visible" model="res.groups">
+		            <field name="name">Report plan client Visible</field>
+		            <field name="comment">Report plan client Visible</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_report_plan_client_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_report_plan_section_read" model="res.groups">
+		            <field name="name">Report plan section Read</field>
+		            <field name="comment">Report plan section Read</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+		        </record>
+		        
+		        <record id="group_cd_report_plan_section_visible" model="res.groups">
+		            <field name="name">Report plan section Visible</field>
+		            <field name="comment">Report plan section Visible</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_report_plan_section_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_report_trade_promo_read" model="res.groups">
+		            <field name="name">Report trade promo Read</field>
+		            <field name="comment">Report trade promo Read</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+		        </record>
+		        
+		        <record id="group_cd_report_trade_promo_visible" model="res.groups">
+		            <field name="name">Report trade promo Visible</field>
+		            <field name="comment">Report trade promo Visible</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_report_trade_promo_read'))]"/>
+		        </record>
+		        
+	       <!-- Plan Marketing -->
+	       		<record id="group_cd_plan_marketing_read" model="res.groups">
+		            <field name="name">Plan marketing Read</field>
+		            <field name="comment">Plan marketing Read</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_marketing_write" model="res.groups">
+		            <field name="name">Plan marketing Write</field>
+		            <field name="comment">Plan marketing Write</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_marketing_create" model="res.groups">
+		            <field name="name">Plan marketing Create</field>
+		            <field name="comment">Plan marketing Create</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_marketing_unlink" model="res.groups">
+		            <field name="name">Plan marketing Unlink</field>
+		            <field name="comment">Plan marketing Unlink</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_read'))]"/>
+		        </record>
+		        
+	       <!-- Plan Marketing Miesiąc -->
+	       		<record id="group_cd_plan_marketing_month_read" model="res.groups">
+		            <field name="name">Plan marketing month Read</field>
+		            <field name="comment">Plan marketing month Read</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_marketing_month_write" model="res.groups">
+		            <field name="name">Plan marketing month Write</field>
+		            <field name="comment">Plan marketing month Write</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_month_read')),(4, ref('group_cd_plan_marketing_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_marketing_month_create" model="res.groups">
+		            <field name="name">Plan marketing month Create</field>
+		            <field name="comment">Plan marketing month Create</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_month_write')),(4, ref('group_cd_plan_marketing_create'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_marketing_month_unlink" model="res.groups">
+		            <field name="name">Plan marketing month Unlink</field>
+		            <field name="comment">Plan marketing month Unlink</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_month_read')),(4, ref('group_cd_plan_marketing_unlink'))]"/>
+		        </record>
+		        
+		    <!-- Plan Produkt -->        
+		        <record id="group_cd_plan_product_read" model="res.groups">
+		            <field name="name">Plan product Read</field>
+		            <field name="comment">Plan product Read</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_product_write" model="res.groups">
+		            <field name="name">Plan product Write</field>
+		            <field name="comment">Plan product Write</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_product_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_product_create" model="res.groups">
+		            <field name="name">Plan product Create</field>
+		            <field name="comment">Plan product Create</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_product_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_product_unlink" model="res.groups">
+		            <field name="name">Plan product Unlink</field>
+		            <field name="comment">Plan product Unlink</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_product_read'))]"/>
+		        </record>
+		   
+        	<!-- Plan Klient -->        
+		        <record id="group_cd_plan_client_read" model="res.groups">
+		            <field name="name">Plan client Read</field>
+		            <field name="comment">Plan client Read</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_report_coop_read')),
+													(4, ref('group_cd_report_other_mark_month_read')),
+													(4, ref('group_cd_report_other_cogs_read')),
+													(4, ref('group_cd_report_trade_promo_read')),
+													(4, ref('group_cd_report_ap_read')),
+													(4, ref('group_cd_plan_product_create')),
+													(4, ref('group_cd_plan_product_unlink')),
+													(4, ref('group_cd_plan_marketing_month_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_client_read_kam" model="res.groups">
+		            <field name="name">Plan client Read KAM</field>
+		            <field name="comment">Plan client Read KAM</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_client_write" model="res.groups">
+		            <field name="name">Plan client Write</field>
+		            <field name="comment">Plan client Write</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_product_write')),(4, ref('group_cd_plan_client_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_client_create" model="res.groups">
+		            <field name="name">Plan client Create</field>
+		            <field name="comment">Plan client Create</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_write')),(4, ref('group_cd_plan_product_create'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_client_unlink" model="res.groups">
+		            <field name="name">Plan client Unlink</field>
+		            <field name="comment">Plan client Unlink</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_read')),(4, ref('group_cd_plan_product_unlink'))]"/>
+		        </record>
+		        
+	        <!-- Plan Klient Marka -->        
+		        <record id="group_cd_plan_client_brand_read" model="res.groups">
+		            <field name="name">Plan client brand Read</field>
+		            <field name="comment">Plan client brand Read</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_product_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_client_brand_write" model="res.groups">
+		            <field name="name">Plan client brand Write</field>
+		            <field name="comment">Plan client brand Write</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_brand_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_client_brand_create" model="res.groups">
+		            <field name="name">Plan client brand Create</field>
+		            <field name="comment">Plan client brand Create</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_brand_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_client_brand_unlink" model="res.groups">
+		            <field name="name">Plan client brand Unlink</field>
+		            <field name="comment">Plan client brand Unlink</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_brand_read'))]"/>
+		        </record>
+		        
+		   <!-- Plan Term -->
+		        <record id="group_cd_plan_term_visible" model="res.groups">
+		            <field name="name">Plan term Visible</field>
+		            <field name="comment">Plan term Visible</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+		        </record>
+		        
+	       		<record id="group_cd_plan_term_read" model="res.groups">
+		            <field name="name">Plan term Read</field>
+		            <field name="comment">Plan term Read</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_term_visible'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_term_write" model="res.groups">
+		            <field name="name">Plan term Write</field>
+		            <field name="comment">Plan term Write</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_term_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_term_create" model="res.groups">
+		            <field name="name">Plan term Create</field>
+		            <field name="comment">Plan term Create</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_term_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_term_unlink" model="res.groups">
+		            <field name="name">Plan term Unlink</field>
+		            <field name="comment">Plan term Unlink</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_term_read'))]"/>
+		        </record>
+		        
+	        <!-- Plan Departament Marka -->        
+		        <record id="group_cd_plan_section_brand_read" model="res.groups">
+		            <field name="name">Plan section brand Read</field>
+		            <field name="comment">Plan section brand Read</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_brand_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_section_brand_write" model="res.groups">
+		            <field name="name">Plan section brand Write</field>
+		            <field name="comment">Plan section brand Write</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_section_brand_read')),(4, ref('group_cd_plan_client_brand_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_section_brand_create" model="res.groups">
+		            <field name="name">Plan section brand Create</field>
+		            <field name="comment">Plan section brand Create</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_section_brand_write')),(4, ref('group_cd_plan_client_brand_create'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_section_brand_unlink" model="res.groups">
+		            <field name="name">Plan section brand Unlink</field>
+		            <field name="comment">Plan section brand Unlink</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_section_brand_read')),(4, ref('group_cd_plan_client_brand_unlink'))]"/>
+		        </record>
+		    
+	       <!-- Plan Departament -->
+	       		<record id="group_cd_plan_section_read" model="res.groups">
+		            <field name="name">Plan section Read</field>
+		            <field name="comment">Plan section Read</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_section_brand_read')),(4, ref('group_cd_plan_term_read'))]"/>
+		        </record>
+		        
+	       		<record id="group_cd_plan_section_read_department" model="res.groups">
+		            <field name="name">Plan section Read Department Director</field>
+		            <field name="comment">Plan section Read Department Director</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_section_read'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_section_write" model="res.groups">
+		            <field name="name">Plan section Write</field>
+		            <field name="comment">Plan section Write</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_section_read')),(4, ref('group_cd_plan_section_brand_write')),(4, ref('group_cd_plan_client_write'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_section_create" model="res.groups">
+		            <field name="name">Plan section Create</field>
+		            <field name="comment">Plan section Create</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_section_write')),(4, ref('group_cd_plan_section_brand_create')),(4, ref('group_cd_plan_client_create'))]"/>
+		        </record>
+		        
+		        <record id="group_cd_plan_section_unlink" model="res.groups">
+		            <field name="name">Plan section Unlink</field>
+		            <field name="comment">Plan section Unlink</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_section_read')),(4, ref('group_cd_plan_section_brand_unlink')),(4, ref('group_cd_plan_client_unlink'))]"/>
+		        </record>
+        
+	        <!-- Dodatkowe role -->
+		        <record id="cd_rule_plan_client_cd_depart_d1" model="ir.rule">
+		            <field name="name">Rule plan client - Department Director</field>
+		            <field ref="model_cd_plan_client" name="model_id"/>
+		            <field name="domain_force">[('plan_section_id.section_id.user_id.id','=',user.id)]</field>
+		            <field name="groups" eval="[(4, ref('group_cd_plan_section_read_department'))]"/>
+		        </record>
+		        
+		        <record id="cd_rule_plan_section_cd_depart_d1" model="ir.rule">
+		            <field name="name">Rule plan department - Department Director</field>
+		            <field ref="model_cd_plan_section" name="model_id"/>
+		            <field name="domain_force">[('section_id.user_id.id','=',user.id)]</field>
+		            <field name="groups" eval="[(4, ref('group_cd_plan_section_read_department'))]"/>
+		        </record>
+		
+		        <record id="cd_rule_plan_sec_cd_kam1" model="ir.rule">
+		            <field name="name">Rule client section - KAM</field>
+		            <field ref="model_cd_plan_client" name="model_id"/>
+		            <field name="domain_force">[('client_id.user_id.id','=',user.id)]</field>
+		            <field name="groups" eval="[(4, ref('group_cd_plan_client_read_kam'))]"/>
+		        </record>
+		        <record id="cd_rule_plan_product_cd_kam1" model="ir.rule">
+		            <field name="name">Rule plan product - KAM</field>
+		            <field ref="model_cd_plan_product" name="model_id"/>
+		            <field name="domain_force">[('plan_client_id.client_id.user_id.id','=',user.id)]</field>
+		            <field name="groups" eval="[(4, ref('group_cd_plan_client_read_kam'))]"/>
+		        </record>
+	        
+			<!-- Podstawowe uprawnienia użytkowników -->
+		        <record id="cederroth_products.group_cd_kam" model="res.groups">
+		            <field name="name">KAM</field>
+		            <field name="comment">Key Account Menager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_month_read')),
+													(4, ref('group_cd_plan_client_write')),
+													(4, ref('group_cd_plan_client_brand_read')),
+													(4, ref('group_cd_plan_term_read')),
+													(4, ref('group_cd_plan_client_read_kam')),
+													(4, ref('group_cd_plan_client_brand_write'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_department_director" model="res.groups">
+		            <field name="name">Department Director</field>
+		            <field name="comment">Department Director</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_month_read')),
+													(4, ref('group_cd_plan_section_write')),
+													(4, ref('group_cd_plan_section_brand_write')),
+													(4, ref('group_cd_plan_section_read_department')),
+													(4, ref('cederroth_sale.group_cd_promotions_read'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_sales_director" model="res.groups">
+		            <field name="name">Sales Director</field>
+		            <field name="comment">Sales Director</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_month_create')),
+													(4, ref('group_cd_plan_section_create')),
+													(4, ref('group_cd_plan_section_brand_create')),
+													(4, ref('cederroth_sale.group_cd_promotions_create')),
+													(4, ref('group_cd_plan_term_write'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_trade_m_m" model="res.groups">
+		            <field name="name">Trade Marketing Manager</field>
+		            <field name="comment">Trade Marketing Manager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_month_create')),
+													(4, ref('group_cd_plan_term_write'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_marketing_director" model="res.groups">
+		            <field name="name">Marketing Director</field>
+		            <field name="comment">Marketing Director</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+		            <field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_create')),
+			            							(4, ref('group_cd_plan_marketing_unlink')),
+			            							(4, ref('group_cd_plan_marketing_month_write')),
+			           								(4, ref('group_cd_report_ap_visible')),
+			           								(4, ref('group_cd_report_other_mark_month_visible')),
+			           								(4, ref('group_cd_report_other_cogs_visible')),
+			           								(4, ref('group_cd_report_coop_visible')),
+			           								(4, ref('group_cd_report_trade_promo_visible'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_brand_manager" model="res.groups">
+		            <field name="name">Brand Manager</field>
+		            <field name="comment">Brand Manager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_create')),
+													(4, ref('group_cd_plan_marketing_unlink')),
+													(4, ref('group_cd_plan_marketing_month_write'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_product_manager" model="res.groups">
+		            <field name="name">Product Manager</field>
+		            <field name="comment">Product Manager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_read')),
+													(4, ref('group_cd_plan_marketing_month_read'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_district_manager" model="res.groups">
+		            <field name="name">District Manager</field>
+		            <field name="comment">District Manager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_read'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_trade_m_m" model="res.groups">
+		            <field name="name">Trade Marketing Manager</field>
+		            <field name="comment">Trade Marketing Manager</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_write')),
+													(4, ref('group_cd_plan_client_brand_write')),
+													(4, ref('group_cd_plan_product_create')),
+													(4, ref('group_cd_plan_product_unlink')),
+													(4, ref('group_cd_plan_marketing_create')),
+													(4, ref('group_cd_plan_marketing_unlink')),
+													(4, ref('group_cd_plan_marketing_month_write')),
+													(4, ref('group_cd_plan_term_read')),
+													(4, ref('group_cd_report_other_mark_month_visible')),
+													(4, ref('group_cd_report_other_cogs_visible')),
+													(4, ref('group_cd_report_coop_visible')),
+													(4, ref('group_cd_report_trade_promo_visible')),
+													(4, ref('group_cd_report_ap_visible')),
+													(4, ref('group_cd_report_plan_client_visible')),
+													(4, ref('group_cd_report_plan_client_brand_visible')),
+													(4, ref('group_cd_report_plan_section_visible')),
+													(4, ref('group_cd_report_forecast_product_visible'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_trade_m_s" model="res.groups">
+		            <field name="name">Trade Marketing Specialist</field>
+		            <field name="comment">Trade Marketing Specialist</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_read')),
+													(4, ref('group_cd_plan_client_brand_read')),
+													(4, ref('group_cd_plan_product_read')),
+													(4, ref('group_cd_plan_marketing_read')),
+													(4, ref('group_cd_plan_marketing_month_read')),
+													(4, ref('group_cd_plan_term_read')),
+													(4, ref('group_cd_report_other_mark_month_visible')),
+													(4, ref('group_cd_report_other_cogs_visible')),
+													(4, ref('group_cd_report_coop_visible')),
+													(4, ref('group_cd_report_trade_promo_visible'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_department_director" model="res.groups">
+		            <field name="name">Department Director</field>
+		            <field name="comment">Department Director</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_create')),
+													(4, ref('group_cd_plan_client_brand_create')),
+													(4, ref('group_cd_plan_section_create')),
+													(4, ref('group_cd_plan_section_brand_create')),
+													(4, ref('group_cd_plan_product_create')),
+													(4, ref('group_cd_plan_product_unlink')),
+													(4, ref('group_cd_plan_marketing_read')),
+													(4, ref('group_cd_plan_marketing_month_read')),
+													(4, ref('group_cd_plan_term_read')),
+													(4, ref('group_cd_report_other_mark_month_visible')),
+													(4, ref('group_cd_report_other_cogs_visible')),
+													(4, ref('group_cd_report_coop_visible')),
+													(4, ref('group_cd_report_trade_promo_visible')),
+													(4, ref('group_cd_report_ap_visible')),
+													(4, ref('group_cd_report_plan_client_visible')),
+													(4, ref('group_cd_report_plan_client_brand_visible')),
+													(4, ref('group_cd_report_plan_section_visible')),
+													(4, ref('group_cd_report_forecast_product_visible'))]"/>
+		        </record>
+		        
+		        <record id="cederroth_products.group_cd_sales_director" model="res.groups">
+		            <field name="name">Sales Director</field>
+		            <field name="comment">Sales Director</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_create')),
+													(4, ref('group_cd_plan_client_brand_create')),
+													(4, ref('group_cd_plan_section_create')),
+													(4, ref('group_cd_plan_section_brand_create')),
+													(4, ref('group_cd_plan_product_create')),
+													(4, ref('group_cd_plan_product_unlink')),
+													(4, ref('group_cd_plan_marketing_read')),
+													(4, ref('group_cd_plan_marketing_month_read')),
+													(4, ref('group_cd_plan_term_read')),
+													(4, ref('group_cd_report_other_mark_month_visible')),
+													(4, ref('group_cd_report_other_cogs_visible')),
+													(4, ref('group_cd_report_coop_visible')),
+													(4, ref('group_cd_report_trade_promo_visible')),
+													(4, ref('group_cd_report_ap_visible')),
+													(4, ref('group_cd_report_plan_client_visible')),
+													(4, ref('group_cd_report_plan_client_brand_visible')),
+													(4, ref('group_cd_report_plan_section_visible')),
+													(4, ref('group_cd_report_forecast_product_visible'))]"/>
+		        </record>
+		        
+        <!-- Ograniczenia widoków -->
+	        <menuitem name="Raport Other Cogs" id="menu_cd_report_other_cogs" action="action_cd_report_other_cogs" parent="menu_cederroth_sale_reports" sequence="2040" groups="group_cd_report_other_cogs_visible"/>
+	        <menuitem name="Raport Akcji Promocyjnych" id="menu_cd_report_ap" action="action_cd_report_ap" parent="menu_cederroth_sale_reports" sequence="2000" groups="group_cd_report_ap_visible"/>
+	    	<menuitem name="Raport COOP" id="menu_cd_report_coop" action="action_cd_report_coop" parent="menu_cederroth_sale_reports" sequence="2050" groups="group_cd_report_coop_visible"/>
+	    	<menuitem name="Raport Forecast Produktowy" id="menu_cd_report_forecast_product" action="action_cd_report_forecast_product" parent="menu_cederroth_sale_reports" sequence="2070" groups="group_cd_report_forecast_product_visible"/>
+	    	<menuitem name="Raport Other Marketing" id="menu_cd_report_other_mark_month" action="action_cd_report_other_mark_month" parent="menu_cederroth_sale_reports" sequence="2030" groups="group_cd_report_other_mark_month_visible"/>
+	    	<menuitem name="Raport Plan Klient z podziałem na Marki" id="menu_cd_report_plan_client_brand" action="action_cd_report_plan_client_brand" parent="menu_cederroth_sale_reports" sequence="2020" groups="group_cd_report_plan_client_brand_visible"/>
+	    	<menuitem name="Raport Plan Klient" id="menu_cd_report_plan_client" action="action_cd_report_plan_client" parent="menu_cederroth_sale_reports" sequence="2019" groups="group_cd_report_plan_client_visible"/>
+	    	<menuitem name="Raport Plan Departament" id="menu_cd_report_plan_section" action="action_cd_report_plan_section" parent="menu_cederroth_sale_reports" sequence="2011" groups="group_cd_report_plan_section_visible"/>
+	    	<menuitem name="Raport Trade Promo" id="menu_cd_report_trade_promo" action="action_cd_report_trade_promo" parent="menu_cederroth_sale_reports" sequence="2060" groups="group_cd_report_trade_promo_visible"/>
+	    	<menuitem name="Terminy planowania" id="menu_cd_plan_term" action="action_cd_plan_term" parent="cederroth_sale.menu_cederroth_sale_planning" sequence="101" groups="group_cd_plan_term_visible"/>
+    </data>
+</openerp>

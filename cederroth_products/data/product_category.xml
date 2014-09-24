@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+		
+		<record model="product.category" id="category_soraya">
+			<field name="name">Soraya</field>
+		</record>
+
+            <record model="product.category" id="category_soraya_rollon">
+        		<field name="name">roll-on</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_cc">
+        		<field name="name">c and c</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_recestopy">
+        		<field name="name">ręce stopy</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_FF">
+        		<field name="name">FF</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_opalanie">
+        		<field name="name">opalanie</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_bazy">
+        		<field name="name">bazy</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_KE">
+        		<field name="name">K + E</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_higint">
+        		<field name="name">Hig. Int.</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_mleczka">
+        		<field name="name">Mleczka</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_pieknec">
+        		<field name="name">Piękne C</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_bior">
+        		<field name="name">BioR</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_zlift">
+        		<field name="name">Z. Lift.</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_artd">
+        		<field name="name">Art and D</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_maxcover">
+        		<field name="name">Max Cover</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_hd">
+        		<field name="name">HD</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_tuba">
+        		<field name="name">TUBA</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_nawilzdotl">
+        		<field name="name">Nawilż. And Dotl.</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_maseczki">
+        		<field name="name">Maseczki</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_oczyszczenie">
+        		<field name="name">Oczyszczenie</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_samoop">
+        		<field name="name">Samoop.</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_Wit">
+        		<field name="name">Wit</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_soraya_menadv">
+        		<field name="name">Men Adv</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+            <record model="product.category" id="category_soraya_sn">
+        		<field name="name">SN</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+            <record model="product.category" id="category_soraya_sop">
+        		<field name="name">SoP</field>
+                 <field name="parent_id" ref="category_soraya"/>
+		</record>
+
+            <record model="product.category" id="category_barcelona">
+        		<field name="name">FC Barcelona</field>
+		</record>
+
+            <record model="product.category" id="category_barcelona_fcb">
+        		<field name="name">FCB</field>
+                 <field name="parent_id" ref="category_barcelona"/>
+		</record>
+
+            <record model="product.category" id="category_allevo">
+        		<field name="name">Allevo</field>
+		</record>
+            <record model="product.category" id="category_biooil">
+        		<field name="name">Bio-Oil</field>
+		</record>
+            <record model="product.category" id="category_dermika">
+        		<field name="name">Dermika</field>
+		</record>
+            <record model="product.category" id="category_jordan">
+        		<field name="name">Jordan</field>
+		</record>
+            <record model="product.category" id="category_pharbio_biofer">
+        		<field name="name">Pharbio Biofer</field>
+		</record>
+            <record model="product.category" id="category_pharbio_femal">
+        		<field name="name">Pharbio Femal</field>
+		</record>
+            <record model="product.category" id="category_pharbio_relana">
+        		<field name="name">Pharbio Relana</field>
+		</record>
+            <record model="product.category" id="category_salvequick">
+        		<field name="name">Salvequick</field>
+		</record>
+
+            <record model="product.category" id="category_msp">
+        		<field name="name">MSP</field>
+		</record>
+
+            <record model="product.category" id="category_aquaoptima">
+        		<field name="name">Aquaoptima</field>
+		</record>
+
+            <record model="product.category" id="category_ceramidia">
+        		<field name="name">Ceramidia</field>
+		</record>
+
+            <record model="product.category" id="category_renea">
+        		<field name="name">Renea</field>
+		</record>
+
+            <record model="product.category" id="category_retinol">
+        		<field name="name">Retinol</field>
+		</record>
+
+            <record model="product.category" id="category_meritum">
+        		<field name="name">MERITUM</field>
+		</record>
+
+            <record model="product.category" id="category_hialiq">
+        		<field name="name">HIALIQ</field>
+		</record>
+
+            <record model="product.category" id="category_vitamina">
+        		<field name="name">Vitamina P</field>
+		</record>
+
+            <record model="product.category" id="category_space">
+        		<field name="name">Men's Space</field>
+		</record>
+
+            <record model="product.category" id="category_gold">
+        		<field name="name">Gold 24K</field>
+		</record>
+
+            <record model="product.category" id="category_true">
+        		<field name="name">True M</field>
+		</record>
+
+            <record model="product.category" id="category_pure">
+        		<field name="name">Pure</field>
+		</record>
+
+            <record model="product.category" id="category_future">
+        		<field name="name">Future</field>
+		</record>
+
+            <record model="product.category" id="category_revisage">
+        		<field name="name">Revisage</field>
+		</record>
+
+            <record model="product.category" id="category_vcountour">
+        		<field name="name">VCountour</field>
+		</record>
+
+            <record model="product.category" id="category_passione_body">
+        		<field name="name">Passione body</field>
+		</record>
+
+            <record model="product.category" id="category_biogeniq">
+        		<field name="name">BIOGENIQ</field>
+		</record>
+
+            <record model="product.category" id="category_lilly">
+        		<field name="name">LILLY</field>
+		</record>
+
+            <record model="product.category" id="category_mesotherapist">
+        		<field name="name">MESOTHERAPIST</field>
+		</record>
+
+            <record model="product.category" id="category_hypoalergica">
+        		<field name="name">Hypoalergica -nieakt</field>
+		</record>
+	</data>
+</openerp>
+

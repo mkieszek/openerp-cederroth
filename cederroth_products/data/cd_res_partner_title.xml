@@ -1,0 +1,13 @@
+<openerp>
+    <data noupdate="1">
+		
+		<record model="res.partner.title" id="title_pan">
+			<field name="name">Pan</field>
+		</record>
+
+		<record model="res.partner.title" id="title_pani">
+			<field name="name">Pani</field>
+		</record>
+
+    </data>
+</openerp>

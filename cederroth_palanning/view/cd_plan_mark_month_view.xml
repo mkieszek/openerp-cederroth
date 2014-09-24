@@ -1,0 +1,120 @@
+<openerp>
+    <data>
+       	<record model="ir.ui.view" id="cd_plan_mark_month_form">
+			<field name="name">cd.plan.mark.month.form</field>
+			<field name="model">cd.plan.mark.month</field>
+			<field name="arch" type="xml">
+                 <form string="Plan Marketingowy Miesiąc" version="7.0" >
+                     <header>
+                     </header>
+                     <sheet>
+                     	<h1>Plan Marketingowy Miesiąc</h1>
+               			<field name="blocked_date" invisible="1" />
+               			<field name="blocked_edit" invisible="1" />
+                   		<group col="2">
+                     		<group string="Informacje o planie">
+		                     	<field name="year" attrs="{'readonly':[('blocked_date','in',True)]}" />
+		                     	<field name="month" attrs="{'readonly':[('blocked_date','in',True)]}" />
+		                     	<!--<field name="start_plan" /> -->
+		                     	<field name="stop_plan" />
+	                     	</group>
+	                     	<group>
+	                     	</group>
+                     	</group>
+                     	<notebook>
+                     		<page string="Plany Marketingowe">
+                     			<field name="plan_month_ids" attrs="{'readonly':[('blocked_edit','in',True)]}" >
+                     				<tree editable="bottom">
+                     					<field name="categ_id" />
+                     					<field name="priority" />
+                     				</tree>
+                     			</field>
+                     		</page>
+                     		<page string="Other COGS">
+                     			<field name="other_cogs_ids" attrs="{'readonly':[('blocked_edit','in',True)]}" >
+                     				<tree editable="bottom">
+                     					<field name="product_id" />
+                     					<field name="settled" />
+                     					<field name="price_cogs" />
+                     					<field name="count" />
+               							<field name="value" sum="Suma wartości" />
+                     				</tree>
+                     			</field>
+                     		</page>
+                     		<page string="Other Marketing">
+                     			<field name="other_marketing_ids" attrs="{'readonly':[('blocked_edit','in',True)]}" >
+                     				<tree editable="bottom">
+                     					<field name="product_category_id" domain="[('parent_id','=',False)]"/>
+                     					<field name="pos_name" />
+                     					<field name="cu_cost" />
+                     					<field name="count" />
+                     					<field name="gross_value" sum="Suma wartości"/>
+                     				</tree>
+                     			</field>
+                     		</page>
+                     		<page string="Inne">
+                     			<field name="other_ids" attrs="{'readonly':[('blocked_edit','in',True)]}">
+                     				<tree editable="bottom">
+                     					<field name="product_category" domain="[('parent_id','=',False)]" />
+                     					<field name="target" />
+                     					<field name="amount" />
+                     					<field name="count" />
+                     					<field name="value" sum="Suma wartości"/>
+                     					<field name="note" />        					
+                     				</tree>
+                     			</field>
+                     		</page>
+                     	</notebook>
+                     </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                   	 </div>
+                 </form>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_plan_mark_month_tree">
+           	<field name="name">cd.plan.mark.month.form</field>
+			<field name="model">cd.plan.mark.month</field>
+                <field name="arch" type="xml">
+					<tree string="Plan Marketingowy">
+		               	<field name="year" />
+		               	<field name="month" />
+					</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_plan_mark_month_search">
+       		<field name="name">cd.plan.mark.month.form</field>
+			<field name="model">cd.plan.mark.month</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie plany Marketingowe Miesięczne">
+               	<field name="year" />
+               	<field name="month" />
+                <separator/>
+               	<group expand="0" string="Grupuj po...">
+           			<filter string="Rok" name="start_year" context="{'group_by' : ['year']}" />
+           			<filter string="Miesiąc" name="start_month" context="{'group_by' : ['month']}" />
+           		</group>
+			</search>
+			</field>
+		</record>
+		
+		<record id="action_cd_plan_mark_month" model="ir.actions.act_window">
+             <field name="name">Plan Marketingowy Miesiąc</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.plan.mark.month</field>
+             <field name="view_type">form</field>
+             <field name="view_id" ref="cd_plan_mark_month_tree"/>
+             <field name="view_mode">tree,form</field>
+             <field name="context">{"search_default_start_year": 1, "search_default_start_month": 0}</field>
+             <field name="domain">[]</field>
+             <field name="search_view_id" ref="cd_plan_mark_month_search"/>
+         </record>
+
+        <menuitem name="Plan Makretingowy Miesiąc" id="menu_cd_plan_mark_month" action="action_cd_plan_mark_month" parent="cederroth_sale.menu_cederroth_sale_planning" sequence="10" />
+		<menuitem name="Plan Makretingowy Miesiąc" id="menu_cd_marketing_plan_mark_month" action="action_cd_plan_mark_month" parent="menu_cd_marketing_planning" sequence="20" />
+		
+    </data>
+</openerp>

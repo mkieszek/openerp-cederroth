@@ -1,0 +1,14 @@
+<openerp>
+    <data noupdate="0">
+		
+		<record model="res.partner" id="menu_soraya">
+			<field name="name">Soraya</field>
+		</record>
+
+		<record model="res.partner" id="menu_cederroth">
+			<field name="name">Cederroth Polska S.A</field>
+		</record>
+
+		
+	</data>
+</openerp>

@@ -1,0 +1,71 @@
+<openerp>
+    <data>
+		<record model="ir.ui.view" id="cd_report_ap_tree">
+           	<field name="name">cd.report.ap.tree</field>
+			<field name="model">cd.report.ap</field>
+                <field name="arch" type="xml">
+					<tree string="Raport Akcji Promocyjnych" create="false">
+                     	<button name="open_promotions" string="Otwórz" type="object" icon="gtk-go-forward" />
+						<field name="year" />
+						<field name="month" />
+						<field name="client_id" />
+						<field name="product_category" />
+						<field name="discount_from" />
+						<field name="start_date" />
+						<field name="stop_date" />
+                   		<field name="gross_sales" />
+                   		<field name="discount_front" />
+                   		<field name="discount_promo_contract" />
+                   		<field name="discount_promo_budget" />
+                   		<field name="nsh" />
+                   		<field name="trade_promo" />
+                   		<field name="nsv" />
+                   		<field name="cogs" />
+                   		<field name="other_cogs" />
+                   		<field name="gp" />
+                   		<field name="gpp" />
+                   		<field name="coop" />
+                   		<field name="other_marketing" />
+                   		<field name="contrib" />
+                   		<field name="contribp" />
+						<field name="stage_id" /> 
+					</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_report_ap_search">
+       		<field name="name">cd.report.ap.search</field>
+			<field name="model">cd.report.ap</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie raporty">
+                <field name="year" />
+				<field name="month" />
+				<field name="client_id" />
+				<field name="product_category" />
+				<field name="stage_id" /> 
+                <group string="Grupuj po...">
+           			<filter string="Rok" name='group_year' context="{'group_by' : 'year'}" />
+           			<filter string="Miesiąc" name='group_month' context="{'group_by' : 'month'}" />
+           			<filter string="Klient" name='group_client' context="{'group_by' : 'client_id'}" />
+           			<filter string="Marka" name='group_mark' context="{'group_by' : 'product_category'}" />
+           			<filter string="Status" name='group_stage' context="{'group_by' : 'stage_id'}" />
+           		</group>
+			</search>
+			</field>
+		</record>
+        
+		<record id="action_cd_report_ap" model="ir.actions.act_window">
+             <field name="name">Raport Akcji Promocyjnych</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.report.ap</field>
+             <field name="view_id" ref="cd_report_ap_tree"/>
+             <field name="view_mode">tree</field>
+             <field name="context">{"search_default_group_year": 1, "search_default_group_month": 1}</field>
+             <field name="domain">[]</field>
+             <field name="search_view_id" ref="cd_report_ap_search"/>
+         </record>
+
+        <menuitem name="Raport Akcji Promocyjnych" id="menu_cd_report_ap" action="action_cd_report_ap" parent="menu_cederroth_sale_reports" sequence="2000"/>
+    
+    </data>
+</openerp>

@@ -1,0 +1,223 @@
+<openerp>
+    <data>
+       	<record model="ir.ui.view" id="cd_plan_client_form">
+			<field name="name">cd.plan.client.form</field>
+			<field name="model">cd.plan.client</field>
+			<field name="arch" type="xml">
+                 <form string="Plan Klient" version="7.0" >
+                     <header>
+                     </header>
+                     <sheet>
+               			<field name="blocked" invisible="1"/>
+               			<field name="blocked_uid" invisible="1"/>
+                     	<h1>Plan Klient</h1>
+                     	<h3>Status:</h3>
+                   		<field name="state_id" attrs="{'readonly':[('blocked','in',True)]}" />
+                   		<group col="2">
+                     		<group string="Informacje o planie">
+                     			<field name="plan_section_id" on_change="onchange_get_year_month(plan_section_id)" attrs="{'readonly':[('blocked_uid','in',True)]}" />
+		                     	<field name="year" attrs="{'readonly':[('blocked_uid','in',True)]}" />
+		                     	<field name="month" attrs="{'readonly':[('blocked_uid','in',True)]}" />
+		                     	<field name="client_id" on_change="onchange_product_list(client_id)" attrs="{'readonly':[('blocked_uid','in',True)]}" />
+		                     	<!--<field name="get_value" />
+		                 
+		                     	<field name="cost_total" />
+		                     	<field name="cost_promo" />
+		                     	
+		                     	<field name="percentage" />-->
+		                     	
+		                     	<field name="plan_value" readonly="1" />
+		                     	<field name="bud_cm" readonly="1" />
+		                     	<separator colspan="2" string="Bilans"/>
+		                     	<field name="gross_sale" />
+		                     	
+		                     	<field name="disc_front_total" />
+		                     	<field name="discount_pormo" />
+		                     	<field name="nsh_total" />
+		                     	<field name="nsh_p_nsh_t" />
+		                     	<field name="trade_promo_listing" />
+		                     	<field name="nsv_total" />
+		                     	<field name="product_cogs" />
+		                     	<field name="other_cogs" />
+		                     	<field name="gp_total" />
+		                     	<field name="gpp_total" />
+		                     	<field name="coop" />
+	                     		<field name="other_marketing" />    
+		                     	<field name="cm_total" />
+		                     	<field name="cmp_total" />
+<!-- 		                     	<field name="trade_promo" /> -->
+<!-- 		                     	<field name="other_listings" /> -->
+		                     	<field name="stop_plan" />
+		                     	<button string="Usuń i dodaj produkty od nowa" name="recalculate_plan_products" type="object" class="oe_highlight" />
+		                 
+	                     	</group>
+	                     	<group string="Budżet per Marka" col="1">
+	                     		<group>
+		                     		<div>
+			                     		<field name="plan_client_brand_ids"> <!-- attrs="{'readonly':[('blocked_uid','=',True)]}">-->
+			                     			<tree editable="bottom">
+			                     				<field name="product_category_id" />
+		                     					<field name="forecast" sum="Suma wartości" />
+		                     					<field name="estim_sr" sum="Suma wartości" />
+		                     					<field name="plan_value" sum="Suma wartości" />
+		                     					<field name="plan_luz" sum="Suma wartości" />
+		                     					<field name="plan_promo" sum="Suma wartości" />
+		                     					<field name="exec_value" sum="Suma wartości" />
+                     							<field name="estimation_news" sum="Suma wartości" />
+			                     			</tree>
+			                     		</field>
+		                     		</div>
+		                     	</group>
+		                     	<group string="Wspierane produkty w miesiącu">
+			                     	<div>
+			                     		<field name="plan_mark_ids">
+			                     			<tree>
+			                     				<field name="categ_id" />
+			                     				<field name="priority" />
+			                     			</tree>
+			                     		</field>
+		                     		</div>
+		                     	</group>
+	                     	</group>
+                     	</group>
+                     	<notebook>
+                     		<page string="Produkty">
+                     			<field name="product_list_ids" invisible="1"/>
+                     			<label for="product_id" class="oe_edit_only" attrs="{'invisible':['|',('client_id','=',False),('blocked','in',True)]}"/>
+               					<field name="product_id" domain="[('id','in', product_list_ids[0][2])]" attrs="{'invisible':['|',('client_id','=',False),('blocked','in',True)]}" />
+               					<button string="Dodaj produkt" name="add_product" type="object" class="oe_highlight" attrs="{'invisible':['|',('product_id','=',False),('blocked','in',True)]}" />
+                     			<field name="plan_product_ids" attrs="{'readonly':[('blocked','in',True)]}" >
+                     				<tree editable="bottom">
+                     					<button string="Historia sprzedaży" name="open_product_history" type="object" icon="STOCK_COPY" />
+                     					<field name="section_id" />
+                     					<field name="product_id" readonly="1" />
+                     					<field name="default_code" />
+                     					<field name="listing_price" sum="Cena listing"/>
+                     					<field name="nsh_price" sum="Cena NSH"/>
+                     					<field name="price_cogs" sum="Cena COGS"/>
+                     					<field name="propo_count" sum="Śr. ilość miesiąc"/>
+                     					<field name="plan_count" sum="Standard estymacja ilość"/>
+                     					<field name="plan_value" sum="Standard estymacja wartość"/>
+                     					<field name="promo_plan_count" sum="Promo estymacja ilość"/>
+                     					<field name="promo_plan_value" sum="Promo estymacja wartość"/>
+				                     	<field name="sum_plan_count" sum="Planowana ilość" />
+				                     	<field name="sum_plan_value" sum="Planowana wartość" />
+				                     	<field name="gpp" />
+				                     	<field name="new_product" />
+                     				</tree>
+                     			</field>
+                     		</page>
+                     		<page string="Other COGS">
+                     			<button name="%(action_cd_other_cogs_add_wizard_view)d" string="Dodaj produkty" type="action" attrs="{'invisible':[('blocked','in',True)]}" />
+                     			<field name="other_cogs_ids" attrs="{'readonly':[('blocked','in',True)]}" >
+                     				<tree editable="bottom">
+                     					<field name="product_id" />
+                     					<field name="settled" />
+                     					<field name="count" />
+                     					<field name="value" />
+                     				</tree>
+                     			</field>
+                     		</page>
+                     		<page string="Other Marketing">
+                     			<field name="other_marketing_ids" attrs="{'readonly':[('blocked','in',True)]}" >
+                     				<tree editable="bottom">
+                     					<field name="product_category_id" domain="[('parent_id','=',False)]"/>
+                     					<field name="pos_name" />
+                     					<field name="cu_cost" />
+                     					<field name="count" />
+                     					<field name="gross_value" />
+                     				</tree>
+                     			</field>
+                     		</page>
+                     		<page string="Próbki/produkty limitowane">
+                     			<field name="product_limited_ids" attrs="{'readonly':[('blocked','in',True)]}" >
+                     				<tree editable="bottom">
+                     					<field name="product_id" />
+                     					<field name="count" />
+                     					<field name="value" />
+                     				</tree>
+                     			</field>
+                     		</page>
+                     		<page string="Inne">
+                     			<field name="other_ids" attrs="{'readonly':[('blocked','in',True)]}" >
+                     				<tree editable="bottom">
+                     					<field name="product_category" />
+                     					<field name="target" />
+                     					<field name="amount" />
+                     					<field name="count" />
+                     					<field name="value" />
+                     					<field name="note" />
+                     				</tree>
+                     			</field>
+                     		</page>
+                     		<page string="Wyprzedaż">
+                     			<field name="sale_ids" attrs="{'readonly':[('blocked','in',True)]}" >
+                     				<tree editable="bottom">
+                     					<field name="product_id" />
+                     					<field name="count" />
+                     					<field name="nsh_price" />
+                     					<field name="price_cogs" />
+                     					<field name="gp_proc" invisible="1" />
+                     				</tree>
+                     			</field>
+                     		</page>
+                     	</notebook>
+                     </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                   	 </div>
+                 </form>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_plan_client_tree">
+           	<field name="name">cd.plan.client.form</field>
+			<field name="model">cd.plan.client</field>
+                <field name="arch" type="xml">
+					<tree string="Plan Klient">
+		               	<field name="year" />
+		               	<field name="month" />
+                     	<field name="client_id" />
+                     	<field name="plan_value" />
+                     	<field name="get_value" />
+                     	<field name="state_id" />
+					</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_plan_client_search">
+       		<field name="name">cd.plan.client.form</field>
+			<field name="model">cd.plan.client</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie plany Klienta">
+               	<field name="year" />
+               	<field name="month" />
+               	<field name="client_id" />
+               	<field name="plan_value" />
+               	<field name="state_id" />
+               	<group expand="0" string="Grupuj po...">
+           			<filter string="Rok" name="start_year" context="{'group_by' : ['year']}" />
+           			<filter string="Miesiąc" name="start_month" context="{'group_by' : ['month']}" />
+           			<filter string="Status" name="group_state" context="{'group_by' : ['state_id']}" />
+           		</group>
+			</search>
+			</field>
+		</record>
+		
+		<record id="action_cd_plan_client" model="ir.actions.act_window">
+             <field name="name">Plan Klient</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.plan.client</field>
+             <field name="view_type">form</field>
+             <field name="view_id" ref="cd_plan_client_tree"/>
+             <field name="view_mode">tree,form</field>
+             <field name="context">{"search_default_start_year": 1, "search_default_start_month": 1}</field>
+             <field name="domain">[]</field>
+             <field name="search_view_id" ref="cd_plan_client_search"/>
+         </record>
+
+        <menuitem name="Plan Klient" id="menu_cd_plan_client" action="action_cd_plan_client" parent="cederroth_sale.menu_cederroth_sale_planning" sequence="30" />
+
+    </data>
+</openerp>

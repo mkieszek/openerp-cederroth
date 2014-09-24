@@ -1,0 +1,30 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cd_listing_read,Listing Read,model_cd_listing,group_cd_listing_read,1,0,0,0
+access_cd_listing_write,Listing Write,model_cd_listing,group_cd_listing_write,0,1,0,0
+access_cd_listing_create,Listing Create,model_cd_listing,group_cd_listing_create,0,0,1,0
+access_cd_listing_unlink,Listing Unlink,model_cd_listing,group_cd_listing_unlink,0,0,0,1
+access_cd_add_listing,Add Listing Wizard,model_cd_add_listing,group_cd_add_listing,1,1,1,1
+access_cd_products_read,Products Read,model_product_product,group_cd_product_read,1,0,0,0
+access_cd_products_write,Products Write,model_product_product,group_cd_product_write,0,1,0,0
+access_cd_products_create,Products Create,model_product_product,group_cd_product_create,0,0,1,0
+access_cd_products_unlink,Products Unlink,model_product_product,group_cd_product_unlink,0,0,0,1
+access_cd_client_format_read,Client format Read,model_cd_client_format,group_cd_client_format_read,1,0,0,0
+access_cd_client_format_write,Client format Write,model_cd_client_format,group_cd_client_format_write,0,1,0,0
+access_cd_client_format_create,Client format Create,model_cd_client_format,group_cd_client_format_create,0,0,1,0
+access_cd_client_format_unlink,Client format Unlink,model_cd_client_format,group_cd_client_format_unlink,0,0,0,1
+access_cd_product_category_read,Product category Read,product.model_product_category,group_cd_product_category_read,1,0,0,0
+access_cd_product_category_write,Product category Write,product.model_product_category,group_cd_product_category_write,0,1,0,0
+access_cd_product_category_create,Product category Create,product.model_product_category,group_cd_product_category_create,0,0,1,0
+access_cd_product_category_unlink,Product category Unlink,product.model_product_category,group_cd_product_category_unlink,0,0,0,1
+access_cd_product_packaging_read,Product packaging Read,product.model_product_packaging,group_cd_product_packaging_read,1,0,0,0
+access_cd_product_packaging_write,Product packaging Write,product.model_product_packaging,group_cd_product_packaging_write,0,1,0,0
+access_cd_product_packaging_create,Product packaging Create,product.model_product_packaging,group_cd_product_packaging_create,0,0,1,0
+access_cd_product_packaging_unlink,Product packaging Unlink,product.model_product_packaging,group_cd_product_packaging_unlink,0,0,0,1
+access_cd_product_pack_type_read,Product pack type Read,model_cd_pack_type,group_cd_pack_type_read,1,0,0,0
+access_cd_product_pack_type_write,Product pack type Write,model_cd_pack_type,group_cd_pack_type_write,0,1,0,0
+access_cd_product_pack_type_create,Product pack type Create,model_cd_pack_type,group_cd_pack_type_create,0,0,1,0
+access_cd_product_pack_type_unlink,Product pack type Unlink,model_cd_pack_type,group_cd_pack_type_unlink,0,0,0,1
+access_cd_export_product_visible,Product export data Visible,model_cd_export_products,group_cd_product_export_data_visible,1,1,1,1
+access_product_template_all,product.template.all,product.model_product_template,,1,0,0,0
+access_cd_res_config_all,res.config.all,base.model_res_config,,1,0,0,0
+access_cd_export_listing_visible,Export listing Visible,model_cd_listing_export,group_cd_export_listing_visible,1,1,1,1

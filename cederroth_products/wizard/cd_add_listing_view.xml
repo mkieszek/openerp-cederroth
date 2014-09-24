@@ -1,0 +1,49 @@
+<openerp>
+    <data>
+       	<record model="ir.ui.view" id="cd_add_listing">
+			<field name="name">cd.add.listing.form</field>
+			<field name="model">cd.add.listing</field>
+			<field name="arch" type="xml">
+                 <form string="Listing" version="7.0" >
+                     <header>
+                     </header>
+                     <sheet>
+                     	<group>
+                     		<group string="Informacje o Kliencie">
+                     			<field name="client_id" />
+                     			<field name="format_id" />
+                     			<field name="on_top" />
+                     		</group>
+                     		<group col='1'>
+                     			<group string="Nowy produkt">
+                     				<field name="new_product_id" />
+                     				<field name="start_date" />
+                     				<field name="price" />
+                     			</group>
+                     			<group string="Zastępowany produkt" attrs="{'invisible':[('on_top','=',True)]}">
+                     				<field name="old_product_id" attrs="{'required':[('on_top','=',False)]}" />
+                     				<field name="end_date" attrs="{'required':[('on_top','=',False)]}" />
+                     			</group>
+                     		</group>
+                     	</group>
+                     	<footer>
+                     		<button name="add_listing" string="Wykonaj" type="object" class="oe_highlight"/>
+                        	<button special="cancel" string="Cancel" type="object" class="oe_link"/>
+                     	</footer>
+                     </sheet>
+                 </form>
+			</field>
+		</record>
+		<record id="action_cd_add_listing" model="ir.actions.act_window">
+             <field name="name">Dodaj/zastąp Listing</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.add.listing</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">form</field>
+             <field name="target">new</field>
+         </record>
+         
+        <menuitem name="Dodaj/zastąp Listing" id="menu_cd_add_listing" action="action_cd_add_listing" parent="base.menu_sales" sequence="2015" />
+
+    </data>
+</openerp>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="cd_export_promo_form" model="ir.ui.view">
+            <field name="name">Promotions export</field>
+            <field name="model">cd.export.promo</field>
+            <field name="arch" type="xml">
+                <form string="Export promotions" version="7.0">
+                    <field invisible="1" name="state"/>
+                    <group states="choose" string="Export Settings">
+                          <field invisible="1" name="state"/>
+                          <field name="name" invisible="1"/>
+                    </group>
+                    <div states="get">
+                        <h2>Export</h2>
+                        <p>Wygenerowano plik: <field name="file_export" readonly="1" filename="name"/></p>
+                    </div>
+                    <footer states="choose">
+                        <button name="export_promotions" string="Generate" type="object" class="oe_highlight"/> or 
+                        <button special="cancel" string="Cancel" type="object" class="oe_link"/>
+                    </footer>
+                    <footer states="get">
+                        <button special="cancel" string="Close" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>		
+
+		<act_window name="Export promotions"
+		    res_model="cd.export.promo"
+		    src_model="cd.promotions"
+		    key2="client_action_multi" 
+		    view_mode="form" target="new" 
+		    view_type="form"
+		    id="action_cd_export_promo_view" 
+		    />
+		    
+	</data>
+</openerp>

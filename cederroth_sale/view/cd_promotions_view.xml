@@ -1,0 +1,281 @@
+<openerp>
+    <data>
+       	<record model="ir.ui.view" id="cd_promotions_form">
+			<field name="name">cd.promotions.form</field>
+			<field name="model">cd.promotions</field>
+			<field name="arch" type="xml">
+                 <form string="Akcje promocyjne" version="7.0" >
+                     <header>
+                     	<button name="accept_tmm" string="Akceptacja Trade Marketing" type="object" attrs="{'invisible':['|',('sequence','not in',[20]),('accept_tmm','=',True)]}" groups="cederroth_products.group_cd_trade_m_m"/>
+                     	<button name="accept_trade_d" string="Akceptacja Dyrektor Handlowy" type="object" attrs="{'invisible':['|',('sequence','not in',[20]),('accept_trade_director','=',True)]}" groups="cederroth_products.group_cd_sales_director"/>
+                     	<button name="accept_finances_d" string="Akceptacja Dytektor Finansowy" type="object" attrs="{'invisible':['|',('sequence','not in',[20]),('accept_finances_director','=',True)]}" groups="cederroth_products.group_cd_finances_director"/>
+                     	<button name="accept_country_m" string="Akceptacja Country Manager" type="object" attrs="{'invisible':['|',('sequence','not in',[20]),('accept_country_manager','=',True)]}" groups="cederroth_products.group_cd_country_manager"/>
+                     	<button name="accept_promotions" string="Akceptuj akcję" type="object" attrs="{'invisible':[('sequence','not in',[20])]}" groups="cederroth_products.group_cd_department_director,cederroth_products.group_cd_sales_director,cederroth_products.group_cd_trade_m_m"/>
+                     	<button name="cancelled_promotions" string="Odrzuć" type="object" attrs="{'invisible':[('sequence','not in',[20])]}" groups="cederroth_products.group_cd_department_director,cederroth_products.group_cd_sales_director,cederroth_products.group_cd_trade_m_m"/>
+                     	<button name="rejected_promotions" string="Anuluj" type="object" attrs="{'invisible':[('sequence','not in',[10,20,30,40])]}"/>
+                     	<button name="calculate_promotions" string="Rozliczona" type="object" attrs="{'invisible':[('sequence','not in',[70])]}" />
+                    	 <field name="stage_id" widget="statusbar" clickable="True"/>
+                     </header>
+                     <sheet>
+                     	<field name="state" invisible='1' />
+                     	<label for="promotions_name" class="oe_edit_only"/>
+                     	<h1><field name="promotions_name" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" /></h1>
+                     	<group col='2'>
+                     		<group col='1'>
+	                     		<group>
+	                     			<field name="type_promotions_id" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
+	                     			<field name="product_category" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
+		                     		<field name="client_id"  domain="[('customer','=', True), ('is_company','=', True)]" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" on_change="onchange_product_list(client_id)"/>
+		                     		<field name="promo_format_ids" widget="many2many_tags" domain="[('client_id','=', client_id)]" />
+		                     		<field name="promo_format_count" />
+		                     	</group>
+	                     		<group string="Informacje o akcji">
+			                     	<field name="start_date" on_change="on_change_start_date(start_date)" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
+			                     	<field name="stop_date" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
+			                     	<field name="discount_from" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
+			                     	<field name="edit_date" />
+		                     		<field name="monitored" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
+	                     			<field name="monitor_merchand" />
+	                     			<field name="display_ids" widget="many2many_tags" />
+	                     			<field name="display_count" />
+	                     			<field name="communication_ids" widget="many2many_tags"/>
+	                     			<field name="distribution" />
+	                     		</group>
+		                     	<group string="Akceptacja kosztów pozabudżetowych">
+	                     			<field name="accept_tmm" />
+	                     			<field name="accept_trade_director" />
+	                     			<field name="accept_finances_director" />
+	                     			<field name="accept_country_manager" />
+	                     		</group>
+                     		</group>
+	                     	<group string="Bilans akcji" >
+	                     		<field name="gross_sales" />
+	                     		<field name="discount_front" />
+	                     		<field name="discount_promo_contract" />
+	                     		<field name="discount_promo_budget" />
+	                     		<field name="nsh" />
+	                     		<field name="trade_promo" />
+	                     		<field name="nsv" />
+	                     		<field name="cogs" />
+	                     		<field name="other_cogs" />
+	                     		<field name="gp" />
+	                     		<field name="gpp" />
+	                     		<field name="coop" />
+	                     		<field name="other_marketing" />
+	                     		<field name="contrib" />
+	                     		<field name="contribp" />
+	                     		<field name="margin_warning" invisible="1"/>
+	                     		<div style="color: red;" attrs="{'invisible':['|',('margin_warning','=',True),('product_rel_ids','=',[])]}" >Aktualna marża akcji promocyjnej jest zbyt niska</div>
+              						<button string="Przelicz bilans" name="calculate_balance" type="object" class="oe_highlight" />
+	                     	</group>
+                     	</group>
+                     	<notebook attrs="{'invisible':[('client_id','=',False)]}">
+                     		<page string="Produkty">
+                     			<button string="Dodaj produkty" name="open_add_products" type="object" />
+                     			<!-- <button name="%(action_cd_product_rel_add_wizard_view)d" string="Dodaj produkty" type="action" attrs="{'invisible':[('sequence','not in',[10])]}" /> -->
+               					<field name="product_list_ids" invisible='1'/>
+               					<label for="product_id" class="oe_edit_only" attrs="{'invisible':[('sequence','not in',[10])]}" />
+               					<field name="product_id" domain="[('id','in', product_list_ids[0][2])]" attrs="{'invisible':[('sequence','not in',[10])]}"/>
+               					<button string="Dodaj produkt" name="add_product" type="object" class="oe_highlight" attrs="{'invisible':[('product_id','=',False)]}"/>
+                     			<field name="sequence" invisible='1' />
+                     			<field name="product_rel_ids" attrs="{'readonly':[('sequence','not in',[10,70])]}" >
+									<tree editable="bottom" create="false" colors="red:sugest_price_prom>prom_price">
+                     					<field name="state_prom" invisible='1' />
+                     					<field name="sequence_prom" invisible='1' />
+										<field name="product_id" />
+										<field name="default_code" />
+										<field name="sugest_price_prom" />
+										<field name="sugest_price_ret" />
+										<field name="list_price" />
+										<field name="nsh_price" />
+										<field name="price_cogs" />
+										<field name="discount_prom" on_change="on_change_discount_prom(discount_prom, 1)" attrs="{'readonly':[('state_prom','in',['done','pending','canceled','open'])]}" />
+										<field name="prom_price" attrs="{'readonly':[('state_prom','in',['done','pending','canceled','open'])]}" />
+										<field name="retail_price" attrs="{'readonly':[('state_prom','in',['done','pending','canceled','open'])]}" />
+										<field name="amount_product" attrs="{'readonly':[('state_prom','in',['done','pending','canceled','open'])]}" />
+										<field name="value_nsh" />
+										<field name="amount_sold" attrs="{'readonly':[('sequence_prom','!=',70)]}"/>
+									</tree>
+								</field>
+                     		</page>
+                     		<page string="Dodatkowe koszty akcji" attrs="{'invisible':[('client_id','=',False)]}">
+	                     		<field name="cost_promotions_ids" attrs="{'readonly':[('sequence','not in',[10])]}">
+	                     			<tree editable="bottom">
+	                     				<field name="cost_data_id" />
+	                     				<field name="cost_type" />
+	                     				<field name="pos" />
+	                     				<field name="cu_cost" />
+	                     				<field name="count" />
+	                     				<field name="amount" />
+	                     			</tree>
+	                     		</field>
+                     		</page>
+                     		<page string="Zasady akcji">
+                     			<field name="promotion_rules" attrs="{'readonly':[('sequence','not in',[10])]}"/>
+                     		</page>
+                     		<page string="Uwagi">
+                     			<field name="attention" attrs="{'readonly':[('sequence','not in',[10])]}"/>
+                     		</page>
+                		    <page string="Gratisy">
+                		    	<field name="gratis_ids" attrs="{'readonly':[('sequence','not in',[10])]}">
+	                     			<tree editable="bottom">
+	                     				<field name="product_id" />
+	                     				<field name="movex_code" />
+	                     				<field name="distribution" />
+	                     				<field name="count" />
+	                     				<field name="product_vat" />
+	                     				<field name="price_cogs" />
+	                     				<field name="value_cogs" />
+	                     			</tree>
+	                     		</field>
+                     		</page>
+                     		<page string="Zadania PH">
+                     			<field name="task_sale_ids" widget="one2many_list">
+								    <tree editable='bottom'>
+								        <field name="name"/>
+                     				</tree>
+                     			</field>
+                     		</page>
+                     		<page string="Zadania Merchandising">
+                     			<field name="task_merchandising_ids"  widget="one2many_list">
+                     				<tree editable='bottom'>
+								        <field name="name"/>
+                     				</tree>
+                     			</field>
+                     		</page>
+                     	</notebook>
+                     </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                   	 </div>
+                 </form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="cd_promotions_tree">
+           	<field name="name">cd.promotions.form</field>
+			<field name="model">cd.promotions</field>
+                <field name="arch" type="xml">
+					<tree string="Akcje promocyjne" colors="red: margin_warning == False" >
+		                <field name="margin_warning" invisible="1"/>
+                      	<field name="start_year" />
+                      	<field name="start_month" />
+						<field name="client_id" />
+                      	<field name="product_category" />
+                      	<field name="promotions_name" />
+                      	<field name="discount_from" />
+                      	<field name="start_date" />
+                      	<field name="stop_date" />
+                      	<field name="nsh" />
+                      	<field name="nsv" />
+                      	<field name="contrib" />
+                      	<field name="contribp" />
+                   		<field name="stage_id" />
+					</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_promotions_search">
+       		<field name="name">cd.promotions.form</field>
+			<field name="model">cd.promotions</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie akcje promocyjne">
+           		<field name="start_month" />
+           		<field name="start_year" />
+              	<field name="client_id" />
+                <field name="promotions_name" />
+           		<field name="product_category" />
+           		<field name="stage_id" />
+           		<group string="Grupuj po...">
+           			<filter string="Miesiąc" context="{'group_by' : 'start_month'}" />
+           			<filter string="Rok" context="{'group_by' : 'start_year'}" />
+           			<filter string="Klient" name="client" context="{'group_by' : 'client_id'}" />
+           			<filter string="Marka" context="{'group_by' : 'product_category'}" />
+           			<filter string="Status" context="{'group_by' : 'stage_id'}" />
+           			<filter icon="terp-go-year" string="Aktualny rok" name="current_year" domain="[('start_year','&lt;=',(context_today()+relativedelta(day=31)).strftime('%%Y')),('start_year','&gt;=',(context_today()-relativedelta(day=1)).strftime('%%Y'))]" context="{'group_by':'start_year'}"/>
+           		</group>
+			</search>
+			</field>
+		</record>
+		
+		<record id="cd_promotions_gantt" model="ir.ui.view">
+		    <field name="name">cd.promotions.gantt</field>
+		    <field name="model">cd.promotions</field>
+		    <field name="arch" type="xml">
+		    	<gantt date_stop="stop_date" date_start="start_date" string="Akcje promocyjne" default_group_by="client_id">
+		    	</gantt>
+		    </field>
+	   </record>
+        
+		<record id="action_cd_promotions" model="ir.actions.act_window">
+             <field name="name">Akcje promocyjne</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.promotions</field>
+             <field name="view_type">form</field>
+             <field name="view_id" ref="cd_promotions_tree"/>
+             <field name="view_mode">tree,form,gantt</field>
+             <field name="context">{"search_default_current_year": 1}</field>
+             <field name="domain">[]</field>
+             <field name="search_view_id" ref="cd_promotions_search"/>
+         </record>
+
+		<menuitem id="menu_cederroth_sale_planning"
+            parent="base.menu_base_partner"
+            name="Planowanie"
+            sequence="1"/>
+        
+        <menuitem name="Akcje promocyjne" id="menu_cd_promotions" action="action_cd_promotions" parent="menu_cederroth_sale_planning" sequence="50" />
+        
+	<!-- Scheduler for Trade MM and Logistics M-->
+        <record forcecreate="True" id="ir_cron_discount_term_trade_mm_logistics_m_action" model="ir.cron">
+              <field name="name">Promotions - Notification for Trade MM and Logistics M</field>
+              <field eval="True" name="active" />
+              <field name="user_id" ref="base.user_root" />
+              <field name="interval_number">1</field>
+              <field name="interval_type">days</field>
+              <field name="numbercall">-1</field>
+              <field eval="'cd.promotions'" name="model" />
+              <field eval="'notification_discount'" name="function" />
+              <field eval="'()'" name="args" />
+        </record>
+        
+    <!-- Scheduler for Change States-->
+        <record forcecreate="True" id="ir_cron_change_stage_promotions" model="ir.cron">
+              <field name="name">Promotions - Change stage</field>
+              <field eval="False" name="active" />
+              <field name="user_id" ref="base.user_root" />
+              <field name="interval_number">1</field>
+              <field name="interval_type">days</field>
+              <field name="numbercall">-1</field>
+              <field eval="'cd.promotions'" name="model" />
+              <field eval="'change_stage'" name="function" />
+              <field eval="'()'" name="args" />
+        </record>
+        <record forcecreate="True" id="ir_cron_auto_calculate_balance" model="ir.cron">
+              <field name="name">Promotions - auto calculate balance</field>
+              <field eval="True" name="active" />
+              <field name="user_id" ref="base.user_root" />
+              <field name="interval_number">1</field>
+              <field name="interval_type">hours</field>
+              <field name="numbercall">-1</field>
+              <field eval="'cd.promotions'" name="model" />
+              <field eval="'auto_calculate_balance'" name="function" />
+              <field eval="'()'" name="args" />
+        </record>
+        
+    <!-- Scheduler for start date-->
+    <!-- POWIADOMIENIE DO PH NA 10 DNI PRZED OBOWIAZYWANIEM RABATU -->
+        <!--<record forcecreate="True" id="ir_cron_start_date_promotions" model="ir.cron">
+              <field name="name">Promotions - Notification start date (10 days)</field>
+              <field eval="True" name="active" />
+              <field name="user_id" ref="base.user_root" />
+              <field name="interval_number">1</field>
+              <field name="interval_type">days</field>
+              <field name="numbercall">-1</field>
+              <field eval="'cd.promotions'" name="model" />
+              <field eval="'notification_start_date'" name="function" />
+              <field eval="'()'" name="args" />
+        </record> -->
+    </data>
+</openerp>

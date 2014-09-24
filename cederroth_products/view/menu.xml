@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.module.category" id="cederroth_products.cd_module_category_cederroth">
+                <field name="name">Cederroth</field>
+                <field name="description">Cederroth Applilcation</field>
+                <field name="sequence">30</field>
+        </record>
+
+        <record id="group_cd_datamanager" model="res.groups">
+            <field name="name">Cederroth Data manager</field>
+            <field name="comment">Cederroth data manager</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+	
+        <record id="group_cd_kam" model="res.groups">
+            <field name="name">KAM</field>
+            <field name="comment">Key Account Menager</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_ph" model="res.groups">
+            <field name="name">PH</field>
+            <field name="comment">PH</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_logistics" model="res.groups">
+            <field name="name">Logistics</field>
+            <field name="comment">Logistics</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_marketing" model="res.groups">
+            <field name="name">Marketing</field>
+            <field name="comment">Marketing</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_brand_manager" model="res.groups">
+            <field name="name">Brand Manager</field>
+            <field name="comment">Brand Manager</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_product_manager" model="res.groups">
+            <field name="name">Product Manager</field>
+            <field name="comment">Product Manager</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_salesmanager" model="res.groups">
+            <field name="name">Sales Manager</field>
+            <field name="comment">Sales Manager</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_trade_m_m" model="res.groups">
+            <field name="name">Trade Marketing Manager</field>
+            <field name="comment">Trade Marketing Manager</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_trade_m_s" model="res.groups">
+            <field name="name">Trade Marketing Specialist</field>
+            <field name="comment">Trade Marketing Specialist</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_logistics_manager" model="res.groups">
+            <field name="name">Logistics Manager</field>
+            <field name="comment">Logistics Manager</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_department_director" model="res.groups">
+            <field name="name">Department Director</field>
+            <field name="comment">Department Director</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_sales_director" model="res.groups">
+            <field name="name">Sales Director</field>
+            <field name="comment">Sales Director</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_finances_director" model="res.groups">
+            <field name="name">Finances Director</field>
+            <field name="comment">Finances Director</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_country_manager" model="res.groups">
+            <field name="name">Country Manager</field>
+            <field name="comment">Country Manager</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_district_manager" model="res.groups">
+            <field name="name">District Manager</field>
+            <field name="comment">District Manager</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+        <record id="group_cd_marketing_director" model="res.groups">
+            <field name="name">Marketing Director</field>
+            <field name="comment">Marketing Director</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
+    </data>
+    <data>
+        <menuitem id="menu_cd_data_management" name="Data management" groups="group_cd_datamanager"/>
+        <menuitem id="menu_cd_products" name="Products" parent="menu_cd_data_management"/>
+        
+        <menuitem id="menu_cd_data_marketing" name="Marketing" groups="group_cd_marketing"/>
+        <menuitem id="menu_cd_marketing" name="Marketing" parent="menu_cd_data_marketing"/>
+        
+        <record id="action_products" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="product.product_product_tree_view"/>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="cd_product_view_search"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create new product.
+              </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_cd_product_list_marketing"
+        action="action_products" parent="menu_cd_marketing"
+        sequence="2000"/> 
+        <menuitem id="menu_cd_product_listing_marketing"
+        action="action_listings" parent="menu_cd_marketing"
+        sequence="2000"/>
+
+        
+        
+        <menuitem id="menu_cd_product_list"
+        action="action_products" parent="menu_cd_products"
+        sequence="2000"/>
+
+        <record id="action_product_categories" model="ir.actions.act_window">
+            <field name="name">Product categories</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.category</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="product.product_category_list_view"/>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="product.product_category_search_view"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create new product category.
+              </p>
+            </field>
+        </record>
+        <menuitem id="menu_cd_product_categories"
+        action="action_product_categories" parent="menu_cd_products"
+        sequence="2010"/>
+
+
+
+    </data>
+</openerp>

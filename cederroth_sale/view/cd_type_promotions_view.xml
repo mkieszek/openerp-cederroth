@@ -1,0 +1,38 @@
+<openerp>
+    <data>
+		<record model="ir.ui.view" id="cd_type_promotions_tree">
+           	<field name="name">cd.type.promotions.tree</field>
+			<field name="model">cd.type.promotions</field>
+                <field name="arch" type="xml">
+					<tree string="Typy promocji" editable='bottom'>
+						<field name="name" />
+					</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_type_promotions_search">
+       		<field name="name">cd.type.promotions.search</field>
+			<field name="model">cd.type.promotions</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie typy promocji">
+                <field name="name" />
+			</search>
+			</field>
+		</record>
+        
+		<record id="action_cd_type_promotions" model="ir.actions.act_window">
+             <field name="name">Typ promocji</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.type.promotions</field>
+             <field name="view_type">form</field>
+             <field name="view_id" ref="cd_type_promotions_tree"/>
+             <field name="view_mode">tree</field>
+             <field name="context">{}</field>
+             <field name="domain">[]</field>
+             <field name="search_view_id" ref="cd_type_promotions_search"/>
+         </record>
+
+        <menuitem name="Typy promocji" id="menu_cd_type_promotions" action="action_cd_type_promotions" parent="base.menu_sales" sequence="2019" />
+    
+    </data>
+</openerp>

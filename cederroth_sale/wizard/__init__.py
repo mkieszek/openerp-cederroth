@@ -1,0 +1,1 @@
+import cd_product_rel_add_wizard

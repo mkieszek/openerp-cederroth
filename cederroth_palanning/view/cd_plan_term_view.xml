@@ -1,0 +1,54 @@
+<openerp>
+    <data>
+		<record model="ir.ui.view" id="cd_plan_term_tree">
+           	<field name="name">cd.plan.term</field>
+			<field name="model">cd.plan.term</field>
+            <field name="arch" type="xml">
+				<tree string="Terminy planowania" editable="bottom">
+	                <field name="year" />
+					<field name="month" />
+					<field name="mark_stop" />
+					<field name="sale_stop" />
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_plan_term_search">
+       		<field name="name">cd.plan.term.search</field>
+			<field name="model">cd.plan.term</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie terminy">
+                <field name="year" />
+				<field name="month" />
+				<field name="mark_start" />
+				<field name="mark_stop" />
+				<field name="sale_start" />
+				<field name="sale_stop" />
+				<!-- 
+                <group string="Grupuj po...">
+           			<filter string="Rok" name='group_year' context="{'group_by' : 'year'}" />
+           			<filter string="Miesiąc" name='group_month' context="{'group_by' : 'month'}" />
+           			<filter string="Klient" name='group_client' context="{'group_by' : 'client_id'}" />
+           			<filter string="Marka" name='group_mark' context="{'group_by' : 'product_category'}" />
+           			<filter string="Status" name='group_stage' context="{'group_by' : 'stage_id'}" />
+           		</group>
+           		 -->
+			</search>
+			</field>
+		</record>
+        
+		<record id="action_cd_plan_term" model="ir.actions.act_window">
+             <field name="name">Terminy planowania</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.plan.term</field>
+             <field name="view_id" ref="cd_plan_term_tree"/>
+             <field name="view_mode">tree</field>
+             <!-- <field name="context">{"search_default_group_year": 1, "search_default_group_month": 1}</field> -->
+             <field name="domain">[]</field>
+             <field name="search_view_id" ref="cd_plan_term_search"/>
+         </record>
+
+        <menuitem name="Terminy planowania" id="menu_cd_plan_term" action="action_cd_plan_term" parent="cederroth_sale.menu_cederroth_sale_planning" sequence="101"/>
+    
+    </data>
+</openerp>

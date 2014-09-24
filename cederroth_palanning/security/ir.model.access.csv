@@ -1,0 +1,66 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cd_plan_product_read,Plan product Read,model_cd_plan_product,group_cd_plan_product_read,1,0,0,0
+access_cd_plan_product_write,Plan product Write,model_cd_plan_product,group_cd_plan_product_write,0,1,0,0
+access_cd_plan_product_create,Plan product Create,model_cd_plan_product,group_cd_plan_product_create,0,0,1,0
+access_cd_plan_product_unlink,Plan product Unlink,model_cd_plan_product,group_cd_plan_product_unlink,0,0,0,1
+access_cd_plan_client_read,Plan client Read,model_cd_plan_client,group_cd_plan_client_read,1,0,0,0
+access_cd_plan_client_write,Plan client Write,model_cd_plan_client,group_cd_plan_client_write,0,1,0,0
+access_cd_plan_client_create,Plan client Create,model_cd_plan_client,group_cd_plan_client_create,0,0,1,0
+access_cd_plan_client_unlink,Plan client Unlink,model_cd_plan_client,group_cd_plan_client_unlink,0,0,0,1
+access_cd_plan_section_read,Plan section Read,model_cd_plan_section,group_cd_plan_section_read,1,0,0,0
+access_cd_plan_section_write,Plan section Write,model_cd_plan_section,group_cd_plan_section_write,0,1,0,0
+access_cd_plan_section_create,Plan section Create,model_cd_plan_section,group_cd_plan_section_create,0,0,1,0
+access_cd_plan_section_unlink,Plan section Unlink,model_cd_plan_section,group_cd_plan_section_unlink,0,0,0,1
+access_cd_plan_client_brand_read,Plan client brand Read,model_cd_plan_client_brand,group_cd_plan_client_brand_read,1,0,0,0
+access_cd_plan_client_brand_write,Plan client brand Write,model_cd_plan_client_brand,group_cd_plan_client_brand_write,0,1,0,0
+access_cd_plan_client_brand_create,Plan client brand Create,model_cd_plan_client_brand,group_cd_plan_client_brand_create,0,0,1,0
+access_cd_plan_client_brand_unlink,Plan client brand Unlink,model_cd_plan_client_brand,group_cd_plan_client_brand_unlink,0,0,0,1
+access_cd_other_read,Other Read,model_cd_other,group_cd_plan_client_read,1,0,0,0
+access_cd_other_write,Other Write,model_cd_other,group_cd_plan_client_write,0,1,1,1
+access_cd_other_unlink,Other Unlink,model_cd_other,group_cd_plan_client_unlink,0,1,1,1
+access_cd_sale_read,Sale Read,model_cd_sale,group_cd_plan_client_read,1,0,0,0
+access_cd_sale_write,Sale Write,model_cd_sale,group_cd_plan_client_write,0,1,1,1
+access_cd_sale_unlink,Sale Unlink,model_cd_sale,group_cd_plan_client_unlink,0,1,1,1
+access_cd_other_marketing_read,Other Marketing Read,model_cd_other_marketing,group_cd_plan_client_read,1,0,0,0
+access_cd_other_marketing_write,Other Marketing Write,model_cd_other_marketing,group_cd_plan_client_write,0,1,1,1
+access_cd_other_marketing_unlink,Other Marketing Unlink,model_cd_other_marketing,group_cd_plan_client_unlink,0,1,1,1
+access_cd_product_limited_read,Product limited Read,model_cd_product_limited,group_cd_plan_client_read,1,0,0,0
+access_cd_product_limited_write,Product limited Read Write,model_cd_product_limited,group_cd_plan_client_write,0,1,1,1
+access_cd_product_limited_unlink,Product limited Read Unlink,model_cd_product_limited,group_cd_plan_client_unlink,0,1,1,1
+access_cd_other_cogs_read,Other cogs Read,model_cd_other_cogs,group_cd_plan_client_read,1,0,0,0
+access_cd_other_cogs_write,Other cogs Write,model_cd_other_cogs,group_cd_plan_client_write,0,1,1,1
+access_cd_other_cogs_unlink,Other cogs Unlink,model_cd_other_cogs,group_cd_plan_client_unlink,0,1,1,1
+access_cd_report_ap_read,Report promotions Read,model_cd_report_ap,group_cd_report_ap_read,1,0,0,0
+access_cd_report_trade_promo_read,Report trade promo Read,model_cd_report_trade_promo,group_cd_report_trade_promo_read,1,0,0,0
+access_cd_report_other_cogs_read,Report other cogs Read,model_cd_report_other_cogs,group_cd_report_other_cogs_read,1,0,0,0
+access_cd_report_other_mark_month_read,Report other marketing month Read,model_cd_report_other_mark_month,group_cd_report_other_mark_month_read,1,0,0,0
+access_cd_report_coop_read,Report coop Read,model_cd_report_coop,group_cd_report_coop_read,1,0,0,0
+access_cd_report_forecast_product_read,Report forecast product Read,model_cd_report_forecast_product,group_cd_report_forecast_product_read,1,0,0,0
+access_cd_report_plan_client_brand_read,Report plan client brand Read,model_cd_report_plan_client_brand,group_cd_report_plan_client_brand_read,1,0,0,0
+access_cd_report_plan_client_read,Report plan client Read,model_cd_report_plan_client,group_cd_report_plan_client_read,1,0,0,0
+access_cd_report_plan_section_read,Report plan section Read,model_cd_report_plan_section,group_cd_report_plan_section_read,1,0,0,0
+access_cd_marketing_read,Marketing Read,model_cd_plan_mark,group_cd_plan_marketing_read,1,0,0,0
+access_cd_marketing_write,Marketing Write,model_cd_plan_mark,group_cd_plan_marketing_write,0,1,0,0
+access_cd_marketing_create,Marketing Create,model_cd_plan_mark,group_cd_plan_marketing_create,0,0,1,0
+access_cd_marketing_unlink,Marketing Unlink,model_cd_plan_mark,group_cd_plan_marketing_unlink,0,0,0,1
+access_cd_marketing_month_read,Marketing month Read,model_cd_plan_mark_month,group_cd_plan_marketing_month_read,1,0,0,0
+access_cd_marketing_month_write,Marketing month Write,model_cd_plan_mark_month,group_cd_plan_marketing_month_write,0,1,0,0
+access_cd_marketing_month_create,Marketing month Create,model_cd_plan_mark_month,group_cd_plan_marketing_month_create,0,0,1,0
+access_cd_marketing_month_unlink,Marketing month Unlink,model_cd_plan_mark_month,group_cd_plan_marketing_month_unlink,0,0,0,1
+access_cd_plan_section_brand_read,Plan section brand Read,model_cd_plan_section_brand,group_cd_plan_section_brand_read,1,0,0,0
+access_cd_plan_section_brand_write,Plan section brand Write,model_cd_plan_section_brand,group_cd_plan_section_brand_write,0,1,0,0
+access_cd_plan_section_brand_create,Plan section brand Create,model_cd_plan_section_brand,group_cd_plan_section_brand_create,0,0,1,0
+access_cd_plan_section_brand_unlink,Plan section brand Unlink,model_cd_plan_section_brand,group_cd_plan_section_brand_unlink,0,0,0,1
+access_cd_plan_term_read,Plan term Read,model_cd_plan_term,group_cd_plan_term_read,1,0,0,0
+access_cd_plan_term_write,Plan term Write,model_cd_plan_term,group_cd_plan_term_write,0,1,0,0
+access_cd_plan_term_create,Plan term Create,model_cd_plan_term,group_cd_plan_term_create,0,0,1,0
+access_cd_plan_term_unlink,Plan term Unlink,model_cd_plan_term,group_cd_plan_term_unlink,0,0,0,1
+access_cd_other_read_mark,Other Read,model_cd_other,group_cd_plan_marketing_month_read,1,0,0,0
+access_cd_other_write_mark,Other Write,model_cd_other,group_cd_plan_marketing_month_write,0,1,1,1
+access_cd_other_unlink_mark,Other Unlink,model_cd_other,group_cd_plan_marketing_month_unlink,0,1,1,1
+access_cd_other_marketing_read_mark,Other Marketing Read,model_cd_other_marketing,group_cd_plan_marketing_month_read,1,0,0,0
+access_cd_other_marketing_write_mark,Other Marketing Write,model_cd_other_marketing,group_cd_plan_marketing_month_write,0,1,1,1
+access_cd_other_marketing_unlink_mark,Other Marketing Unlink,model_cd_other_marketing,group_cd_plan_marketing_month_unlink,0,1,1,1
+access_cd_other_cogs_read_mark,Other cogs Read,model_cd_other_cogs,group_cd_plan_marketing_month_read,1,0,0,0
+access_cd_other_cogs_write_mark,Other cogs Write,model_cd_other_cogs,group_cd_plan_marketing_month_write,0,1,1,1
+access_cd_other_cogs_unlink_mark,Other cogs Unlink,model_cd_other_cogs,group_cd_plan_marketing_month_unlink,0,1,1,1

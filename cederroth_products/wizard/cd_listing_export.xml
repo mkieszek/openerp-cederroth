@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="cd_listing_export_view3" model="ir.ui.view">
+            <field name="name">Listing export</field>
+            <field name="model">cd.listing.export</field>
+            <field name="arch" type="xml">
+                <form string="Export listings" version="7.0">
+                    <field invisible="1" name="state"/>
+                    <group states="choose" string="Export Settings">
+                          <field invisible="1" name="state"/>
+                          <field name="name" invisible="1"/>
+                    </group>
+                    <div states="get">
+                        <h2>Export</h2>
+                        <p>Wygenerowano plik: <field name="file_export" readonly="1" filename="name"/></p>
+                    </div>
+                    <footer states="choose">
+                        <button name="export_listings" string="Generate" type="object" class="oe_highlight"/> or 
+                        <button special="cancel" string="Cancel" type="object" class="oe_link"/>
+                    </footer>
+                    <footer states="get">
+                        <button special="cancel" string="Close" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>		
+
+		<act_window name="Export listing"
+		    res_model="cd.listing.export"
+		    src_model="product.product"
+		    key2="client_action_multi" 
+		    view_mode="form" target="new" 
+		    view_type="form"
+		    id="action_cd_listing_export_view2" 
+		    />
+		    
+	</data>
+</openerp>

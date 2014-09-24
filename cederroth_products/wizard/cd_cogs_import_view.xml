@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+		<record model='ir.ui.view' id='cd_cogs_import_view'>
+			<field name="name">cd.cogs.import.view</field>
+            <field name="model">cd.cogs.import</field>
+            <field name="arch" type="xml">
+				<form string="Import COGS" version="7.0">
+					<sheet>
+						<field name='file_import' />
+					</sheet>
+					<footer>
+                        <button name="cogs_import" string="Import" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_cd_cogs_import" model="ir.actions.act_window">
+            <field name="name">Import COGS</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.cogs.import</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="cd_cogs_import_view"/>
+            <field name="target">new</field>
+        </record>
+		<menuitem
+             name="Import COGS"
+             action="action_cd_cogs_import"
+             id="wizard_cd_cogs_import_view"
+             parent="base.menu_config"/>
+		
+	</data>
+</openerp>
