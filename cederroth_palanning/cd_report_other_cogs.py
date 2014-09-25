@@ -31,7 +31,7 @@ class cd_report_other_cogs(osv.Model):
         cr.execute("""
             CREATE OR REPLACE VIEW cd_report_other_cogs AS (
             
-                select id, r.year, r.month, r.section_id, r.client_id, r.product_mark, r.categ_id, r.cost, r.count, r.value
+              select id, r.year, r.month, r.section_id, r.client_id, r.product_mark, r.categ_id, r.cost, r.count, r.value
 from 
 (select
     coc.id,
@@ -127,10 +127,6 @@ select ccp.id+80000, cast(cp.start_year as integer) as year, cp.start_month as m
 from cd_cost_promotions ccp
 LEFT JOIN cd_promotions as cp ON ccp.promotions_id=cp.id
 left join res_partner rp on rp.id = cp.client_id
-where cost_type = '04'  and cp.sequence not in (40,90)
-) as r
-
-
-
-
-            )""")
+left join cd_cost_data ccd on ccp.cost_data_id = ccd.id
+where ccd.cost_type = '04'  and cp.sequence not in (40,90)
+) as r)""")

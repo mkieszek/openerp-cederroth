@@ -1,4 +1,3 @@
-import wizard
 import cd_plan_mark
 import cd_plan_section
 import cd_plan_client
@@ -15,6 +14,7 @@ import cd_sale_data
 import cd_sale_data_import
 import cd_report_ap
 import cd_plan_term
+import wizard
 import cd_report_other_cogs
 import cd_report_other_mark_month
 import cd_report_plan_client

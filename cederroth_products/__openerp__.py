@@ -23,7 +23,7 @@
     "author" : "Marcin Kieszek, Via IT Solutions",
     "website" : "http://www.viait.pl/",
     "category" : "Added functionality - Product attributes",
-    "depends" : ["multi_image","product", "stock", "account"],
+    "depends" : ["multi_image","product", "stock", "account", "crm"],
     'data': ['security/cd_security.xml',
              'security/ir.model.access.csv',
              'data/product_packaging.xml',

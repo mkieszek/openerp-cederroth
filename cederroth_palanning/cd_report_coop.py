@@ -72,7 +72,7 @@ from cd_cost_promotions ccp
 LEFT JOIN cd_promotions as cp ON ccp.promotions_id=cp.id
 left join res_partner rp on rp.id = cp.client_id
 left join cd_cost_data ccd on ccd.id = ccp.cost_data_id
-where ccp.cost_type = '02' and cp.sequence not in (40,90)
+where ccd.cost_type = '02' and cp.sequence not in (40,90)
 UNION
 
 select max(cpr.id)+60000, cast(cp.start_year as integer) as year, cp.start_month as month, rp.section_id, cp.client_id, pp.product_mark, 

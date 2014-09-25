@@ -25,7 +25,6 @@ class cd_report_plan_section(osv.Model):
         
         'nsv_total': fields.float('NSV Total'),
         'nsh_total': fields.float('NSH Total'),
-        
         'gp_total': fields.float('Estym GP'),
         'gpp_total': fields.float('Estym_GP (%)', group_operator="avg"),
         'gross_sale': fields.float('Estym Gross Sale'),
@@ -44,18 +43,16 @@ class cd_report_plan_section(osv.Model):
     def init(self, cr, context=None):
         tools.drop_view_if_exists(cr, 'cd_report_plan_section')
         cr.execute("""
-            CREATE OR REPLACE VIEW cd_report_plan_section AS (
-
-           SELECT ps.id as id, ps.id as plan_section_id, ps.state_id,  rpc.month, rpc.year, ps.section_id, avg(rpc.gpp_promo) as gpp_promo, sum(rpc.nsh_promo) as nsh_promo, sum(rpc.nsv_promo) as nsv_promo, sum(rpc.plan_value) as plan_value, sum(rpc.cost_total) as cost_total, 
-                sum(rpc.get_value) as get_value, sum(rpc.nsh_total) as nsh_total, avg(rpc.gpp_total) as gpp_total, avg(rpc.percentage) as percentage, sum(rpc.nsv_total) as nsv_total, sum(rpc.cost_promo) as cost_promo, 
-                avg(rpc.cmp_total) as cmp_total, sum(rpc.coop) as coop, sum(rpc.gp_total) as gp_total, sum(rpc.cm_total) as cm_total, sum(rpc.trade_promo_listing) as trade_promo_listing, sum(rpc.product_cogs) as product_cogs, 
+           CREATE OR REPLACE VIEW cd_report_plan_section AS (
+    
+            SELECT ps.id as id, ps.id as plan_section_id, ps.state_id,  rpc.month, rpc.year, ps.section_id, sum(rpc.nsh_total) as nsh_total, avg(rpc.gpp_total) as gpp_total, sum(rpc.nsv_total) as nsv_total, avg(rpc.cmp_total) as cmp_total, sum(rpc.coop) as coop, sum(rpc.gp_total) as gp_total, sum(rpc.cm_total) as cm_total, sum(rpc.trade_promo_listing) as trade_promo_listing, sum(rpc.product_cogs) as product_cogs, 
                 sum(rpc.other_cogs) as other_cogs, avg(rpc.nsh_p_nsh_t) as nsh_p_nsh_t, sum(rpc.disc_front_total) as disc_front_total, sum(rpc.gross_sale) as gross_sale, sum(rpc.other_marketing) as other_marketing, 
                 sum(rpc.discount_pormo) as discount_pormo
             FROM cd_report_plan_client as rpc
             LEFT JOIN cd_plan_client as cpc ON cpc.id = rpc.plan_client_id
             LEFT JOIN cd_plan_section as ps ON ps.id = cpc.plan_section_id
             GROUP BY ps.id, rpc.month, rpc.year
-
+    
             )""")
         
     def open_plan_section(self, cr, uid, ids, context=None):

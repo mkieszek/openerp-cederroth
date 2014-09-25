@@ -70,7 +70,6 @@ class cd_report_plan_client(osv.Model):
         #'nsh_promo': fields.float('NSH promo'),
         #'cost_total': fields.float('Koszt total'),
         #'cost_promo': fields.float('Koszt promo'),
-        'gpp_total': fields.float('GP % Total', group_operator="avg"),
         #'gpp_promo': fields.float('GP % promo', group_operator="avg"),
         #'percentage': fields.float('Estym promo / Estym total (%)', group_operator="avg"),
         #'stop_plan': fields.date('Zakończenie planowania'),
