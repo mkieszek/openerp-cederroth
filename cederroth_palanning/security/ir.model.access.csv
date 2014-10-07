@@ -64,3 +64,4 @@ access_cd_other_marketing_unlink_mark,Other Marketing Unlink,model_cd_other_mark
 access_cd_other_cogs_read_mark,Other cogs Read,model_cd_other_cogs,group_cd_plan_marketing_month_read,1,0,0,0
 access_cd_other_cogs_write_mark,Other cogs Write,model_cd_other_cogs,group_cd_plan_marketing_month_write,0,1,1,1
 access_cd_other_cogs_unlink_mark,Other cogs Unlink,model_cd_other_cogs,group_cd_plan_marketing_month_unlink,0,1,1,1
+access_cd_dch_import,Import DCH,model_cd_dch_import,group_cd_import_dch,1,1,1,1

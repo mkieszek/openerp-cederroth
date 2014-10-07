@@ -31,7 +31,8 @@
                    'view/cd_report_forecast_product_view.xml',
                    'view/cd_report_trade_promo_view.xml',
                    'view/cd_report_coop_view.xml',
-                   'view/cd_report_plan_section_view.xml'
+                   'view/cd_report_plan_section_view.xml',
+                   'view/cd_dch_import.xml'
                    ],
     "installable": True,
     "active": False,
