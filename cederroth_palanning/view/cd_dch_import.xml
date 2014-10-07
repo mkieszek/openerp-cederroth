@@ -30,7 +30,8 @@
             <field name="model">cd.dch.import</field>
             <field name="arch" type="xml">
 				<tree string="Import XML">
-						<field name="import_file" />
+						<field name="import_file" filename="filename" />
+						<field name="filename" invisible='1'/>
 						<field name="year" />
 						<field name="month" />
 						<field name="data" />

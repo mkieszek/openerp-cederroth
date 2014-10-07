@@ -3,6 +3,7 @@
 from openerp.osv import fields, osv
 from openerp.osv.orm import Model
 
+import datetime
 import xlrd
 import pdb
 
