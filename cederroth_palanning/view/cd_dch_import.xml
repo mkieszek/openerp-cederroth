@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+		<record model='ir.ui.view' id='cd_dch_import_form'>
+			<field name="name">cd.dch.import.form</field>
+            <field name="model">cd.dch.import</field>
+            <field name="arch" type="xml">
+				<form string="Import z DCH" version="7.0" edit="false">
+                    <header>
+                    </header>
+					<sheet>
+						<h1>Importuj dane</h1>
+						<group col="2">
+							<group string="Dane do importu">
+								<field name="import_file" filename="filename"/>
+								<field name="filename" invisible="True" />
+								<field name="year" />
+								<field name="month" />
+								<field name="data" />
+								<field name="log" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+        
+		<record model='ir.ui.view' id='cd_dch_import_tree'>
+			<field name="name">cd.dch.import.tree</field>
+            <field name="model">cd.dch.import</field>
+            <field name="arch" type="xml">
+				<tree string="Import XML">
+						<field name="import_file" />
+						<field name="year" />
+						<field name="month" />
+						<field name="data" />
+				</tree>
+			</field>
+		</record>
+				
+		<record id="action_cd_dch_import" model="ir.actions.act_window">
+            <field name="name">Import danych z DCH</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.dch.import</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="cd_dch_import_tree"/>
+             <field name="view_mode">tree,form</field>
+             <field name="context">{}</field>
+             <field name="domain">[]</field>
+        </record>
+        
+		<menuitem
+             name="Import danych z DCH"
+             action="action_cd_dch_import"
+             id="wizard_cd_sale_data_view"
+             parent="cederroth_sale.menu_cederroth_sale_planning" sequence="105"/>
+		
+	</data>
+</openerp>
