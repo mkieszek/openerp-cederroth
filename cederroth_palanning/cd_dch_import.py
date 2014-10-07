@@ -19,7 +19,7 @@ class cd_dch_import(osv.Model):
         'import_file' : fields.binary('Plik do importu', required=True),
         'year': fields.integer('Rok', required=True),
         'month': fields.selection(AVAILABLE_MONTHS, 'Miesiąc', required=True, readonly=False),
-        'data': fields.date('Data utworzenia'),
+        'create_date': fields.date('Data utworzenia', readonly=True),
         'log' : fields.html('Logi', readonly=True),
    }
     
