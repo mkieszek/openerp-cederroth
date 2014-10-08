@@ -37,6 +37,21 @@ class res_partner(Model):
         #pdb.set_trace()
         part_id = super(res_partner, self).write(cr, uid, ids, data, context=context)
         
+        for client in self.browse(cr, uid, ids):
+            if 'section_id' in data and data['section_id']:
+                plan_client_obj = self.pool.get('cd.plan.client')
+                plan_section_obj = self.pool.get('cd.plan.section')
+                plan_client_ids = plan_client_obj.search(cr, uid, ['|',('state_id','=','01'),('state_id','=',False),('client_id','=',client.id)])
+                for plan_client in plan_client_obj.browse(cr, uid, plan_client_ids):
+                    if plan_client.blocked == False:
+                        new_section_id = plan_section_obj.search(cr, uid, [('section_id','=',data['section_id']),('month','=',plan_client.month),('year','=',plan_client.year)])
+                        if new_section_id:
+                            plan_client_obj.write(cr, uid, [plan_client.id], {'plan_section_id':new_section_id[0]})
+                        
+                    
+                            
+        
+        
         if data.has_key('user_id'):
             if data['user_id']:  
                 partner_obj = self.pool.get('res.users')

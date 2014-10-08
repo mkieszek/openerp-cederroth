@@ -410,6 +410,7 @@ class cd_promotions(osv.Model):
     def write(self, cr, uid, ids, vals, context=None):
         users_obj = self.pool.get('res.users')
         promotion = self.browse(cr, uid, ids[0])
+        
         if 'discount_from' in vals:
             start_month = datetime.datetime.strptime(vals['discount_from'],"%Y-%m-%d").month
             start_year = datetime.datetime.strptime(vals['discount_from'],"%Y-%m-%d").year
@@ -419,6 +420,19 @@ class cd_promotions(osv.Model):
         if 'stage_id' in vals:
             change_stage_id = self.pool.get('cd.promotions.stage').browse(cr, uid, vals['stage_id'])
             current_stage_id = self.browse(cr, uid, ids[0]).stage_id
+            
+            if change_stage_id.sequence == 50:
+                mail_to = ''
+                mail_to =  promotion.client_id.bok_user_id.email
+                cd_config_obj = self.pool.get('cd.config.settings')
+                cd_config_id = cd_config_obj.search(cr, uid, [])
+                cd_crm = cd_config_obj.browse(cr, uid, cd_config_id[-1]).cd_crm
+                action_id = self.pool.get('ir.actions.actions').search(cr, uid, [('name','=','Rabaty z promocji')])
+                url = ("http://%s/?db=%s#action=%s")%(cd_crm, cr.dbname, str(action_id[0]))
+                vals_email = (url)
+                subject = 'Potwierdzono akcję promocyjną'
+                body = decode("W platformie właśnie potwierdzono akcję promocyjną! <br/><a href='%s'>Link do menu BOK</a>") % vals_email
+                self.pool.get('product.product').send_mail(cr, uid, body, subject, mail_to)
             
             if change_stage_id.sequence < current_stage_id.sequence and not current_stage_id.sequence < 50:
                 raise osv.except_osv(decode('Ostrzeżenie'), decode('Status akcji promocyjnej nie może zostać cofnięty'))
@@ -447,7 +461,7 @@ class cd_promotions(osv.Model):
                 raise osv.except_osv(decode('Ostrzeżenie'), decode('Do akcji promocyjnej nie zostały dodane produkty')) 
             elif current_stage_id.sequence == 10 and change_stage_id.sequence == 20:
                 client = promotion.client_id
-                users_obj = self.pool.get('res.users') 
+                users_obj = self.pool.get('res.users')
                 group_obj = self.pool.get('res.groups')
                 mail_to = ''
                 
@@ -501,9 +515,11 @@ class cd_promotions(osv.Model):
         return True
     
     def on_change_stop_date(self, cr, uid, vals, stop_date, context=None):
-        pdb.set_trace()
-        
-        return True
+        vals = {}
+        vals = {
+            'discount_to' : stop_date
+        }
+        return {'value' : vals}
     
     def validation_date(self, cr, uid, start_date, stop_date, context=None):
         start_date = datetime.datetime.strptime(start_date,"%Y-%m-%d").date()

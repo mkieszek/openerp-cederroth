@@ -79,7 +79,7 @@ class cd_dch_import(osv.Model):
             movex_code = row[3].value
             value = str(int(row[6].value))
             
-            if w.year == year and w.month == int(month):
+            if w.year == year and w.month == month:
                 client_id = self.pool.get('res.partner').search(cr, uid, [('ref','=',client_ident)])
                 if client_id:
                     product_id = self.pool.get('product.product').search(cr, uid, [('default_code','=',movex_code)])
