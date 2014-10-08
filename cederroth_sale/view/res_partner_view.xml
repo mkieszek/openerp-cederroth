@@ -8,6 +8,7 @@
 		<field name="arch" type="xml">
             <xpath expr="/form/sheet/notebook/page[@string='Sales &amp; Purchases']/group/group/field[@name='user_id']" position="after">
 	            <field name="ph_user_id" attrs="{'invisible':[('parent_id','=',False)]}"/>
+	            <field name="bok_user_id" />
 	        </xpath>
 	        
 	        <xpath expr="/form/sheet/notebook/page[@string='Sales &amp; Purchases']/group/group" position="before">

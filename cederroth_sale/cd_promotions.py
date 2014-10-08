@@ -310,6 +310,7 @@ class cd_promotions(osv.Model):
         'stage_id': fields.many2one('cd.promotions.stage', 'Status', help='Aktualny status promocji', domain="[('sequence', 'in', [10,20,50])]", ondelete="set null", track_visibility='onchange'),
         'product_rel_ids': fields.one2many('cd.product.rel','promotions_id',"Produkty"),
         'discount_from': fields.date("Rabat od", required=True),
+        'discount_to' :  fields.date("Rabat do", required= True),
         'state': fields.related('stage_id', 'state', type="selection", store=True,
                 selection=cd_promotions_stage.AVAILABLE_STATES, string="Status", readonly=True,),
         'sequence': fields.related('stage_id', 'sequence', type="integer", store=True, string="Status", readonly=True,),
@@ -497,6 +498,11 @@ class cd_promotions(osv.Model):
         start_date = datetime.datetime.strptime(start_date,"%Y-%m-%d").date()
         if date_min > start_date:
             raise osv.except_osv(decode('Błąd'), decode('Minimalna data rozpoczęcia to:\n %s')%date_min.strftime("%d.%m.%Y"))
+        return True
+    
+    def on_change_stop_date(self, cr, uid, vals, stop_date, context=None):
+        pdb.set_trace()
+        
         return True
     
     def validation_date(self, cr, uid, start_date, stop_date, context=None):

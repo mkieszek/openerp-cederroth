@@ -425,7 +425,14 @@
 												(4, ref('group_cd_pack_type_read')),
 												(4, ref('group_cd_product_packaging_read'))]"/>
 	        </record>
-	        
+	        <record id="cederroth_products.group_cd_logistic_bok" model="res.groups">
+		            <field name="name">Pracownik BOK</field>
+		            <field name="comment">Pracownik BOK</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+		            <field name="implied_ids" eval="[(4, ref('group_cd_product_read')),
+			            							(4, ref('group_cd_listing_read'))
+			            							]"/>
+	        </record>
         <!-- Ograniczenia widoków -->
         	<record id="view_cd_client_sales_purchases1" model="ir.ui.view">
 				<field name="name">cederroth.sales.form</field>

@@ -31,7 +31,7 @@ class cd_report_cost(osv.Model):
         tools.drop_view_if_exists(cr, 'cd_report_cost')
         cr.execute("""
             CREATE OR REPLACE VIEW cd_report_cost AS (
-SELECT *
+            SELECT *
             FROM (
             select ccp.id+10000 as id, cp.id as promotion_id, cast(cp.start_year as integer) as year, cp.start_month as month, rp.section_id, rp.id as client_id, cp.product_category as product_mark, ccd.name as name, ccp.cu_cost as cost, ccp.count, ccp.cu_cost * ccp.count as value, 'trade promo' as type
             from cd_cost_promotions ccp
@@ -121,7 +121,7 @@ SELECT *
             from cd_cost_promotions ccp
             LEFT JOIN cd_promotions as cp ON ccp.promotions_id=cp.id
             left join res_partner rp on rp.id = cp.client_id
-            left join cd_cost_data as ccd on ccp.cost_data_id = ccd.id
+            left join cd_cost_data ccd on ccp.cost_data_id = ccd.id
             where ccd.cost_type = '04'
             
             UNION 

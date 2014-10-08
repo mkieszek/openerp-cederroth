@@ -7,6 +7,7 @@ from openerp.osv import fields, osv
 from openerp.osv.orm import Model
 from openerp.addons.mail.mail_message import decode
 import pdb
+import datetime
 
 class cd_product_rel(Model):
     _name = "cd.product.rel"
@@ -101,7 +102,24 @@ class cd_product_rel(Model):
         'retail_price': fields.float('Cena det.', help="Cena detaliczna"),
         'nsh_price': fields.function(_get_product_rel_vals, type="float", string='Cena front', readonly=True, store=True, multi='product_vals'),
         'value_nsh': fields.function(_get_product_rel_vals, type="float", string='Wartość NSH', readonly=True, store=False, multi='product_vals'),
+        'stage_id' : fields.related('promotions_id', 'stage_id', type="many2one", relation="cd.promotions.stage", string="Status", readonly=True),
+        'client_id' : fields.related('promotions_id', 'client_id', type="many2one", relation="res.partner", string="Klient", readonly=True),
+        'discount_from' : fields.related('promotions_id', 'discount_from', type="date", string="Rabat od", readonly=True, store=True),
+        'discount_to' : fields.related('promotions_id', 'discount_to', type="date", string="Rabat do", readonly=True, store=True),
+        'promotion_creat_uid': fields.related('promotions_id', 'create_uid', type="many2one", relation="res.users", string="Utworzył", readonly=True),
+        'client_movex': fields.related('client_id', 'ref', type="char", string="MOVEX", readonly=True),
+        'movex_date_confirm': fields.date('Data wprowadzenia'),
+        'product_movex': fields.related('product_id', 'default_code', type="char", string="MOVEX", readonly=True),
+        'bok_user_id' : fields.related('client_id', 'bok_user_id', type="many2one", relation="res.users", string="Pracownik BOK", readonly=True),
+        'sequence': fields.related('stage_id', 'sequence', type="integer"),
+        'state': fields.selection([('new',"new"), ('done',"done")], 'Status MOVEX'),
     }
+    
+    _defaults = {
+        'state': 'new',
+    }
+    
+    _order = "discount_from desc"
     
     def create(self, cr, uid, data, context=None):
         promotions_obj = self.pool.get('cd.promotions')
@@ -130,6 +148,11 @@ class cd_product_rel(Model):
                 #vals2['discount_prom'] = discount_prom
             super(cd_product_rel, self).write(cr, uid, id, vals2, context=context)
         return True
+    
+    def confirm_movex(self,cr,uid,ids,context=None):
+        pdb.set_trace()
+        movex_date_confirm = datetime.datetime.now().strftime("%Y-%m-%d 00:01:00")
+        self.write(cr, uid, ids, {'state': 'done', 'movex_date_confirm': movex_date_confirm})
     
     def on_change_discount_prom(self, cr, uid, ids, discount_prom, context=None):
         product = self.browse(cr, uid, ids[0])

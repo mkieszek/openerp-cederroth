@@ -42,6 +42,12 @@
 		            <field name="category_id" ref="module_category_cd_sales"/>
 					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read'))]"/>
 		        </record>
+		        <record id="group_cd_product_rel_read_bok" model="res.groups">
+		            <field name="name">Promotions Product Read BOK</field>
+		            <field name="comment">Promotions Product Read BOK</field>
+		            <field name="category_id" ref="module_category_cd_sales"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read'))]"/>
+		        </record>
 		        	        
 	        <!-- Koszty promocji - dane -->        
 		        <record id="group_cd_cost_data_read" model="res.groups">
@@ -114,6 +120,13 @@
 		           <field ref="model_res_partner" name="model_id"/>
 		           <field name="domain_force">['|',('ph_user_id','=',user.id),('user_ids', 'in', user.id)]</field>
 		           <field name="groups" eval="[(4, ref('cederroth_products.group_cd_ph'))]"/>
+		       </record>
+		       
+		       <record id="cd_rule_cd_product_rel_bok" model="ir.rule">
+		           <field name="name">Rule Product Promo - BOK</field>
+		           <field ref="model_cd_product_rel" name="model_id"/>
+		           <field name="domain_force">[('bok_user_id','=',user.id)]</field>
+		           <field name="groups" eval="[(4, ref('group_cd_product_rel_read_bok'))]"/>
 		       </record>
 	        
 	        <!-- Podstawowe uprawnienia użytkowników -->
@@ -212,7 +225,14 @@
 													(4, ref('group_cd_type_promotions_read')),
 													(4, ref('group_cd_cost_data_read'))]"/>
 		        </record>
-		        
+		        <record id="cederroth_products.group_cd_logistic_bok" model="res.groups">
+		            <field name="name">Pracownik BOK</field>
+		            <field name="comment">Pracownik BOK</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_promotions_read')),
+													(4, ref('group_cd_type_promotions_read')),
+													(4, ref('group_cd_cost_data_read'))]"/>
+		        </record>
 		        <record id="cederroth_products.group_cd_department_director" model="res.groups">
 		            <field name="name">Department Director</field>
 		            <field name="comment">Department Director</field>

@@ -23,7 +23,7 @@ class cd_cost_promotions(osv.Model):
         'name': fields.char('Tytuł'),
         'amount': fields.function(_get_value_amount, type="float", string='Wartość', readonly=True, store=True),
         'cost_data_id': fields.many2one('cd.cost.data', 'Koszt', required=True),
-        'cost_type': fields.related('cost_data_id', 'cost_type', string='Typ kosztu', readonly=True, type="selection", store=True,
+        'cost_type': fields.related('cost_data_id', 'cost_type', string='Typ kosztu', readonly=True, type="selection", store=False,
                 selection=cd_cost_data.COST_TYPE),
         'promotions_id': fields.many2one('cd.promotions', "Akcje promocyjne"),
         'cu_cost': fields.float('Koszt CU', readonly=False),

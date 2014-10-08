@@ -31,8 +31,9 @@
 		                     	</group>
 	                     		<group string="Informacje o akcji">
 			                     	<field name="start_date" on_change="on_change_start_date(start_date)" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
-			                     	<field name="stop_date" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
+			                     	<field name="stop_date" on_change="on_change_stop_date(stop_date)" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
 			                     	<field name="discount_from" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
+			                     	<field name="discount_to" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
 			                     	<field name="edit_date" />
 		                     		<field name="monitored" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />
 	                     			<field name="monitor_merchand" />
@@ -277,5 +278,44 @@
               <field eval="'notification_start_date'" name="function" />
               <field eval="'()'" name="args" />
         </record> -->
+        <record model="ir.ui.view" id="cd_discount_tree">
+           	<field name="name">cd.discount.tree</field>
+			<field name="model">cd.product.rel</field>
+                <field name="arch" type="xml">
+					<tree string="Rabaty z akcji" create="false" edit="false">
+						<field name="client_id" />
+		            	<field name="product_id" />
+		            	<field name="discount_from" />
+		            	<field name="discount_to" />
+		            	<field name="discount_prom" />
+		            	<field name="prom_price" />
+		            	<field name="bok_user_id" />
+		            	<field name="movex_date_confirm" />
+		            	<field name="stage_id" />
+		            	<field name="state" invisible="True" />
+		            	<button name="confirm_movex" string="Wykonane" type="object" icon="gtk-apply" help="Potwierdzenie wprowadzenia rabatu do MOVEX"/>
+	            	</tree>
+			</field>
+		</record>
+		
+        <record id="action_cd_discounts" model="ir.actions.act_window">
+             <field name="name">Rabaty z promocji</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">cd.product.rel</field>
+             <field name="view_type">form</field>
+             <field name="view_id" ref="cd_discount_tree"/>
+             <field name="view_mode">tree,form,gantt</field>
+             <field name="context">{}</field>
+             <field name="domain">[]</field>
+         </record>
+        
+        <menuitem id="menu_cederroth_logistic"
+            name="Logistyka"
+            sequence="20"/>
+        <menuitem id="menu_cederroth_bok"
+            parent="menu_cederroth_logistic"
+            name="BOK"
+            sequence="1"/>
+        <menuitem name="Rabaty z promocji" id="menu_cd_discounts" action="action_cd_discounts" parent="menu_cederroth_bok" sequence="50" />
     </data>
 </openerp>

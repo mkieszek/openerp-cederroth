@@ -19,7 +19,7 @@ class cd_cost_data(osv.Model):
         'pos' : fields.boolean('POS'),
     }
     
-    def write(self, cr, uid, ids, vals, context=None):
+    """def write(self, cr, uid, ids, vals, context=None):
         pdb.set_trace()
         if 'cost_type' in vals:
             vals_cost={'cost_type' : vals['cost_type']}
@@ -28,4 +28,4 @@ class cd_cost_data(osv.Model):
             cd_cost_promotions_obj.write(cr, uid, cd_cost_promotions_ids, vals_cost)
         
         super(cd_cost_data, self).write(cr, uid, ids, vals, context=context)
-        return True
+        return True"""

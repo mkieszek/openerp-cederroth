@@ -25,5 +25,6 @@ class res_partner(Model):
         'discount_partner_ids': fields.one2many('cd.discount.partner', 'client_id', 'Rabaty'),
         'discount_back_trade_promo': fields.float('Rabat backowy Trade Promo (%)', required=True),
         'discount_back' : fields.function(_get_discount_back, type='float', string='Rabat backowy (%)', store=True),
+        'bok_user_id' : fields.many2one('res.users', 'Pracownik BOK'),
     }
     
