@@ -18,7 +18,7 @@ class cd_dch_import(osv.Model):
         'filename' : fields.char('Filename', size=255),
         'import_file' : fields.binary('Plik do importu', required=True),
         'year': fields.integer('Rok', required=True),
-        'month': fields.selection(AVAILABLE_MONTHS, 'Miesiąc', required=True, readonly=False),
+        'month': fields.selection(AVAILABLE_MONTHS, 'Miesiąc', required=True),
         'create_date': fields.date('Data utworzenia', readonly=True),
         'log' : fields.html('Logi', readonly=True),
    }
@@ -92,16 +92,16 @@ class cd_dch_import(osv.Model):
                                 self.pool.get('cd.plan.product').write(cr, uid, plan_product_id, vals)
                                 str_msg = "Zaimportowano"
                             else:
-                                str_type = "ERROR"
+                                str_type = "ERROR "
                                 str_msg = "Brak planu produkt"
                         else:
-                            str_type = "ERROR"
+                            str_type = "ERROR "
                             str_msg = "Brak planu klient"
                     else:
-                        str_type = "ERROR"
+                        str_type = "ERROR "
                         str_msg = "Nierozpoznany produkt"
                 else:
-                    str_type = "ERROR"
+                    str_type = "ERROR "
                     str_msg = "Nierozpoznany klient"
             else:
                 str_msg = "Zignorowany"

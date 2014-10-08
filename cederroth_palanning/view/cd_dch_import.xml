@@ -10,7 +10,7 @@
                     </header>
 					<sheet>
 						<h1>Importuj dane</h1>
-						<group col="2">
+						<group col="4">
 							<group string="Dane do importu">
 								<field name="import_file" filename="filename"/>
 								<field name="filename" invisible="True" />
@@ -18,6 +18,10 @@
 								<field name="month" />
 								<field name="create_date" />
 								<field name="log" />
+							</group>
+							<group>
+							</group>
+							<group>
 							</group>
 						</group>
 					</sheet>
