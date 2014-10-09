@@ -299,20 +299,22 @@ class cd_promotions(osv.Model):
     
     def _get_email_link(self, cr, uid, ids, name, arg, context=None):
         
-        cd_config_obj = self.pool.get('cd.config.settings')
-        cd_config_id = cd_config_obj.search(cr, uid, [])
-        cd_crm = cd_config_obj.browse(cr, uid, cd_config_id[-1]).cd_crm
-        action_id = self.pool.get('ir.actions.actions').search(cr, uid, [('name','=','Rabaty z promocji')])
-        
-        vals = ("http://%s/?db=%s#action=%s")%(cd_crm, cr.dbname, str(action_id[0]))
+        vals = {}
+        for promotion in self.browse(cr, uid, ids):
+            cd_config_obj = self.pool.get('cd.config.settings')
+            cd_config_id = cd_config_obj.search(cr, uid, [])
+            cd_crm = cd_config_obj.browse(cr, uid, cd_config_id[-1]).cd_crm
+            action_id = self.pool.get('ir.actions.actions').search(cr, uid, [('name','=','Rabaty z promocji')])
+            vals[promotion.id] = ("http://%s/?db=%s#page=0&limit=&view_type=list&model=cd.product.rel&action=%s")%(cd_crm, cr.dbname, str(action_id[0]))
                 
         return vals
     
     def _get_bok_email(self, cr, uid, ids, name, arg, context=None):
         
-        pdb.set_trace()
-        promotion = self.browse(cr, uid, ids[0])
-        vals = promotion.client_id.bok_user_id.email
+        vals = {}
+        
+        for promotion in self.browse(cr, uid, ids):
+            vals[promotion.id] = promotion.client_id.bok_user_id.email
         
         return vals
     
@@ -332,7 +334,7 @@ class cd_promotions(osv.Model):
         'stage_id': fields.many2one('cd.promotions.stage', 'Status', help='Aktualny status promocji', domain="[('sequence', 'in', [10,20,50])]", ondelete="set null", track_visibility='onchange'),
         'product_rel_ids': fields.one2many('cd.product.rel','promotions_id',"Produkty"),
         'discount_from': fields.date("Rabat od", required=True),
-        'discount_to' :  fields.date("Rabat do", required= True),
+        'discount_to' :  fields.date("Rabat do"),
         'state': fields.related('stage_id', 'state', type="selection", store=True,
                 selection=cd_promotions_stage.AVAILABLE_STATES, string="Status", readonly=True,),
         'sequence': fields.related('stage_id', 'sequence', type="integer", store=True, string="Status", readonly=True,),
@@ -444,9 +446,8 @@ class cd_promotions(osv.Model):
             current_stage_id = self.browse(cr, uid, ids[0]).stage_id
             
             if change_stage_id.sequence == 50:
-                pdb.set_trace()
-                template = self.pool.get('ir.model.data').get_object(cr, uid, 'cederroth_sale', 'cd_email_template')
-                self.pool.get('email.template').send_mail(cr, uid, template.id, id, force_send=True, context=context)
+                template = self.pool.get('ir.model.data').get_object(cr, uid, 'cederroth_sale', 'email_template_cd_promotion_confirmed')
+                self.pool.get('email.template').send_mail(cr, uid, template.id, ids[0], force_send=True, context=context)
        
             
             if change_stage_id.sequence < current_stage_id.sequence and not current_stage_id.sequence < 50:

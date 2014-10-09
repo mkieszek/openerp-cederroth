@@ -28,6 +28,7 @@
 		                     		<field name="client_id"  domain="[('customer','=', True), ('is_company','=', True)]" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" on_change="onchange_product_list(client_id)"/>
 		                     		<field name="promo_format_ids" widget="many2many_tags" domain="[('client_id','=', client_id)]" />
 		                     		<field name="promo_format_count" />
+		                     		<field name="bok_email" invisible="True" />
 		                     	</group>
 	                     		<group string="Informacje o akcji">
 			                     	<field name="start_date" on_change="on_change_start_date(start_date)" attrs="{'readonly':[('state','in',['done','pending','canceled','open'])]}" />

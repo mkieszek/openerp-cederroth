@@ -1,17 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-    	<!-- Email template - Change promotions stage -->
-        <record id="cd_email_template" model="email.template">
-            <field name="name">Zmiana statusu w Akcji Promocyjnej</field>
+    	<record id="email_template_cd_promotion_confirmed" model="email.template">
+            <field name="name">Akcja promocyjna - wysłanie potwierdzenia</field>
             <field name="model_id" ref="model_cd_promotions"/>
-            <field name="email_from"><![CDATA[admin@cederroth.com]]></field>
-            <field name="email_to"><![CDATA[${object.bok_email}]]></field>
-            <field name="subject"><![CDATA[Potwierdzono akcję promocyjną dla klienta: ${object.client_id.name}]]></field>
+            <field name="email_from"><![CDATA[OpenERP<openerp@cederroth.com>]]></field>
+            <field name="partner_to"><![CDATA[${str(object.client_id.bok_user_id.partner_id.id)}]]></field>
+            <field name="subject"><![CDATA[OpenERP - Potwierdzono akcję promocyjną dla ${object.client_id.name}]]></field>
             <field name="body_html">
-                <![CDATA[                
-                	<div>
-                		<b>Zatwierdzono akcję promocyjną</b>
-                	</div>
+                <![CDATA[
                 	<div>
                 		Klient: ${object.client_id.name}
                 	</div>
@@ -22,14 +19,31 @@
                 		Rabat do: ${object.discount_to}
                 	</div>
             		<div>
-                		Potwierdził: ${object.cuser_id.name}
+                		Opiekun klienta: ${object.create_uid.name}
                 	</div>
             		<div>
-                		<a href="${object.email_link}">Link do rabatów</a>
+                		Link do rabatów: <a href='${object.email_link}'>${object.email_link}</a>
                 	</div>
                 	<div>
                 		Wiadomość wysłana automatycznie z systemu OpenERP.
             		</div>
+                ]]>
+            </field>
+        </record>
+    
+    	<!-- Email template - Change promotions stage -->
+        <record id="cd_email_template" model="email.template">
+            <field name="name">Zmiana statusu w Akcji Promocyjnej</field>
+            <field name="model_id" ref="model_cd_promotions"/>
+            <field name="email_from"><![CDATA[admin@cederroth.com]]></field>
+            <field name="email_to"><![CDATA[marcin.kieszek@viait.pl]]></field>
+            <field name="subject"><![CDATA[Potwierdzono akcję promocyjną dla klienta: ${object.client_id.name}]]></field>
+            <field name="body_html">
+                <![CDATA[                
+                	<div>
+                		<b>Zatwierdzono akcję promocyjną</b>
+                	</div>
+                	
                 ]]>
             </field>
         </record>
