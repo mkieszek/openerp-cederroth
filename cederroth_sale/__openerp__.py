@@ -20,7 +20,8 @@
                    'view/product_view.xml',
                    'view/crm_view.xml',
                    'view/cd_cost_data_view.xml',
-                   'view/cd_type_promotions_view.xml'
+                   'view/cd_type_promotions_view.xml',
+                   'view/cd_email_template.xml'
                    ],
     "installable": True,
     "active": False,

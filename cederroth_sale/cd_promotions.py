@@ -296,6 +296,26 @@ class cd_promotions(osv.Model):
                                  }
         return val
         
+    
+    def _get_email_link(self, cr, uid, ids, name, arg, context=None):
+        
+        cd_config_obj = self.pool.get('cd.config.settings')
+        cd_config_id = cd_config_obj.search(cr, uid, [])
+        cd_crm = cd_config_obj.browse(cr, uid, cd_config_id[-1]).cd_crm
+        action_id = self.pool.get('ir.actions.actions').search(cr, uid, [('name','=','Rabaty z promocji')])
+        
+        vals = ("http://%s/?db=%s#action=%s")%(cd_crm, cr.dbname, str(action_id[0]))
+                
+        return vals
+    
+    def _get_bok_email(self, cr, uid, ids, name, arg, context=None):
+        
+        pdb.set_trace()
+        promotion = self.browse(cr, uid, ids[0])
+        vals = promotion.client_id.bok_user_id.email
+        
+        return vals
+    
     _columns = {
         'promotions_name': fields.char("Nazwa promocji", size=255, required=True),
         'name': fields.char('Name'),
@@ -303,6 +323,8 @@ class cd_promotions(osv.Model):
         'start_date': fields.date("Data początkowa", required=True),
         'stop_date': fields.date("Data końcowa", required=True),
         'client_id': fields.many2one('res.partner', "Klient", required=True),
+        'email_link' : fields.function(_get_email_link, type="char", store=False, string="Email from"),
+        'bok_email' :fields.function(_get_bok_email, type="char", store=False, string="Email to"),
         'discount_front': fields.related('client_id', 'discount_front', type="float", string="Rabat frontowy (%)", readonly=True),
         'discount_back': fields.related('client_id', 'discount_back', type="float", string="Rabat backowy (%)", readonly=True),
         'discount_promo': fields.related('client_id', 'discount_promo', type="float", string="Rabat promocyjny (%)", readonly=True),
@@ -422,17 +444,10 @@ class cd_promotions(osv.Model):
             current_stage_id = self.browse(cr, uid, ids[0]).stage_id
             
             if change_stage_id.sequence == 50:
-                mail_to = ''
-                mail_to =  promotion.client_id.bok_user_id.email
-                cd_config_obj = self.pool.get('cd.config.settings')
-                cd_config_id = cd_config_obj.search(cr, uid, [])
-                cd_crm = cd_config_obj.browse(cr, uid, cd_config_id[-1]).cd_crm
-                action_id = self.pool.get('ir.actions.actions').search(cr, uid, [('name','=','Rabaty z promocji')])
-                url = ("http://%s/?db=%s#action=%s")%(cd_crm, cr.dbname, str(action_id[0]))
-                vals_email = (url)
-                subject = 'Potwierdzono akcję promocyjną'
-                body = decode("W platformie właśnie potwierdzono akcję promocyjną! <br/><a href='%s'>Link do menu BOK</a>") % vals_email
-                self.pool.get('product.product').send_mail(cr, uid, body, subject, mail_to)
+                pdb.set_trace()
+                template = self.pool.get('ir.model.data').get_object(cr, uid, 'cederroth_sale', 'cd_email_template')
+                self.pool.get('email.template').send_mail(cr, uid, template.id, id, force_send=True, context=context)
+       
             
             if change_stage_id.sequence < current_stage_id.sequence and not current_stage_id.sequence < 50:
                 raise osv.except_osv(decode('Ostrzeżenie'), decode('Status akcji promocyjnej nie może zostać cofnięty'))

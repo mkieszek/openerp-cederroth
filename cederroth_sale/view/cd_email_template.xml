@@ -1,0 +1,37 @@
+<openerp>
+    <data>
+    	<!-- Email template - Change promotions stage -->
+        <record id="cd_email_template" model="email.template">
+            <field name="name">Zmiana statusu w Akcji Promocyjnej</field>
+            <field name="model_id" ref="model_cd_promotions"/>
+            <field name="email_from"><![CDATA[admin@cederroth.com]]></field>
+            <field name="email_to"><![CDATA[${object.bok_email}]]></field>
+            <field name="subject"><![CDATA[Potwierdzono akcję promocyjną dla klienta: ${object.client_id.name}]]></field>
+            <field name="body_html">
+                <![CDATA[                
+                	<div>
+                		<b>Zatwierdzono akcję promocyjną</b>
+                	</div>
+                	<div>
+                		Klient: ${object.client_id.name}
+                	</div>
+                	<div>
+                		Rabat od: ${object.discount_from}
+                	</div>
+            		<div>
+                		Rabat do: ${object.discount_to}
+                	</div>
+            		<div>
+                		Potwierdził: ${object.cuser_id.name}
+                	</div>
+            		<div>
+                		<a href="${object.email_link}">Link do rabatów</a>
+                	</div>
+                	<div>
+                		Wiadomość wysłana automatycznie z systemu OpenERP.
+            		</div>
+                ]]>
+            </field>
+        </record>
+    </data>
+</openerp>
