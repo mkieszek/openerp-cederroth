@@ -361,7 +361,8 @@
         
         <menuitem id="menu_cederroth_logistic"
             name="Logistyka"
-            sequence="20"/>
+            sequence="20"
+            groups="group_cd_product_rel_read,group_cd_product_rel_read_bok"/>
         <menuitem id="menu_cederroth_bok"
             parent="menu_cederroth_logistic"
             name="BOK"
