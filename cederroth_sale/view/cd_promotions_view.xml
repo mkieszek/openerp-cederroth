@@ -292,11 +292,11 @@
 		            	<field name="discount_to" />
 		            	<field name="discount_prom" />
 		            	<field name="prom_price" />
+		            	<field name="stage_id" />
 		            	<field name="bok_user_id" />
 		            	<field name="movex_date_confirm" />
-		            	<field name="stage_id" />
 		            	<field name="state" invisible="True" />
-		            	<button name="confirm_movex" string="Wykonane" type="object" icon="gtk-apply" help="Potwierdzenie wprowadzenia rabatu do MOVEX"/>
+		            	<button name="confirm_movex" states="new" string="Wykonane" type="object" icon="gtk-apply" help="Potwierdzenie wprowadzenia rabatu do MOVEX"/>
 	            	</tree>
 			</field>
 		</record>
