@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="cd_report_promo_wizard" model="ir.ui.view">
+            <field name="name">Wizard raport promocji</field>
+            <field name="model">cd.report.promo.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export promotions" version="7.0">
+                    <button name="print_report" string="Print" type="object" class="oe_highlight"/>
+                    <button name="send_report" string="Send" type="object" class="oe_highlight"/>
+                </form>
+            </field>
+        </record>		
+
+		<record id="action_cd_report_promo_wizard" model="ir.actions.act_window">
+            <field name="name">Raporty akcji promocyjnych</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.report.promo.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="cd_report_promo_wizard"/>
+            <field name="target">new</field>
+        </record>
+        
+        <!-- <record model="ir.values" id="action_cd_report_promo_wizard_values">
+            <field name="model_id" ref="cederroth_sale.model_cd_promotions" />
+            <field name="name">Raporty akcji promocyjnych</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' +str(ref('menu_cd_report_promo_wizard'))" />
+            <field name="key">action</field>
+            <field name="model">cd.promotions</field>
+        </record>  -->
+        
+        <menuitem name="Raporty akcji promocyjnych" 
+        	id="menu_cd_report_promo_wizard" 
+        	action="action_cd_report_promo_wizard" 
+        	parent="menu_cederroth_sale_reports" 
+        	sequence="2100"/>
+		    
+	</data>
+</openerp>

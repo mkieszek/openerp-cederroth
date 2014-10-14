@@ -25,3 +25,4 @@ import cd_report_trade_promo
 import cd_report_plan_section
 import cd_report_cost
 import cd_dch_import
+import report

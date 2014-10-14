@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data noupdate="0">
+		<report auto="False" id="cd_report_promo_board" menu="False" header="False" model="cd.promotions" name="cd.report_promo_board" rml="cederroth_palanning/report/report_promo_board.rml" string="Raport promocji - Zarząd"/>
+	</data>
+	
+	<data noupdate="0">
+        <!--Email template -->
+        <record id="email_template_cd_report_promo_board" model="email.template">
+            <field name="name">Raport akcji promocyjnych Zarząd - Send by Email</field>
+            <field name="email_from">noreply@viait.pl</field>
+            <field name="subject">Raport akcji promocyjnych - Zarząd</field>
+            <field name="email_to">marcin.kieszek@viait.pl</field>
+            <field name="model_id" ref="cederroth_sale.model_cd_promotions"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="cd_report_promo_board"/>
+            <field name="report_name">kalendarz_akcji_promo</field>
+            <field name="body_html"><![CDATA[Dziękujemy za wybranie nas.]]></field>
+        </record>
+    </data>
+</openerp>

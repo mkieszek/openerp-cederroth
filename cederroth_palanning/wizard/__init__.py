@@ -1,3 +1,4 @@
 import cd_other_cogs_add_wizard
 import cd_product_history_wizard
 import cd_export_promo_wizard
+import cd_report_promo_wizard

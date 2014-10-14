@@ -292,7 +292,7 @@
 		            	<field name="discount_to" />
 		            	<field name="discount_prom" />
 		            	<field name="prom_price" />
-		            	<field name="stage_id" />
+		            	<field name="stage_id" string="Status akcji promo."/>
 		            	<field name="bok_user_id" />
 		            	<field name="movex_date_confirm" />
 		            	<field name="state" invisible="True" />
@@ -362,7 +362,7 @@
         <menuitem id="menu_cederroth_logistic"
             name="Logistyka"
             sequence="20"
-            groups="group_cd_product_rel_read,group_cd_product_rel_read_bok"/>
+            groups=""/>
         <menuitem id="menu_cederroth_bok"
             parent="menu_cederroth_logistic"
             name="BOK"
