@@ -32,7 +32,8 @@
                    'view/cd_report_trade_promo_view.xml',
                    'view/cd_report_coop_view.xml',
                    'view/cd_report_plan_section_view.xml',
-                   'view/cd_dch_import.xml'
+                   'view/cd_dch_import.xml',
+                   'view/cd_analytics_view.xml',
                    ],
     "installable": True,
     "active": False,

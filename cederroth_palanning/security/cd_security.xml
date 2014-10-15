@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>
+    <data noupdate='1'>
         <!-- Dodanie kategorii uprawnień -->
         <record model="ir.module.category" id="module_category_cd_plan">
             <field name="name">Cederroth Planning</field>
@@ -393,6 +393,16 @@
 		            <field name="category_id" ref="module_category_cd_plan"/>
 					<field name="implied_ids" eval="[(4, ref('group_cd_plan_section_read')),(4, ref('group_cd_plan_section_brand_unlink')),(4, ref('group_cd_plan_client_unlink'))]"/>
 		        </record>
+		        
+		    <!-- Analityka -->
+		    	<record id="group_cd_analytics_visible" model="res.groups">
+		            <field name="name">Analytics Visible</field>
+		            <field name="comment">Analytics Visible</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_section_write')),
+													(4, ref('group_cd_plan_client_brand_create')),
+													(4, ref('group_cd_plan_client_brand_unlink'))]"/>
+		        </record>
         
 	        <!-- Dodatkowe role -->
 		        <record id="cd_rule_plan_client_cd_depart_d1" model="ir.rule">
@@ -589,9 +599,17 @@
 													(4, ref('group_cd_report_plan_section_visible')),
 													(4, ref('group_cd_report_forecast_product_visible'))]"/>
 		        </record>
+		        
+		        <record id="cederroth_products.group_cd_sales_analyst" model="res.groups">
+		            <field name="name">Sales Analyst</field>
+		            <field name="comment">Sales Analyst</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_analytics_visible'))]"/>
+		        </record>
 
 		        
         <!-- Ograniczenia widoków -->
+        	<menuitem id="menu_cd_analytics" name="Analityka" groups="group_cd_analytics_visible"/>
 	        <menuitem name="Raport Other Cogs" id="menu_cd_report_other_cogs" action="action_cd_report_other_cogs" parent="menu_cederroth_sale_reports" sequence="2040" groups="group_cd_report_other_cogs_visible"/>
 	        <menuitem name="Raport Akcji Promocyjnych" id="menu_cd_report_ap" action="action_cd_report_ap" parent="menu_cederroth_sale_reports" sequence="2000" groups="group_cd_report_ap_visible"/>
 	    	<menuitem name="Raport COOP" id="menu_cd_report_coop" action="action_cd_report_coop" parent="menu_cederroth_sale_reports" sequence="2050" groups="group_cd_report_coop_visible"/>
