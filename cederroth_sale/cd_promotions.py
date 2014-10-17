@@ -318,6 +318,14 @@ class cd_promotions(osv.Model):
         
         return vals
     
+    def _get_str_sales_director_ids(self, cr, uid, ids, name, arg, context=None):
+        val={}
+        user_obj = self.pool.get('res.users')
+        user_ids = user_obj.search(cr,uid,[('groups_id.name','=','Sales Director'),('id','!=',1)])
+        for lead in self.browse(cr, uid, ids):
+            val[lead.id] = (''.join(str(user.partner_id.id)+',' for user in user_obj.browse(cr, uid ,user_ids)))[:-1]
+        return val
+    
     _columns = {
         'promotions_name': fields.char("Nazwa promocji", size=255, required=True),
         'name': fields.char('Name'),
@@ -382,6 +390,7 @@ class cd_promotions(osv.Model):
         'task_merchandising_ids' : fields.many2many('cd.task.merchandising', string='Zadania Merchandising'),
         'monitor_merchand' : fields.boolean('Monitoring merchandising'),
         'communication_ids' : fields.many2many('cd.communication', string="Forma komunikacji"), 
+        'str_sales_director_ids': fields.function(_get_str_sales_director_ids, type='char', string="Dyrektorzy handlowi", store=False, readonly=True),
     }
     
     _defaults = {
@@ -516,7 +525,17 @@ class cd_promotions(osv.Model):
                         body = decode("W platformie znajduje się akcja promocyjna do akceptacji, w której rabat promocyjny został przekroczony.<br/><a href='%s'>Link do akcji promocyjnej</a>") % vals_email
                         self.pool.get('product.product').send_mail(cr, uid, body, subject, mail_to)
                         
+                #Powiadomienie Dyrektora Handlowego o akceptacji akcji promocyjnej poniżej progu gp.
+                self.send_mail_to_sales_director(cr, uid, promotion.id)
+                        
         super(cd_promotions, self).write(cr, uid, ids, vals, context=context)
+        return True
+    
+    def send_mail_to_sales_director(self, cr, uid, promotion_id, context=None):
+        promo = self.browse(cr, uid, promotion_id)
+        if promo.margin_warning == False:
+            template = self.pool.get('ir.model.data').get_object(cr, uid, 'cederroth_sale', 'cd_email_template_accept_promo')
+            self.pool.get('email.template').send_mail(cr, uid, template.id, promo.id, force_send=True, context=context)
         return True
     
     def on_change_start_date(self, cr, uid, vals, start_date, context=None):
@@ -545,6 +564,7 @@ class cd_promotions(osv.Model):
         return True
     
     def notification_discount(self, cr, uid, context=None):
+        cd_config_obj = self.pool.get('cd.config.settings')
         discount_date = datetime.date.today()+timedelta(days=10)
         promotions_ids = self.search(cr, uid, [('discount_from','=',discount_date),('monitored','=',True),('sequence','=',50)])
         for promotion in self.browse(cr, uid, promotions_ids):
@@ -561,7 +581,6 @@ class cd_promotions(osv.Model):
                 mail_to += tms_user.email
             if mail_to != '':
                 create_uid = users_obj.browse(cr, uid, uid)
-                cd_config_obj = self.pool.get('cd.config.settings')
                 cd_config_id = cd_config_obj.search(cr, uid, [])
                 cd_crm = cd_config_obj.browse(cr, uid, cd_config_id[-1]).cd_crm
                 url = ("http://%s/?db=%s#id=%s&view_type=form&model=cd.promotions")%(cd_crm, cr.dbname, promotion.id)
@@ -584,7 +603,6 @@ class cd_promotions(osv.Model):
                     mail_to += user.email+', '
             if mail_to != '':
                 create_uid = users_obj.browse(cr, uid, uid)
-                cd_config_obj = self.pool.get('cd.config.settings')
                 cd_config_id = cd_config_obj.search(cr, uid, [])
                 cd_crm = cd_config_obj.browse(cr, uid, cd_config_id[-1]).cd_crm
                 url = ("http://%s/?db=%s#id=%s&view_type=form&model=cd.promotions")%(cd_crm, cr.dbname, promotion.id)
@@ -599,7 +617,16 @@ class cd_promotions(osv.Model):
                 vals = (discount_date_2, promotion.client_id.name, rows, url)                
                 body = decode("Dnia %s zaczyna się termin obowiązywania rabatu dla klienta %s <br/><br/><table>%s</table><br/><a href='%s'>Link do akcji promocyjnej</a>") % vals
                 self.pool.get('product.product').send_mail(cr, uid, body, subject, mail_to)
-                
+        
+        cd_config_id = cd_config_obj.search(cr, uid, [])
+        info_guardian = cd_config_obj.browse(cr, uid, cd_config_id[-1]).info_guardian
+        discount_date_3 = datetime.date.today()+timedelta(days=info_guardian)
+        promotions_ids_3 = self.search(cr, uid, [('discount_from','=',discount_date_3),('sequence','=',50)])
+        
+        for promotion in self.browse(cr, uid, promotions_ids_3):
+            if promotion.client_id.user_id and promotion.client_id.user_id.partner_id.email:
+                template = self.pool.get('ir.model.data').get_object(cr, uid, 'cederroth_sale', 'cd_email_template_accept_promo_discount2')
+                self.pool.get('email.template').send_mail(cr, uid, template.id, promotion.id, force_send=True, context=context)
         return True
     
     def notification_start_date(self, cr, uid, context=None):

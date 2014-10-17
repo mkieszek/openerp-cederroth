@@ -148,6 +148,21 @@ class cd_plan_section(osv.Model):
                             }
         return val
     
+    def _get_budget_mark(self, cr, uid, ids, name, arg, context=None):
+        val={}
+        for plan in self.browse(cr, uid, ids):
+            bud_cm = 0.0
+            bud_nsh = 0.0
+            for brand in plan.plan_section_brand_ids:
+                bud_cm += brand.contrib
+                bud_nsh += brand.forecast
+                
+            val[plan.id] = {
+                            'budget_contrib': bud_cm,
+                            'budget_nsh': bud_nsh,
+                            }
+        return val
+    
     _columns = {
         'plan_name': fields.char("Nazwa estymacji", size=255, required=False),
         'state_id': fields.selection(AVAILABLE_STATE, 'Status'),
@@ -156,8 +171,10 @@ class cd_plan_section(osv.Model):
         'start_date': fields.date('Data rozpoczęcia'),
         'stop_date': fields.date('Data zakończenia'),
         'section_id': fields.many2one('crm.case.section', 'Zespół sprzedaży', required=True),
-        'budget_contrib': fields.float('Budżet Contrib.'),
-        'budget_nsh': fields.float('Budżet NSH'),
+        #'budget_contrib': fields.float('Budżet Contrib.'),
+        #'budget_nsh': fields.float('Budżet NSH'),
+        'budget_contrib': fields.function(_get_budget_mark, type='float', string='Budżet Contrib.', store=False, readonly=True, multi="budget_mark"),
+        'budget_nsh': fields.function(_get_budget_mark, type='float', string='Budżet NSH', store=False, readonly=True, multi="budget_mark"),
         'plan_value': fields.float('Forecast', required=False, track_visibility='onchange'),
         'get_value': fields.function(_get_value_clients, type="float", string='Zrealizowana wartość', readonly=True, store=False),
         'plan_client_ids': fields.one2many('cd.plan.client', 'plan_section_id', 'Plan Klient'),
@@ -165,7 +182,7 @@ class cd_plan_section(osv.Model):
         'client_list_ids' : fields.function(_get_client_list, relation='res.partner', type='many2many', string='Klienci', store=False),
         'blocked' : fields.function(_get_blocked, type='boolean', string='Zablokowane', store=False),
         'blocked_uid' : fields.function(_get_blocked_uid, type='boolean', string='Zablokowane', store=False),
-        'plan_section_brand_ids': fields.one2many('cd.plan.section.brand', 'plan_section_id', 'Plan Marka'),
+        'plan_section_brand_ids': fields.one2many('cd.plan.section.brand', 'plan_section_id', 'Plan Marka', readonly=True),
         'plan_mark_ids': fields.function(_get_plan_mark, type='one2many', relation='cd.plan.mark', store=False, readonly=True),
         
         'start_plan': fields.function(_get_date_plan, type='date', string='Rozpoczęcie planowania', store=False, multi='plan_date'),

@@ -123,10 +123,6 @@
         <menuitem id="menu_cd_data_marketing" name="Marketing" groups="group_cd_marketing"/>
         <menuitem id="menu_cd_marketing" name="Marketing" parent="menu_cd_data_marketing"/>
         
-        
-        <menuitem id="menu_cd_analytics" name="Analityka" groups="group_cd_sales_analyst"/>
-        <menuitem id="menu_cd_analytics2" name="Analityka" parent="menu_cd_analytics"/>
-        
         <record id="action_products" model="ir.actions.act_window">
             <field name="name">Products</field>
             <field name="type">ir.actions.act_window</field>

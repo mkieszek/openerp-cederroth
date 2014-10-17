@@ -87,7 +87,7 @@
                					<field name="product_id" domain="[('id','in', product_list_ids[0][2])]" attrs="{'invisible':['|',('client_id','=',False),('blocked','in',True)]}" />
                					<button string="Dodaj produkt" name="add_product" type="object" class="oe_highlight" attrs="{'invisible':['|',('product_id','=',False),('blocked','in',True)]}" />
                      			<field name="plan_product_ids" attrs="{'readonly':[('blocked','in',True)]}" >
-                     				<tree editable="bottom">
+                     				<tree editable="bottom" create='false'>
                      					<button string="Historia sprzedaży" name="open_product_history" type="object" icon="STOCK_COPY" />
                      					<field name="section_id" />
                      					<field name="product_id" readonly="1" />

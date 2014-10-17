@@ -20,6 +20,7 @@
                         <group string="Konfiguracja akcji promocyjnych">
                         	<field name="min_margin_prom" string="Min. marża akcji promocyjnej"/>
                         	<field name="plan_prom" string="Czas na planowanie - akcje (dni)"/>
+                        	<field name="info_guardian" />
                         </group>
                         <group string="Konfiguracja planowania sprzedaży">
                       		<field name="start_sale" string="Start Plan Sprzedaż (ilość tyg. przed rozpoczęciem)"/>
