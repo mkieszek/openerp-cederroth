@@ -318,6 +318,19 @@ class cd_promotions(osv.Model):
         
         return vals
     
+    def _get_value_report(self, cr, uid, ids, name, arg, context=None):
+        vals = {}
+        
+        for promo in self.browse(cr, uid, ids):
+            communication_form = ''
+            for item in promo.communication_ids:
+                if communication_form != '':
+                    communication_form += ', '
+                communication_form += item.name
+        vals[promo.id] = {
+                          'communication_form': communication_form,
+                         }
+        return vals
     _columns = {
         'promotions_name': fields.char("Nazwa promocji", size=255, required=True),
         'name': fields.char('Name'),
@@ -382,6 +395,10 @@ class cd_promotions(osv.Model):
         'task_merchandising_ids' : fields.many2many('cd.task.merchandising', string='Zadania Merchandising'),
         'monitor_merchand' : fields.boolean('Monitoring merchandising'),
         'communication_ids' : fields.many2many('cd.communication', string="Forma komunikacji"), 
+        #pola do raportu kalendarza akcji promo
+        'communication_form' : fields.function(_get_value_report, type="float", string='GP', readonly=True, store=False, multi="get_value"),
+        
+    
     }
     
     _defaults = {
