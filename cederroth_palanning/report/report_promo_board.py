@@ -72,7 +72,7 @@ class report_promo_board(report_sxw.rml_parse):
                 task_merch += ', '
             task_merch += task.name
         return task_merch
-    
+        
     def _get_display(self, promo):
         display = ''
         for disp in promo.display_ids:
