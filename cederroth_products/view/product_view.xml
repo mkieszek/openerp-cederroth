@@ -212,6 +212,14 @@
 					<field name="multi_images" widget="image_multi"/>
 				</page>
 			
+				<page string="Cenniki" groups="cederroth_products.group_cd_sales_analyst">
+					<field name="price_list_ids">
+						<tree editable='bottom'>
+							<field name="client_id" />
+							<field name="price" />
+						</tree>
+					</field>
+				</page>
    				<page string="Listing" groups="base.group_cd_kam,base.group_erp_manager">
                 	<field name="listing">
                     	<tree editable="bottom">

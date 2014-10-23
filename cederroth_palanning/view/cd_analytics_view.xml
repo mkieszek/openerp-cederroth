@@ -115,5 +115,7 @@
              id="menu_cd_plan_client_brand_analytics_view"
              parent="menu_cd_analytics2" sequence="3"/>
 		
+        <menuitem id="cd_menu_product_analytics" name="Produkty" parent="menu_cd_analytics2" sequence="3" action="product.product_normal_action_sell"/>
+        
 	</data>
 </openerp>

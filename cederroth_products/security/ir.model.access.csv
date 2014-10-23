@@ -26,5 +26,7 @@ access_cd_product_pack_type_create,Product pack type Create,model_cd_pack_type,g
 access_cd_product_pack_type_unlink,Product pack type Unlink,model_cd_pack_type,group_cd_pack_type_unlink,0,0,0,1
 access_cd_export_product_visible,Product export data Visible,model_cd_export_products,group_cd_product_export_data_visible,1,1,1,1
 access_product_template_all,product.template.all,product.model_product_template,,1,0,0,0
-access_cd_res_config_all,res.config.all,base.model_res_config,,1,0,0,0
+access_cd_stock_move_analyst,res.config.all,base.model_res_config,,1,0,0,
 access_cd_export_listing_visible,Export listing Visible,model_cd_listing_export,group_cd_export_listing_visible,1,1,1,1
+access_cd_price_list_read,Price List,model_cd_price_list,group_cd_product_read,1,0,0,0
+access_cd_price_list_all,Price List,model_cd_price_list,group_cd_product_write,1,1,1,1
