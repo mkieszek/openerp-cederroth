@@ -17,6 +17,17 @@ class cd_listing(osv.Model):
     _name = "cd.listing"
     _description = "Product Listing"
     
+    def _get_client_price(self, cr, uid, ids, name, args, context=None):
+        price_list_obj = self.pool.get('cd.price.list')
+        val={}
+        for list in self.browse(cr, uid, ids):
+            price_list_ids = price_list_obj.search(cr, uid, [('client_id','=',list.client_id.id)])
+            if price_list_ids:
+                val[list.id] = price_list_obj.browse(cr, uid, price_list_ids)[0].price
+            else:
+                val[list.id] = 0.0
+        return val
+    
     
     _columns = {
         'product_id' : fields.many2one('product.product', 'Product',required=True),
@@ -24,7 +35,8 @@ class cd_listing(osv.Model):
         'priorytet': fields.related('product_id','priorytet', type="integer", store=True,string="Priorytet", readonly=True),
         'product_mark': fields.related('product_id','product_mark', type="many2one", relation="product.category", store=False,string="Marka", readonly=True),
         'client_id' : fields.many2one('res.partner', 'Client',required=True ),
-        'price_sale' : fields.float('Sale price'),
+        #'price_sale' : fields.float('Sale price'),
+        'price_sale': fields.function(_get_client_price, type="float", store=True, string="Sale price", readonly=True),
         'status_l' : fields.selection(LISTING_STATUS,'Status',required=True ),
         'change_date' : fields.date('Date of change',required=True),
         'fclient_id' : fields.many2one('cd.client.format','Client format',domain="[('client_id','=',client_id)]"),

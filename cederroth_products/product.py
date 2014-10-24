@@ -262,6 +262,7 @@ class product_product(Model):
         'default_code_name': fields.char('Nazwa MOVEX', size=255),
         'priorytet': fields.integer('Priorytet'),
         'product_mark': fields.many2one('product.category','Marka', required=True),
+        'price_list_ids': fields.one2many('cd.price.list', 'product_id', 'Cennik'),
          }
          
     _defaults = {

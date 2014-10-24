@@ -646,7 +646,11 @@
 													(4, ref('group_cd_plan_client_brand_create')),
 													(4, ref('group_cd_plan_client_brand_unlink')),
 													(4, ref('group_cd_plan_section_brand_create')),
-													(4, ref('group_cd_plan_section_brand_unlink'))]"/>
+													(4, ref('group_cd_plan_section_brand_unlink')),
+													(4, ref('group_cd_plan_client_read')),
+													(4, ref('cederroth_products.group_cd_client_purchases')),
+			            							(4, ref('cederroth_products.group_cd_product_read')),
+			            							(4, ref('stock.group_stock_user'))]"/>
 		        </record>
 
 		        

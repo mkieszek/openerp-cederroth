@@ -25,3 +25,4 @@ import res_partner
 import cd_listing_status
 import cd_client_format
 import res_config
+import cd_price_list
