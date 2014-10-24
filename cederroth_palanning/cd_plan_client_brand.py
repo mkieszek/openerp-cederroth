@@ -65,7 +65,9 @@ class cd_plan_client_brand(osv.Model):
         'client_id': fields.related('plan_client_id', 'client_id', type='many2one', relation='res.partner', string='Klient', store=True),
         'plan_section_id': fields.related('plan_client_id', 'plan_section_id', type='many2one', relation='cd.plan.section', string='Plan Departament', store=False),
     }
-
+    
+    _sql_constraints = [('model_unique','unique(plan_client_id,product_category_id)','Plan Klient z ta marka jest w bazie.')]
+    
     def create(self, cr, uid, data, context=None):
         plan_id = super(cd_plan_client_brand, self).create(cr, uid, data, context=context)
         plan = self.browse(cr, uid, plan_id)
