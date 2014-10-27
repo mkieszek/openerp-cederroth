@@ -152,6 +152,7 @@ class cd_product_rel(Model):
     def confirm_movex(self,cr,uid,ids,context=None):
         movex_date_confirm = datetime.datetime.now().strftime("%Y-%m-%d 00:01:00")
         self.write(cr, uid, ids, {'state': 'done', 'movex_date_confirm': movex_date_confirm})
+        return True
     
     def on_change_discount_prom(self, cr, uid, ids, discount_prom, context=None):
         product = self.browse(cr, uid, ids[0])
