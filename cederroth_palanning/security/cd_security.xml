@@ -672,5 +672,6 @@
 	    	<menuitem name="Raport Plan Departament" id="menu_cd_report_plan_section" action="action_cd_report_plan_section" parent="menu_cederroth_sale_reports" sequence="2011" groups="group_cd_report_plan_section_visible"/>
 	    	<menuitem name="Raport Trade Promo" id="menu_cd_report_trade_promo" action="action_cd_report_trade_promo" parent="menu_cederroth_sale_reports" sequence="2060" groups="group_cd_report_trade_promo_visible"/>
 	    	<menuitem name="Terminy planowania" id="menu_cd_plan_term" action="action_cd_plan_term" parent="cederroth_sale.menu_cederroth_sale_planning" sequence="101" groups="group_cd_plan_term_visible"/>
+	    	<menuitem name="Raporty akcji promocyjnych"	id="menu_cd_report_promo_wizard" action="action_cd_report_promo_wizard" parent="menu_cederroth_sale_reports" groups="group_cd_generate_promo_report" sequence="2100"/>
     </data>
 </openerp>
