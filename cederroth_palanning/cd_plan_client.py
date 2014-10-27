@@ -280,6 +280,21 @@ class cd_plan_client(osv.Model):
                             'plan_plan': plan_plan,
                             }
         return val
+    
+    def _get_budget_mark(self, cr, uid, ids, name, arg, context=None):
+        val={}
+        for plan in self.browse(cr, uid, ids):
+            bud_cm = 0.0
+            bud_nsh = 0.0
+            for brand in plan.plan_client_brand_ids:
+                bud_cm += brand.contrib
+                bud_nsh += brand.forecast
+                
+            val[plan.id] = {
+                            'bud_cm': bud_cm,
+                            'plan_value': bud_nsh,
+                            }
+        return val
         
     _columns = {
         'plan_name': fields.char("Nazwa Planu", size=255, required=False),
@@ -289,9 +304,11 @@ class cd_plan_client(osv.Model):
         'start_date': fields.date('Data rozpoczęcia'),
         'stop_date': fields.date('Data zakończenia'),
         'client_id': fields.many2one('res.partner', 'Klient', required=True, domain="[('is_company', '=', True)]"),
-        'bud_cm': fields.float('Budżet Contrib.'),
+        #'bud_cm': fields.float('Budżet Contrib.'),
+        'bud_cm': fields.function(_get_budget_mark, type='float', string='Budżet Contrib.', store=False, readonly=True, multi="budget_mark"),
+        'plan_value': fields.function(_get_budget_mark, type='float', string='Budżet NSH', store=False, readonly=True, multi="budget_mark"),
         #'plan_value': fields.function(_get_forecast, type='float', string='Budżet NSH', store=False, required=True, readonly=False),
-        'plan_value': fields.float('Budżet NSH', required=True, readonly=False),
+        #'plan_value': fields.float('Budżet NSH', required=True, readonly=False),
         'get_value': fields.function(_get_exec_value, type='float', string='Zrealizowana wartość', store=False, readonly=True),
         'plan_section_id': fields.many2one('cd.plan.section', 'Plan Departament', required=True, ondelete='cascade'), #domain="[('section_id.user_id.id','=',uid)]"
         'plan_product_ids': fields.one2many('cd.plan.product', 'plan_client_id', 'Plan Produkt'),
@@ -332,7 +349,7 @@ class cd_plan_client(osv.Model):
         'product_limited_ids': fields.one2many('cd.product.limited', 'plan_client_id', 'Próbki/produkty limitowane'),
         'other_ids': fields.one2many('cd.other', 'plan_client_id', 'Inne'),
         'sale_ids': fields.one2many('cd.sale', 'plan_client_id', 'Wyprzedaż'),
-        'plan_client_brand_ids': fields.one2many('cd.plan.client.brand', 'plan_client_id', 'Plan Marka'),
+        'plan_client_brand_ids': fields.one2many('cd.plan.client.brand', 'plan_client_id', 'Plan Marka', readonly=True),
         
         'exec_value': fields.function(_get_plan, type='float', string='Zrealizowana wartość', store=False, readonly=True, multi='exec_value'),
         'plan_luz': fields.function(_get_plan, type='float', string='Estymacja standard', store=False, multi='plan_luz'),

@@ -56,7 +56,7 @@
 		                     		<div>
 			                     		<field name="plan_client_brand_ids"> <!-- attrs="{'readonly':[('blocked_uid','=',True)]}">-->
 			                     			<tree editable="bottom">
-			                     				<field name="product_category_id" />
+			                     				<field name="product_category_id" readonly="1"/>
 		                     					<field name="forecast" sum="Suma wartości" />
 		                     					<field name="estim_sr" sum="Suma wartości" />
 		                     					<field name="plan_value" sum="Suma wartości" />
@@ -87,7 +87,7 @@
                					<field name="product_id" domain="[('id','in', product_list_ids[0][2])]" attrs="{'invisible':['|',('client_id','=',False),('blocked','in',True)]}" />
                					<button string="Dodaj produkt" name="add_product" type="object" class="oe_highlight" attrs="{'invisible':['|',('product_id','=',False),('blocked','in',True)]}" />
                      			<field name="plan_product_ids" attrs="{'readonly':[('blocked','in',True)]}" >
-                     				<tree editable="bottom">
+                     				<tree editable="bottom" create='false'>
                      					<button string="Historia sprzedaży" name="open_product_history" type="object" icon="STOCK_COPY" />
                      					<field name="section_id" />
                      					<field name="product_id" readonly="1" />

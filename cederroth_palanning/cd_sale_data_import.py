@@ -21,7 +21,7 @@ class cd_sale_data_import(osv.Model):
     _description = "Sale data import"
     
     _columns = {
-                'filename' : fields.char('Filename', size=255),
+                'filename' : fields.char('Nazwa pliku', size=255),
                 'import_file' : fields.binary('Plik do importu', required=True),
                 'date_from': fields.datetime('Data od', required=True),
                 'date_to': fields.datetime('Data do', required=True),

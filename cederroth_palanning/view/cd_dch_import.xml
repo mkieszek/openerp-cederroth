@@ -50,11 +50,11 @@
              <field name="domain">[]</field>
         </record>
         
-		<menuitem
+		<!-- <menuitem
              name="Import danych z DCH"
              action="action_cd_dch_import"
              id="wizard_cd_sale_data_view"
-             parent="cederroth_sale.menu_cederroth_sale_planning" sequence="105"/>
+             parent="cederroth_sale.menu_cederroth_sale_planning" sequence="105"/> -->
 		
 	</data>
 </openerp>

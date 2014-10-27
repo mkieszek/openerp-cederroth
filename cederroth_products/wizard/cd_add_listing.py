@@ -20,7 +20,7 @@ class cd_add_listing(osv.Model):
         'end_date': fields.date('Data wycofania'),
         'new_product_id': fields.many2one('product.product', 'Nowy Produkt', required=True),
         'start_date': fields.date('Data aktywacji', required=True),
-        'price': fields.float('Cena katalogowa', required=True),
+        #'price': fields.float('Cena katalogowa', required=True),
     }
     
     _defaults = {
@@ -52,7 +52,7 @@ class cd_add_listing(osv.Model):
                 
                 'change_date': w.start_date,
                 'status_l': '1',
-                'price_sale': w.price,
+                #'price_sale': w.price,
                 }
         
         format_ids = []

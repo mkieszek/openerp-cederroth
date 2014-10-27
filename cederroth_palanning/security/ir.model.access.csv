@@ -65,3 +65,5 @@ access_cd_other_cogs_read_mark,Other cogs Read,model_cd_other_cogs,group_cd_plan
 access_cd_other_cogs_write_mark,Other cogs Write,model_cd_other_cogs,group_cd_plan_marketing_month_write,0,1,1,1
 access_cd_other_cogs_unlink_mark,Other cogs Unlink,model_cd_other_cogs,group_cd_plan_marketing_month_unlink,0,1,1,1
 access_cd_dch_import,Import DCH,model_cd_dch_import,group_cd_import_dch,1,1,1,1
+access_cd_historical_data,Historical Data,model_cd_sale_data,group_cd_import_historical_data,1,1,1,1
+access_cd_historical_data_import,Historical Data Import,model_cd_sale_data_import,group_cd_import_historical_data,1,1,1,1

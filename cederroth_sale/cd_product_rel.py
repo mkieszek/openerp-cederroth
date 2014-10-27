@@ -173,7 +173,7 @@ class cd_product_rel(Model):
         product = self.browse(cr, uid, ids[0])
         nsh_price = product.nsh_price
         vals ={}
-        vals['discount_prom'] = int((nsh_price-prom_price)/nsh_price*100)
+        vals['discount_prom'] = int((nsh_price-prom_price)/nsh_price*100) if nsh_price != 0 and prom_price != 0 else 0.0
         #self.write(cr, uid, product.id, vals, context=None)
         
         return {'value': vals}

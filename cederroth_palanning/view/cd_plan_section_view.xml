@@ -19,8 +19,8 @@
 		                     	<field name="year" attrs="{'readonly':['|',('blocked','in',True),('blocked_uid','in',True)]}" />
 		                     	<field name="month" attrs="{'readonly':['|',('blocked','in',True),('blocked_uid','in',True)]}" />
 		                     	<field name="section_id" on_change="onchange_client_list(section_id)" attrs="{'readonly':['|',('blocked','in',True),('blocked_uid','in',True)]}" />
-		                     	<field name="budget_nsh" attrs="{'readonly':['|',('blocked','in',True),('blocked_uid','in',True)]}" />
-		                     	<field name="budget_contrib" attrs="{'readonly':['|',('blocked','in',True),('blocked_uid','in',True)]}" />
+		                     	<field name="budget_nsh" />
+		                     	<field name="budget_contrib" />
 		                     	
 		                     	<separator colspan="2" string="Bilans"/>
 		                     	
@@ -79,7 +79,7 @@
                					<field name="client_id" domain="[('id','in', client_list_ids[0][2])]" attrs="{'invisible':['|',('section_id','=',False),('blocked','in', True)]}" />
                					<button string="Dodaj klienta" name="add_client" type="object" class="oe_highlight" attrs="{'invisible':['|',('client_id','=',False),('blocked','in', True)]}" />
                      			<field name="plan_client_ids" attrs="{'readonly':[('blocked','in',True)]}" >
-                     				<tree editable="bottom">
+                     				<tree editable="bottom" create='false'>
                      					<button name="open_plan_client" string="Otwórz" type="object" icon="gtk-go-forward" />
                      					<field name="client_id" readonly="1" />
 				                     	<field name="plan_value" sum="Planowana wartość" />

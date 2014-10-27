@@ -109,6 +109,12 @@
             <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
         </record>
         
+        <record id="group_cd_sales_analyst" model="res.groups">
+            <field name="name">Sales Analyst</field>
+            <field name="comment">Sales Analyst</field>
+            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+        </record>
+        
     </data>
     <data>
         <menuitem id="menu_cd_data_management" name="Data management" groups="group_cd_datamanager"/>

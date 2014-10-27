@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>    
+        <menuitem id="menu_cd_analytics" name="Analityka" groups="cederroth_products.group_cd_sales_analyst" sequence='20'/>
+        <menuitem id="menu_cd_analytics2" name="Analityka" parent="menu_cd_analytics"/>
+        <menuitem id="menu_cd_analytict_import" name="Import" parent="menu_cd_analytics"/>
+        
+        <menuitem
+             name="Import danych z DCH"
+             action="action_cd_dch_import"
+             id="menu_cd_import_dch_analytics"
+             parent="menu_cd_analytict_import" sequence="1"/>
+        
+        <menuitem id="menu_partner_form_analytics"
+	        action="cederroth_products.view_res_partner_action" parent="menu_cd_analytics2" name="Klienci"
+	        sequence="1"/>
+	        
+		<menuitem
+             name="Import danych historycznych"
+             action="action_cd_sale_data_import11"
+             id="menu_cd_sale_data_analytics_view2"
+             parent="menu_cd_analytict_import" sequence="2"/>
+        <!-- 
+        <record model='ir.ui.view' id='cd_plan_section_brand_analytics_tree'>
+			<field name="name">cd.plan.section.brand.tree</field>
+            <field name="model">cd.plan.section.brand</field>
+            <field name="arch" type="xml">
+				<tree string="Plan Departament" editable='top'>
+					<field name="year" readonly="1" />
+					<field name="month" readonly="1" />
+					<field name="plan_section_id" domain="['|',('state_id','=','01'),('state_id','=',False)]" />
+					<field name="product_category_id" required="1" />
+					<field name="forecast" />
+					<field name="contrib" />
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_plan_section_brand_analytics_search">
+       		<field name="name">cd.plan.section.brand.search</field>
+			<field name="model">cd.plan.section.brand</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie plany Departament">
+               	<field name="year" />
+               	<field name="month" />
+               	<group expand="0" string="Grupuj po...">
+           			<filter string="Rok" name="start_year" context="{'group_by' : ['year']}" />
+           			<filter string="Miesiąc" name="start_month" context="{'group_by' : ['month']}" />
+           			<filter string="Plan Departament" name="group_section" context="{'group_by' : ['plan_section_id']}" />
+           		</group>
+			</search>
+			</field>
+		</record>
+				
+		<record id="action_cd_plan_section_brand_analytics" model="ir.actions.act_window">
+            <field name="name">Plan Departament</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.plan.section.brand</field>
+            <field name="view_id" ref="cd_plan_section_brand_analytics_tree"/>
+             <field name="view_mode">tree</field>
+             <field name="context">{"search_default_start_year": 1, "search_default_start_month": 1, "search_default_group_section": 1}</field>
+             <field name="domain">[('plan_section_id','!=',False),('state','not in',['02','03'])]</field>
+        </record>
+        
+		<menuitem
+             action="action_cd_plan_section_brand_analytics"
+             id="menu_cd_plan_section_brand_analytics_view"
+             parent="menu_cd_analytics2" sequence="2"/>
+         -->
+        <record model='ir.ui.view' id='cd_plan_client_brand_analytics_tree'>
+			<field name="name">cd.plan.client.brand.tree</field>
+            <field name="model">cd.plan.client.brand</field>
+            <field name="arch" type="xml">
+				<tree string="Plan Klient" editable='top'>
+					<field name="year" readonly="1" />
+					<field name="month" readonly="1" />
+					<field name="plan_client_id" domain="['|',('state_id','=','01'),('state_id','=',False)]" />
+					<field name="plan_section_id" readonly="1" />
+					<field name="product_category_id" required="1" />
+					<field name="forecast" />
+					<field name="contrib" />
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="cd_plan_client_brand_analytics_search">
+       		<field name="name">cd.plan.client.brand.search</field>
+			<field name="model">cd.plan.client.brand</field>
+            <field name="arch" type="xml">
+			<search string="Wszystkie plany Klienta">
+               	<field name="year" />
+               	<field name="month" />
+               	<field name="client_id" />
+               	<group expand="0" string="Grupuj po...">
+           			<filter string="Rok" name="start_year" context="{'group_by' : ['year']}" />
+           			<filter string="Miesiąc" name="start_month" context="{'group_by' : ['month']}" />
+           			<filter string="Klient" name="group_client" context="{'group_by' : ['client_id']}" />
+           		</group>
+			</search>
+			</field>
+		</record>
+				
+		<record id="action_cd_plan_client_brand_analytics" model="ir.actions.act_window">
+            <field name="name">Plan Klient</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.plan.client.brand</field>
+            <field name="view_id" ref="cd_plan_client_brand_analytics_tree"/>
+             <field name="view_mode">tree</field>
+             <field name="context">{}</field>
+             <field name="domain">[('plan_client_id','!=',False),('state','not in',['02','03'])]</field>
+        </record>
+        
+		<menuitem
+             action="action_cd_plan_client_brand_analytics"
+             id="menu_cd_plan_client_brand_analytics_view"
+             parent="menu_cd_analytics2" sequence="3"/>
+		
+        <menuitem id="cd_menu_product_analytics" name="Produkty" parent="menu_cd_analytics2" sequence="3" action="product.product_normal_action_sell"/>
+        
+	</data>
+</openerp>

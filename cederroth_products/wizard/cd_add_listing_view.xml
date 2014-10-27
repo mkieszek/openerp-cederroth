@@ -18,7 +18,7 @@
                      			<group string="Nowy produkt">
                      				<field name="new_product_id" />
                      				<field name="start_date" />
-                     				<field name="price" />
+                     				<!-- <field name="price" /> -->
                      			</group>
                      			<group string="Zastępowany produkt" attrs="{'invisible':[('on_top','=',True)]}">
                      				<field name="old_product_id" attrs="{'required':[('on_top','=',False)]}" />

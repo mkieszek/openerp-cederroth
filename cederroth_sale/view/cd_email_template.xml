@@ -41,13 +41,72 @@
             <field name="model_id" ref="model_cd_promotions"/>
             <field name="email_from"><![CDATA[admin@cederroth.com]]></field>
             <field name="email_to"><![CDATA[marcin.kieszek@viait.pl]]></field>
-            <field name="subject"><![CDATA[Potwierdzono akcję promocyjną dla klienta: ${object.client_id.name}]]></field>
+            <field name="subject"><![CDATA[OpenERP - Potwierdzono akcję promocyjną dla klienta: ${object.client_id.name}]]></field>
             <field name="body_html">
                 <![CDATA[                
                 	<div>
                 		<b>Zatwierdzono akcję promocyjną</b>
                 	</div>
                 	
+                ]]>
+            </field>
+        </record>
+        
+        <!-- Email template - Change promotions stage -->
+        <record id="cd_email_template_accept_promo" model="email.template">
+            <field name="name">Akcja Promocyjna zaakceptowana poniżej progu GP</field>
+            <field name="model_id" ref="model_cd_promotions"/>
+            <field name="email_from"><![CDATA[OpenERP<openerp@cederroth.com>]]></field>
+            <field name="email_recipients"><![CDATA[${object.str_sales_director_ids}]]></field>
+            <field name="subject"><![CDATA[Openerp - Zaakceptowano akcję promocyjną poniżej progu GP.]]></field>
+            <field name="body_html">
+                <![CDATA[                
+                	<div>
+                		<b>Zaakceptowano akcję promocyjną poniżej progu GP dla klienta: ${object.client_id.name}</b>
+                	</div>
+                	<div>
+                		Nazwa Akcji Promocyjnej: ${object.promotions_name}
+                	</div>
+                	<div>
+                		Typ: ${object.type_promotions_id.name}
+                	</div>
+                	<div>
+                		Marka: ${object.product_category.name}
+                	</div>
+                	<div>
+                		GP%: ${object.gpp}
+                	</div>
+                ]]>
+            </field>
+        </record>
+        
+        <!-- Email template - Wiadomość do opierkuna klienta przed rozpoczęciem rabatu akcji promocyjnej -->
+        <record id="cd_email_template_accept_promo_discount2" model="email.template">
+            <field name="name">Powiadomienie o rozpoczęciu rabatu Akcji Promocyjnej</field>
+            <field name="model_id" ref="model_cd_promotions"/>
+            <field name="email_from"><![CDATA[OpenERP<openerp@cederroth.com>]]></field>
+            <field name="email_recipients"><![CDATA[${object.client_id.user_id.partner_id.id}]]></field>
+            <field name="subject"><![CDATA[OpenERP - Rozpoczęcie obowiązywania rabatu dla Akcji Promocyjnej]]></field>
+            <field name="body_html">
+                <![CDATA[                
+                	<div>
+                		<b>Rozpoczęcie obowiązywania rabatu dla Akcji Promocyjnej klienta: ${object.client_id.name}</b>
+                	</div>
+                	<div>
+                		Nazwa Akcji Promocyjnej: ${object.promotions_name}
+                	</div>
+                	<div>
+                		Typ: ${object.type_promotions_id.name}
+                	</div>
+                	<div>
+                		Marka: ${object.product_category.name}
+                	</div>
+                	<div>
+                		Data obowiązywania rabatu: ${object.discount_from} - ${object.discount_to}
+                	</div>
+                	<div>
+                		Data rozpoczęcia Akcji Promocyjnej: ${object.start_date}
+                	</div>
                 ]]>
             </field>
         </record>

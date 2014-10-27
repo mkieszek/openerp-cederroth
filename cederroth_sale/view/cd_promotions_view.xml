@@ -231,7 +231,7 @@
         
 	<!-- Scheduler for Trade MM and Logistics M-->
         <record forcecreate="True" id="ir_cron_discount_term_trade_mm_logistics_m_action" model="ir.cron">
-              <field name="name">Promotions - Notification for Trade MM and Logistics M</field>
+              <field name="name">Promotions - Notification discount</field>
               <field eval="True" name="active" />
               <field name="user_id" ref="base.user_root" />
               <field name="interval_number">1</field>

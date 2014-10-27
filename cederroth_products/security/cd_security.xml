@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>        
+    <data noupdate='0'>        
         <!-- Dodanie kategorii uprawnień -->                
         <record model="ir.module.category" id="module_category_cd_products">
             <field name="name">Cederroth Products</field>
@@ -433,6 +433,13 @@
 			            							(4, ref('group_cd_listing_read'))
 			            							]"/>
 	        </record>
+	        <record id="cederroth_products.group_cd_sales_analyst" model="res.groups">
+		            <field name="name">Sales Analyst</field>
+		            <field name="comment">Sales Analyst</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_listing_read')),
+												(4, ref('group_cd_client_format_read'))]"/>
+		        </record>
         <!-- Ograniczenia widoków -->
         	<record id="view_cd_client_sales_purchases1" model="ir.ui.view">
 				<field name="name">cederroth.sales.form</field>

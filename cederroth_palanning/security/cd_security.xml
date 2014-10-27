@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>
+    <data noupdate='0'>
         <!-- Dodanie kategorii uprawnień -->
         <record model="ir.module.category" id="module_category_cd_plan">
             <field name="name">Cederroth Planning</field>
@@ -21,11 +21,17 @@
 		        </record>
 		        
 	       		<record id="group_cd_import_dch" model="res.groups">
-		            <field name="name">Import z DCH</field>
+		            <field name="name">Import from DCH</field>
 		            <field name="comment">Import from DCH</field>
 		            <field name="category_id" ref="module_category_cd_plan"/>
 		        </record>
-	       	
+		         
+		        <record id="group_cd_import_historical_data" model="res.groups">
+		            <field name="name">Import historical data</field>
+		            <field name="comment">Import historical data</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+		        </record>
+	       		
 	       		<record id="group_cd_report_ap_read" model="res.groups">
 		            <field name="name">Report promotions Read</field>
 		            <field name="comment">Report promotions Read</field>
@@ -399,6 +405,15 @@
 		            <field name="category_id" ref="module_category_cd_plan"/>
 					<field name="implied_ids" eval="[(4, ref('group_cd_plan_section_read')),(4, ref('group_cd_plan_section_brand_unlink')),(4, ref('group_cd_plan_client_unlink'))]"/>
 		        </record>
+		        
+		    <!-- Analityka -->
+		    	<record id="group_cd_analytics_visible" model="res.groups">
+		            <field name="name">Analytics Visible</field>
+		            <field name="comment">Analytics Visible</field>
+		            <field name="category_id" ref="module_category_cd_plan"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_plan_client_brand_read')),
+													(4, ref('group_cd_plan_section_brand_read'))]"/>
+		        </record>
         
 	        <!-- Dodatkowe role -->
 		        <record id="cd_rule_plan_client_cd_depart_d1" model="ir.rule">
@@ -426,6 +441,32 @@
 		            <field ref="model_cd_plan_product" name="model_id"/>
 		            <field name="domain_force">[('plan_client_id.client_id.user_id.id','=',user.id)]</field>
 		            <field name="groups" eval="[(4, ref('group_cd_plan_client_read_kam'))]"/>
+		        </record>
+		        <record id="cd_rule_res_partner_company_all" model="ir.rule">
+		            <field name="name">Rule create and write company all</field>
+		            <field ref="base.model_res_partner" name="model_id"/>
+		            <field name="domain_force">[('is_company','!=',True)]</field>
+		            <field name="groups" eval="[(4, ref('cederroth_products.group_cd_kam')),
+			            						(4, ref('cederroth_products.group_cd_department_director')),
+			            						(4, ref('cederroth_products.group_cd_sales_director')),
+			            						(4, ref('cederroth_products.group_cd_trade_m_m')),
+			            						(4, ref('cederroth_products.group_cd_marketing_director')),
+			            						(4, ref('cederroth_products.group_cd_brand_manager')),
+			            						(4, ref('cederroth_products.group_cd_product_manager')),
+			            						(4, ref('cederroth_products.group_cd_district_manager')),
+			            						(4, ref('cederroth_products.group_cd_trade_m_s')),
+			            						(4, ref('cederroth_products.group_cd_department_director')),
+			            						(4, ref('cederroth_products.group_cd_sales_director'))]"/>
+			        <field name="perm_read" eval="False"/>
+			        <field name="perm_write" eval="True"/>
+			        <field name="perm_unlink" eval="True"/>
+			        <field name="perm_create" eval="True"/>
+		        </record>
+		        <record id="cd_rule_res_partner_company_analytics" model="ir.rule">
+		            <field name="name">Rule create and write company analytics</field>
+		            <field ref="base.model_res_partner" name="model_id"/>
+		            <field name="domain_force">[]</field>
+		            <field name="groups" eval="[(4, ref('cederroth_products.group_cd_sales_analyst'))]"/>
 		        </record>
 	        
 			<!-- Podstawowe uprawnienia użytkowników -->
@@ -468,7 +509,10 @@
 		            <field name="comment">Trade Marketing Manager</field>
 		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
 					<field name="implied_ids" eval="[(4, ref('group_cd_plan_marketing_month_create')),
-													(4, ref('group_cd_plan_term_write'))]"/>
+													(4, ref('group_cd_plan_term_write')),
+													(4, ref('group_cd_analytics_visible')),
+													(4, ref('group_cd_import_dch')),
+													(4, ref('group_cd_import_historical_data')),]"/>
 		        </record>
 		        
 		        <record id="cederroth_products.group_cd_marketing_director" model="res.groups">
@@ -529,7 +573,9 @@
 													(4, ref('group_cd_report_plan_client_visible')),
 													(4, ref('group_cd_report_plan_client_brand_visible')),
 													(4, ref('group_cd_report_plan_section_visible')),
-													(4, ref('group_cd_report_forecast_product_visible'))]"/>
+													(4, ref('group_cd_report_forecast_product_visible')),
+													(4, ref('group_cd_import_dch')),
+													(4, ref('group_cd_import_historical_data'))]"/>
 		        </record>
 		        
 		        <record id="cederroth_products.group_cd_trade_m_s" model="res.groups">
@@ -595,9 +641,27 @@
 													(4, ref('group_cd_report_plan_section_visible')),
 													(4, ref('group_cd_report_forecast_product_visible'))]"/>
 		        </record>
+		        
+		        <record id="cederroth_products.group_cd_sales_analyst" model="res.groups">
+		            <field name="name">Sales Analyst</field>
+		            <field name="comment">Sales Analyst</field>
+		            <field name="category_id" ref="cederroth_products.cd_module_category_cederroth"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_analytics_visible')),
+													(4, ref('group_cd_import_dch')),
+													(4, ref('group_cd_import_historical_data')),
+													(4, ref('group_cd_plan_client_brand_create')),
+													(4, ref('group_cd_plan_client_brand_unlink')),
+													(4, ref('group_cd_plan_section_brand_create')),
+													(4, ref('group_cd_plan_section_brand_unlink')),
+													(4, ref('group_cd_plan_client_read')),
+													(4, ref('cederroth_products.group_cd_client_purchases')),
+			            							(4, ref('cederroth_products.group_cd_product_read')),
+			            							(4, ref('stock.group_stock_user'))]"/>
+		        </record>
 
 		        
         <!-- Ograniczenia widoków -->
+        	<menuitem id="menu_cd_analytics" name="Analityka" groups="group_cd_analytics_visible"/>
 	        <menuitem name="Raport Other Cogs" id="menu_cd_report_other_cogs" action="action_cd_report_other_cogs" parent="menu_cederroth_sale_reports" sequence="2040" groups="group_cd_report_other_cogs_visible"/>
 	        <menuitem name="Raport Akcji Promocyjnych" id="menu_cd_report_ap" action="action_cd_report_ap" parent="menu_cederroth_sale_reports" sequence="2000" groups="group_cd_report_ap_visible"/>
 	    	<menuitem name="Raport COOP" id="menu_cd_report_coop" action="action_cd_report_coop" parent="menu_cederroth_sale_reports" sequence="2050" groups="group_cd_report_coop_visible"/>

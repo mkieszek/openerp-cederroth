@@ -15,6 +15,7 @@ class cd_config_settings(osv.osv):
             'stop_sale': fields.integer("Stop Plan sprzed"),
             'start_mark': fields.integer("Start Plan marketing"),
             'stop_mark': fields.integer("Stop Plan marketing"),
+            'info_guardian': fields.integer("Informacja dla Opiekuna", help="Na ile dni przed rozpoczeciem rabatu Akcji Promocyjnej ma zostac poinformowany opiekun klienta"),
     }
     
     def default_get(self, cr, uid, fields, context=None):
@@ -29,4 +30,5 @@ class cd_config_settings(osv.osv):
             res['start_mark']= self.browse(cr, uid, config_id[-1]).start_mark
             res['stop_mark']= self.browse(cr, uid, config_id[-1]).stop_mark
             res['plan_prom']= self.browse(cr, uid, config_id[-1]).plan_prom
+            res['info_guardian']= self.browse(cr, uid, config_id[-1]).info_guardian
         return res
