@@ -5,8 +5,9 @@ import time
 from openerp.report import report_sxw
 import pdb
 import datetime
-class report_promo_board(report_sxw.rml_parse):
-    _name = 'report.promo.board'
+
+class report_promo_salesman(report_sxw.rml_parse):
+    _name = 'report.promo.salesman'
 
     def set_context(self, objects, data, ids, report_type=None):
         #pdb.set_trace()
@@ -19,13 +20,13 @@ class report_promo_board(report_sxw.rml_parse):
         
         promo_objects = cd_promo_obj.browse(self.cr, self.uid, promo_ids)
         
-        return super(report_promo_board, self).set_context(promo_objects, data, promo_ids, report_type=report_type)
+        return super(report_promo_salesman, self).set_context(promo_objects, data, promo_ids, report_type=report_type)
     
     def __init__(self, cr, uid, name, context=None):
         #pdb.set_trace()
         if context is None:
             context = {}
-        super(report_promo_board, self).__init__(cr, uid, name, context=context)
+        super(report_promo_salesman, self).__init__(cr, uid, name, context=context)
         
         self.localcontext.update( {
             'time': time,
@@ -90,6 +91,11 @@ class report_promo_board(report_sxw.rml_parse):
         return pos_str
     
     def _get_products(self, promo):
-        return promo.product_rel_ids
+        #pdb.set_trace()
+        if promo.product_rel_ids:
+            return promo.product_rel_ids
+        else:
+            pdb.set_trace()
+            return False
     
-report_sxw.report_sxw('report.cd.report_promo_board', 'cd.promotions', 'cederroth_palanning/report/report_promo_board.rml', parser=report_promo_board)
+report_sxw.report_sxw('report.cd.report_promo_salesman', 'cd.promotions', 'cederroth_palanning/report/report_promo_salesman.rml', parser=report_promo_salesman)

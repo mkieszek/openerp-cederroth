@@ -1,1 +1,2 @@
 import report_promo_board
+import report_promo_salesman

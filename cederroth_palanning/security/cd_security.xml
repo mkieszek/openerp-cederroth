@@ -14,6 +14,12 @@
         
         <!-- Grupy uprawnień -->
 	       <!-- Raporty -->
+	       		<record id="group_cd_generate_promo_report" model="res.groups">
+		            <field name="name">Generate Promotions Report</field>
+		            <field name="comment">Generate Promotions Report</field>
+		            <field name="category_id" ref="module_category_cd_reports"/>
+		        </record>
+		        
 	       		<record id="group_cd_import_dch" model="res.groups">
 		            <field name="name">Import z DCH</field>
 		            <field name="comment">Import from DCH</field>

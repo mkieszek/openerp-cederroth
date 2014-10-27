@@ -6,8 +6,11 @@
             <field name="model">cd.report.promo.wizard</field>
             <field name="arch" type="xml">
                 <form string="Export promotions" version="7.0">
+                    <!-- 
                     <button name="print_report" string="Print" type="object" class="oe_highlight"/>
                     <button name="send_report" string="Send" type="object" class="oe_highlight"/>
+                     -->
+                    <button name="print_report_salesman" string="Print Salesman" type="object" class="oe_highlight"/>
                 </form>
             </field>
         </record>		
@@ -35,6 +38,7 @@
         	id="menu_cd_report_promo_wizard" 
         	action="action_cd_report_promo_wizard" 
         	parent="menu_cederroth_sale_reports" 
+        	groups="group_cd_generate_promo_report"
         	sequence="2100"/>
 		    
 	</data>

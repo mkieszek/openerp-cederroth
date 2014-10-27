@@ -6,8 +6,7 @@
     "category" : "Added functionality - Sale",
     "depends" : ['cederroth_sale'],
     'data': ['security/cd_security.xml',
-             'security/ir.model.access.csv',
-             'report/report_promo_board.xml'
+             'security/ir.model.access.csv'
              ],
 
     "description": """
@@ -18,6 +17,7 @@
                    'wizard/cd_product_history_wizard_view.xml',
                    'wizard/cd_export_promo_wizard_view.xml',
                    'wizard/cd_report_promo_wizard_view.xml',
+                   'report/report_promo_board.xml',
                    'view/cd_plan_mark_view.xml',
                    'view/cd_plan_section_view.xml',
                    'view/cd_plan_client_view.xml',
