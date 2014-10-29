@@ -58,6 +58,7 @@
 			                     			<tree editable="bottom">
 			                     				<field name="product_category_id" readonly="1"/>
 		                     					<field name="forecast" sum="Suma wartości" />
+		                     					<field name="contrib" sum="Suma wartości" />
 		                     					<field name="estim_sr" sum="Suma wartości" />
 		                     					<field name="plan_value" sum="Suma wartości" />
 		                     					<field name="plan_luz" sum="Suma wartości" />

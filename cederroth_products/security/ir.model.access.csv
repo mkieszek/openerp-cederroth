@@ -28,5 +28,5 @@ access_cd_export_product_visible,Product export data Visible,model_cd_export_pro
 access_product_template_all,product.template.all,product.model_product_template,,1,0,0,0
 access_cd_stock_move_analyst,res.config.all,base.model_res_config,,1,0,0,
 access_cd_export_listing_visible,Export listing Visible,model_cd_listing_export,group_cd_export_listing_visible,1,1,1,1
-access_cd_price_list_read,Price List,model_cd_price_list,group_cd_product_read,1,0,0,0
-access_cd_price_list_all,Price List,model_cd_price_list,group_cd_product_write,1,1,1,1
+access_cd_price_list_read,Price List,model_cd_price_list,group_cd_price_list_read,1,0,0,0
+access_cd_price_list_all,Price List,model_cd_price_list,group_cd_price_list_manage,1,1,1,1

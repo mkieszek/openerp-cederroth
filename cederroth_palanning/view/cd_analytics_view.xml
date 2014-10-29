@@ -101,7 +101,7 @@
 		</record>
 				
 		<record id="action_cd_plan_client_brand_analytics" model="ir.actions.act_window">
-            <field name="name">Plan Klient</field>
+            <field name="name">Budżet Plan Klient</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cd.plan.client.brand</field>
             <field name="view_id" ref="cd_plan_client_brand_analytics_tree"/>

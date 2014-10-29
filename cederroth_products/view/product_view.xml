@@ -212,10 +212,10 @@
 					<field name="multi_images" widget="image_multi"/>
 				</page>
 			
-				<page string="Cenniki" groups="cederroth_products.group_cd_sales_analyst">
+				<page string="Cenniki" groups="cederroth_products.group_cd_price_list_read">
 					<field name="price_list_ids">
 						<tree editable='bottom'>
-							<field name="client_id" />
+							<field name="client_id" domain="[('is_company','=',True)]"/>
 							<field name="price" />
 						</tree>
 					</field>
