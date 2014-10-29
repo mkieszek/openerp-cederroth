@@ -690,7 +690,7 @@ class cd_promotions(osv.Model):
                 subject = 'Rozpoczęcie akcji promocyjnej'
                 body = decode("Za 10 dni rozpocznie się akcja promocyjna dla klienta %s <br/><a href='%s'>Link do akcji promocyjnej</a>") % vals
                 self.pool.get('product.product').send_mail(cr, uid, body, subject, mail_to)
-        
+        return True
     
     def change_stage(self, cr, uid, context=None):
         cd_config_obj = self.pool.get('cd.config.settings')
@@ -796,15 +796,19 @@ class cd_promotions(osv.Model):
         
     def accept_tmm(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'accept_tmm': True})
+        return True
         
     def accept_trade_d(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'accept_trade_director': True})
+        return True
         
     def accept_finances_d(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'accept_finances_director': True})
+        return True
         
     def accept_country_m(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'accept_country_manager': True})
+        return True
     
     def accept_promotions(self, cr, uid, ids, context=None):
         stage_id = self.pool.get('cd.promotions.stage').search(cr, uid, [('sequence','=', 30)])[0]
@@ -835,6 +839,7 @@ class cd_promotions(osv.Model):
             vals = (promotion.client_id.name, url)                
             body = decode("Akcja promocyjna klienta %s została zaakceptowana.<br/><a href='%s'>Link do akcji promocyjnej</a>") % vals
             self.pool.get('product.product').send_mail(cr, uid, body, subject, mail_to)
+        return True
         
     def cancelled_promotions(self, cr, uid, ids, context=None):
         stage_id = self.pool.get('cd.promotions.stage').search(cr, uid, [('sequence','=', 40)])[0]

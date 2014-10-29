@@ -41,6 +41,7 @@ class report_promo_salesman(report_sxw.rml_parse):
         })
         self.context = context
         
+        
     def _get_today(self, data):
         return data['today']
     
@@ -91,11 +92,9 @@ class report_promo_salesman(report_sxw.rml_parse):
         return pos_str
     
     def _get_products(self, promo):
-        #pdb.set_trace()
         if promo.product_rel_ids:
             return promo.product_rel_ids
         else:
-            pdb.set_trace()
             return False
     
 report_sxw.report_sxw('report.cd.report_promo_salesman', 'cd.promotions', 'cederroth_palanning/report/report_promo_salesman.rml', parser=report_promo_salesman)
