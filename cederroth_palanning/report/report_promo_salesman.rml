@@ -301,7 +301,7 @@
   <story>
   <section>
   <para style="P9">[[repeatIn(objects,'o')]]</para>
-    <blockTable colWidths="95.0,78.0,57.0,45.0,42.0,51.0,48.0,60.0,155.0,73.0,58.0,51.0" style="Tabela1">
+    <blockTable colWidths="115.0,109.0,57.0,45.0,42.0,51.0,48.0,60.0,155.0,73.0,58.0" style="Tabela1">
       <tr>
         <td>
           <para style="P2">Klient</para>
@@ -336,12 +336,9 @@
         <td>
           <para style="P2">Monitoring Merchandising</para>
         </td>
-        <td>
-          <para style="P2">NSH</para>
-        </td>
       </tr>
       </blockTable>
-      <blockTable colWidths="95.0,78.0,57.0,45.0,42.0,51.0,48.0,60.0,155.0,73.0,58.0,51.0" style="Tabela11">
+      <blockTable colWidths="115.0,109.0,57.0,45.0,42.0,51.0,48.0,60.0,155.0,73.0,58.0" style="Tabela11">
       <tr>
         <td>
           <para style="P4">[[o.client_id.name]]</para>
@@ -375,9 +372,6 @@
         </td>
         <td>
           <para style="P4">[[get_monitor_merchend(o)]]</para>
-        </td>
-        <td>
-          <para style="P4">[[o.nsh]]</para>
         </td>
       </tr>
     </blockTable>
