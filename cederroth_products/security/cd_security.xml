@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data noupdate='1'>        
+    <data noupdate='0'>        
         <!-- Dodanie kategorii uprawnień -->                
         <record model="ir.module.category" id="module_category_cd_products">
             <field name="name">Cederroth Products</field>
@@ -136,9 +136,15 @@
 		            <field name="name">Price List Read</field>
 		            <field name="comment">Price List Read</field>
 		            <field name="category_id" ref="module_category_cd_products"/>
-					
 		        </record> 
         	     
+        	    <record id="group_cd_price_list_visible" model="res.groups">
+		            <field name="name">Price List Visible</field>
+		            <field name="comment">Price List Visible</field>
+		            <field name="category_id" ref="module_category_cd_products"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_price_list_read'))]"/>
+		        </record> 
+		        
         	    <record id="group_cd_price_list_manage" model="res.groups">
 		            <field name="name">Price List Manage</field>
 		            <field name="comment">Price List Manage</field>
@@ -150,7 +156,8 @@
 		            <field name="name">Product Read</field>
 		            <field name="comment">Product Read</field>
 		            <field name="category_id" ref="module_category_cd_products"/>
-					<field name="implied_ids" eval="[(4, ref('group_cd_listing_read'))]"/>
+					<field name="implied_ids" eval="[(4, ref('group_cd_listing_read')),
+													(4, ref('group_cd_price_list_read'))]"/>
 		        </record>
 		        
 		        <record id="group_cd_product_write" model="res.groups">
