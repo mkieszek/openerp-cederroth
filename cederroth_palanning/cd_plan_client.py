@@ -112,13 +112,13 @@ class cd_plan_client(osv.Model):
         
             #pdb.set_trace()
             if 'nsh_total' in name or 'gpp_total' in name or 'nsv_total' in name or 'gross_sale' in name or 'disc_front_total' in name or 'product_cogs' in name or 'cmp_total' in name or 'cm_total' in name:
-                if 'nsv_total' in name or 'disc_front_total' in name or 'nsh_total' in name or 'gp_total' in name:
+                if 'nsv_total' in name or 'disc_front_total' in name or 'nsh_total' in name or 'gp_total' in name or 'cm_total' in name or 'cmp_total' in name:
                     discount_dict = {}
                     for discount in plan.client_id.discount_partner_ids:
                         discount_dict[discount.product_category.id] = [discount.discount_front, discount.discount_back]
                         
                 for product in plan.plan_product_ids:
-                    if 'nsv_total' in name or 'disc_front_total' in name or 'nsh_total' in name or 'gp_total' in name:
+                    if 'nsv_total' in name or 'disc_front_total' in name or 'nsh_total' in name or 'gp_total' in name or 'cm_total' in name or 'cmp_total' in name:
                         if product.product_id.product_mark.id in discount_dict:
                             discount = discount_dict[product.product_id.product_mark.id]
                             disc_front_total += product.listing_price*product.sum_plan_count * (discount[0]/100)
@@ -126,10 +126,10 @@ class cd_plan_client(osv.Model):
                         else:
                             disc_front_total += product.listing_price*product.sum_plan_count*(plan.client_id.discount_front/100)  
                             #disc_front_promo += product.listing_price*product.promo_plan_count * (plan.client_id.discount_front/100)
-                    if 'gross_sale' in name or 'nsh_total' in name or 'nsh_promo' in name or 'nsv_total' or 'gp_total' in name:
+                    if 'gross_sale' in name or 'nsh_total' in name or 'nsh_promo' in name or 'nsv_total' or 'gp_total' in name or 'cm_total' in name or 'cmp_total' in name:
                         gross_sale += product.listing_price * product.sum_plan_count
                         #gross_sale_promo += product.listing_price * product.promo_plan_count
-                    if 'product_cogs' in name or 'cmp_total' in name or 'gp_total' in name:
+                    if 'product_cogs' in name or 'cmp_total' in name or 'gp_total' in name or 'cm_total' in name:
                         product_cogs += product.product_id.price_cogs * product.sum_plan_count 
             
             if 'discount_pormo' in name or 'nsv_total' in name or 'cmp_total' in name or 'cm_total' in name or 'gp_total' in name:
@@ -175,7 +175,7 @@ class cd_plan_client(osv.Model):
                 nsv_total = nsh_total - trade_promo - other_listings
             
             
-            if 'other_cogs' in name or 'gp_total' in name or 'cm_total' in name or 'gpp_total' in name:
+            if 'other_cogs' in name or 'gp_total' in name or 'cm_total' in name or 'gpp_total' in name or 'cmp_total' in name:
                 vals_other_cogs = [
                            ('client_id','=',plan.client_id.id),
                            ('month','=',plan.month),
@@ -191,7 +191,7 @@ class cd_plan_client(osv.Model):
                 if nsv_total > 1:
                     gpp_total = gp_total/nsv_total*100
 
-            if 'other_marketing' in name or 'cm_total' in name:
+            if 'other_marketing' in name or 'cm_total' in name or 'cmp_total' in name:
                 vals_other_marketing = [
                            ('client_id','=',plan.client_id.id),
                            ('month','=',plan.month),
@@ -217,7 +217,6 @@ class cd_plan_client(osv.Model):
             if 'cmp_total' in name:
                 if nsv_total > 0:
                     cmp_total = cm_total/nsv_total*100
-            
                 
             val[plan.id] = {
                             'gpp_total': gpp_total,
